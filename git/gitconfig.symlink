@@ -1,0 +1,23 @@
+[user]
+  name = Emmanuel Pilande
+  email = manny@sudokrew.com
+[github]
+  user = epilande
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = auto
+[core]
+  excludesfiles = ~/.gitignore
+  excludesfile = ~/.gitignore_global
+  editor = vim
+[merge]
+  tool = kdiff3
+[mergetool "kdiff3"]
+  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+[push]
+  default = simple
+[mergetool]
+  keepBackup = true
