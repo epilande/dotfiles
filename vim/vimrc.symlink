@@ -200,6 +200,9 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" Strip trailing spaces on save
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+ 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => VISUAL MODE RELATED
@@ -461,6 +464,15 @@ function! ConcealJsonToggle()
     let g:toggle_json_conceal=1
   endif
 endfunction
+
+
+" Strip trailing spaces
+function! <SID>StripTrailingWhitespaces()
+  let l = line(".")
+  let c = col(".")
+  %s/\s\+$//e
+  call cursor(l, c)
+endfun
 
 
 
