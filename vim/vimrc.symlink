@@ -46,7 +46,7 @@ map <leader>e :e! ~/.vimrc<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Enable syntax highlighting
-syntax enable 
+syntax enable
 
 set background=dark
 
@@ -114,23 +114,23 @@ endif
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases 
+" When searching try to be smart about cases
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch 
+set incsearch
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw 
+set lazyredraw
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch 
+set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -149,7 +149,7 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 
-" Set highlight cursor line 
+" Set highlight cursor line
 hi CursorLine cterm=none ctermbg=8 ctermfg=none
 
 " Style verticle split seporator
@@ -184,7 +184,7 @@ endtry
 " Use spaces instead of tabs
 set expandtab
 
-" Be smart when using tabs 
+" Be smart when using tabs
 set smarttab
 
 " Number of spaces to use for indent and unindent
@@ -202,7 +202,7 @@ set wrap "Wrap lines
 
 " Strip trailing spaces on save
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
- 
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => VISUAL MODE RELATED
@@ -240,10 +240,10 @@ map <leader>ba :1,1000 bd!<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
 
-" Specify the behavior when switching between buffers 
+" Specify the behavior when switching between buffers
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -278,7 +278,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 vnoremap <leader>ack :call VisualSelection('gv', '')<CR>
 
 " Open Ack and put the cursor in the right position
-map <leader>ac :Ack 
+map <leader>ac :Ack
 
 " Search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
@@ -303,10 +303,10 @@ map <leader>s? z=
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" => MAPPINGS  
+" => MAPPINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Exit insert mode with `jk` 
+" Exit insert mode with `jk`
 inoremap jk <ESC>
 
 " Fast saving
@@ -316,7 +316,7 @@ nmap <leader>w :w!<cr>
 map <leader>cc "+y
 map <leader>vv "+p
 
-" Indent/Unindent 
+" Indent/Unindent
 noremap > >>
 noremap < <<
 vnoremap > >gv
@@ -359,7 +359,6 @@ inoremap { {}<esc>i
 inoremap $4 {<esc>o}<esc>O
 inoremap $q ''<esc>i
 inoremap $e ""<esc>i
-inoremap $t <><esc>i
 
 " Set Syntax
 map <leader>sy :set syntax=
@@ -391,6 +390,9 @@ vnoremap p "_c<Esc>p
 " Delete selected words without updating default register
 vnoremap <leader>d "_d
 
+" Quick macro invocation with q register
+nnoremap Q @q
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
@@ -400,7 +402,7 @@ function! CmdLine(str)
   exe "menu Foo.Bar :" . a:str
   emenu Foo.Bar
   unmenu Foo
-endfunction 
+endfunction
 
 function! VisualSelection(direction, extra_filter) range
   let l:saved_reg = @"
@@ -455,7 +457,7 @@ endfunction
 
 
 " Toggle quotes for json file
-function! ConcealJsonToggle() 
+function! ConcealJsonToggle()
   if g:toggle_json_conceal
     set conceallevel=2
     let g:toggle_json_conceal=0
