@@ -1,5 +1,5 @@
 ##############################
-# => BASIC SETTINGS 
+# => BASIC SETTINGS
 ##############################
 
 # Fix pbpaste in tmux sessions
@@ -47,7 +47,7 @@ set-option -g allow-rename off
 
 
 ##############################
-# => KEY BINDINGS 
+# => KEY BINDINGS
 ##############################
 
 # reload config file
@@ -111,3 +111,13 @@ bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
 bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
 bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
 bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+
+
+##############################
+# => PLUGINS
+##############################
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+
+# Initialize TMUX plugin manager
+run '~/.tmux/plugins/tpm/tpm'
