@@ -17,7 +17,10 @@ Plug 'Shougo/unite.vim'
 Plug 'Shougo/neomru.vim'
 
 " Neo-completion with cache
-Plug 'Shougo/neocomplete.vim'
+" Plug 'Shougo/neocomplete.vim'
+
+" Code completion
+Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 
 " Emacs's kill-ring for vim
 " Plug 'maxbrunsfeld/vim-yankstack'
@@ -43,7 +46,7 @@ Plug 'scrooloose/syntastic'
 " Cache file automatically
 Plug 'MarcWeber/vim-addon-mw-utils'
 
-" Lean & mean status/tabline 
+" Lean & mean status/tabline
 Plug 'bling/vim-airline'
 
 " Comment stuff out
@@ -52,7 +55,7 @@ Plug 'tpope/vim-commentary'
 " Visually select larger regions of text using the same key combination
 Plug 'terryma/vim-expand-region'
 
-" Git wrapper 
+" Git wrapper
 Plug 'tpope/vim-fugitive'
 
 " LESS syntax highlighting
@@ -67,7 +70,7 @@ Plug 'plasticboy/vim-markdown'
 " Enable repeating supported plugin maps
 Plug 'tpope/vim-repeat'
 
-" Ultimate snippet solution 
+" Ultimate snippet solution
 Plug 'SirVer/ultisnips'
 
 " Quoting/parenthesizing made simple
@@ -83,7 +86,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'leafgarland/typescript-vim'
 
 " Undo history visualizer
-Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' } 
+Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 " Preview colors in source code
 Plug 'ap/vim-css-color'
@@ -174,7 +177,7 @@ call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async', 'converters', 'converter_relative_word')
 
 call unite#custom#profile('default', 'context', {
-  \ 'cursor_line_highlight' : 'CursorLine', 
+  \ 'cursor_line_highlight' : 'CursorLine',
   \ 'start_insert': 1,
   \ 'winheight': 10,
   \ 'direction': 'botright',
@@ -205,7 +208,7 @@ let g:unite_prompt='❯ '
 nnoremap <C-f> :<C-u>Unite -buffer-name=files file_mru file_rec/async:!<CR>
 nnoremap <leader>f :<C-u>Unite -no-split -no-resize -direction=topleft -buffer-name=mru file_mru<CR>
 map <leader>y :<C-u>Unite -no-start-insert history/yank<CR>
-nnoremap <leader>/ :<C-u>Unite grep:.<CR> 
+nnoremap <leader>/ :<C-u>Unite grep:.<CR>
 
 " Custom mappings for the unite buffer
 autocmd FileType unite call s:unite_keymaps()
@@ -262,7 +265,7 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 let g:airline_powerline_fonts = 1
 if has("gui_running")
   let g:airline_theme="luna"
-else 
+else
   let g:airline_theme="gotham"
 endif
 
@@ -301,24 +304,27 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 " Neocomplete
 """"""""""""""""""""""""""""""
 
-" Disable AutoComplPop.
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+" " Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+" " Use neocomplete.
+" let g:neocomplete#enable_at_startup = 1
+" " Use smartcase.
+" let g:neocomplete#enable_smart_case = 1
+" " Set minimum syntax keyword length.
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+"   return neocomplete#close_popup() . "\<CR>"
+" endfunction
 
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" " Enable omni completion.
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 
 """"""""""""""""""""""""""""""
@@ -326,7 +332,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 """"""""""""""""""""""""""""""
 map <leader>gg :GitGutterToggle<CR>
 map <leader>gs :Gstatus<CR>
-set diffopt+=vertical 
+set diffopt+=vertical
 
 
 """"""""""""""""""""""""""""""
@@ -346,7 +352,7 @@ let g:vim_markdown_folding_disabled=1
 " undotree
 """"""""""""""""""""""""""""""
 map <leader>u :UndotreeToggle<CR>
-let g:undotree_WindowLayout = 3 
+let g:undotree_WindowLayout = 3
 let g:undotree_SplitWidth = 35
 let g:undotree_SetFocusWhenToggle = 1
 
