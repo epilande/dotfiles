@@ -336,6 +336,15 @@ set diffopt+=vertical
 
 
 """"""""""""""""""""""""""""""
+" Ultisnips
+""""""""""""""""""""""""""""""
+" Trigger configuration
+let g:UltiSnipsExpandTrigger="<C-Space>"
+let g:UltiSnipsJumpForwardTrigger="<C-n>"
+let g:UltiSnipsJumpBackwardTrigger="<C-p>"
+
+
+""""""""""""""""""""""""""""""
 " vim-instant-markdown
 """"""""""""""""""""""""""""""
 let g:instant_markdown_slow = 1
