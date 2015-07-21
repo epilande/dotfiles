@@ -134,7 +134,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ryanoasis/vim-devicons'
 
 " Zoom in/out of windows
-Plug 'regedarek/ZoomWin'
+Plug 'troydm/zoomwintab.vim'
 
 " Search Dash from vim
 Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
@@ -365,5 +365,5 @@ endif
 """"""""""""""""""""""""""""""
 " ZoomWin
 """"""""""""""""""""""""""""""
-nnoremap <silent> <leader>z :ZoomWin<cr>
+nnoremap <silent> <leader>z :ZoomWinTabToggle<cr>
 
