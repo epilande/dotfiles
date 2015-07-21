@@ -57,7 +57,10 @@ if has("gui_running")
   set linespace=2
   set noantialias
 else
-  colorscheme gotham
+  try
+    colorscheme gotham
+  catch
+  endtry
 endif
 
 " Set extra options when running in GUI mode
