@@ -142,6 +142,12 @@ Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
 " Gotham colorscheme
 Plug 'whatyouhide/vim-gotham'
 
+" Vim Orgmode
+Plug 'jceb/vim-orgmode', { 'for': 'org' }
+
+" Increment dates, times, and more
+Plug 'tpope/vim-speeddating'
+
 call plug#end()
 
 
