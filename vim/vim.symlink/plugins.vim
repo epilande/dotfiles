@@ -176,6 +176,11 @@ call unite#filters#converter_default#use(['converter_relative_word'])
 call unite#filters#sorter_default#use(['sorter_rank'])
 call unite#custom#source('file_mru,file_rec,file_rec/async', 'converters', 'converter_relative_word')
 
+" Restrict mru to display files for current project
+call unite#custom#source(
+  \ 'file_mru', 'matchers',
+  \ ['matcher_project_files', 'matcher_fuzzy'])
+
 call unite#custom#profile('default', 'context', {
   \ 'cursor_line_highlight' : 'CursorLine',
   \ 'start_insert': 1,
