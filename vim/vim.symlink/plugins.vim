@@ -222,6 +222,10 @@ function! s:unite_keymaps()
   " Enable navigation with control-j and control-k in insert mode
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+
+  " Exit unite with jk/Esc while in insert mode
+  imap <buffer> jk   <Plug>(unite_exit)
+  imap <buffer> <Esc>   <Plug>(unite_exit)
 endfunction
 
 
