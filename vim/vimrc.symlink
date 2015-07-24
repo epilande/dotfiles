@@ -421,6 +421,9 @@ vnoremap <leader>d "_d
 " Quick macro invocation with q register
 nnoremap Q @q
 
+" Switch between the last two files
+nnoremap <leader><leader> <C-^>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS

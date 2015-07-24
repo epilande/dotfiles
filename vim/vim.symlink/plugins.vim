@@ -310,6 +310,7 @@ let g:airline#extensions#default#section_truncate_width = {
 """"""""""""""""""""""""""""""
 map s <Plug>(easymotion-s)
 map <leader>ss <Plug>(easymotion-s2)
+map <leader><leader><leader> <Plug>(easymotion-prefix)
 
 " match lower & upper case
 let g:EasyMotion_smartcase = 1
