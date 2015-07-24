@@ -284,6 +284,15 @@ else
   let g:airline_theme="gotham"
 endif
 
+" Automatically truncate sections
+let g:airline#extensions#default#section_truncate_width = {
+  \ 'b': 100,
+  \ 'x': 100,
+  \ 'y': 105,
+  \ 'z': 50,
+  \ 'warning': 50,
+  \ }
+
 
 """"""""""""""""""""""""""""""
 " yankstack
