@@ -336,9 +336,6 @@ nmap ˚ mz:m-2<cr>`z
 vmap ∆ :m'>+<cr>`<my`>mzgv`yo`z
 vmap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
 
-" Jump to beginning/end of line using ALT+[hl]
-imap ˙ <esc>I
-imap ¬ <esc>A
 " Insert mode movements
 imap II <Esc>I
 imap AA <Esc>A
@@ -355,22 +352,6 @@ endif
 
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
-
-" Wrap selected with parenthesis/brackets
-vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-vnoremap $q <esc>`>a'<esc>`<i'<esc>
-vnoremap $e <esc>`>a"<esc>`<i"<esc>
-
-" Auto complete (, ", ', [
-inoremap ( ()<esc>i
-inoremap [ []<esc>i
-inoremap { {}<esc>i
-inoremap $4 {<esc>o}<esc>O
-inoremap $q ''<esc>i
-inoremap $e ""<esc>i
 
 " Set Syntax
 map <leader>sy :set syntax=
