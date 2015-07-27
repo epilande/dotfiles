@@ -28,8 +28,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 " Emmet for vim
 Plug 'mattn/emmet-vim'
 
-" Vim frontend for the Perl module Ack
-Plug 'mileszs/ack.vim'
 
 " BufExplorer quickly and easily switch between buffer
 Plug 'jlanzarotta/bufexplorer'
@@ -211,7 +209,7 @@ let g:unite_source_history_yank_enable=1
 let g:unite_source_rec_max_cache_files=5000
 let g:unite_source_file_mru_limit=200
 let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
-let g:unite_source_grep_command = 'ack'
+let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '-s -H --nocolor --nogroup --column'
 let g:unite_source_grep_recursive_opt = ''
 let g:unite_prompt='❯ '
@@ -229,8 +227,8 @@ function! s:unite_keymaps()
   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 
-  " Exit unite with jk/Esc while in insert mode
-  imap <buffer> jk   <Plug>(unite_exit)
+  " Exit unite with Esc while in insert mode
+  nmap <buffer> <Esc>   <Plug>(unite_exit)
   imap <buffer> <Esc>   <Plug>(unite_exit)
 endfunction
 

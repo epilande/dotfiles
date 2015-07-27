@@ -286,23 +286,6 @@ set laststatus=2
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""
-" => ACK FOR SEARCHING
-""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Ack after the selected text
-vnoremap <leader>ack :call VisualSelection('gv', '')<CR>
-
-" Open Ack and put the cursor in the right position
-map <leader>ac :Ack
-
-" Search and replace the selected text
-vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
-
-" Go to next/prev search results
-" map <leader>n :cn<cr>
-" map <leader>p :cp<cr>
 " Hide tabline
 set showtabline=0
 
@@ -449,10 +432,6 @@ function! VisualSelection(direction, extra_filter) range
 
   if a:direction == 'b'
     execute "normal ?" . l:pattern . "^M"
-  elseif a:direction == 'gv'
-    call CmdLine("Ack \"" . l:pattern . "\" " )
-  elseif a:direction == 'replace'
-    call CmdLine("%s" . '/'. l:pattern . '/')
   elseif a:direction == 'f'
     execute "normal /" . l:pattern . "^M"
   endif
