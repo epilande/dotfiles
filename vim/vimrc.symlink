@@ -34,9 +34,6 @@ filetype indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 
-" Hide tabline
-set showtabline=0
-
 " Fast editing of vimrc
 map <leader>e :e! ~/.vimrc<cr>
 
@@ -306,6 +303,8 @@ vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
 " Go to next/prev search results
 " map <leader>n :cn<cr>
 " map <leader>p :cp<cr>
+" Hide tabline
+set showtabline=0
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -357,6 +356,12 @@ vmap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
 " Jump to beginning/end of line using ALT+[hl]
 imap ˙ <esc>I
 imap ¬ <esc>A
+" Insert mode movements
+imap II <Esc>I
+imap AA <Esc>A
+imap KK <Esc>O
+imap JJ <Esc>o
+
 
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
