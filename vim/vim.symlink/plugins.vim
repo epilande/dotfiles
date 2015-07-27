@@ -146,6 +146,9 @@ Plug 'jceb/vim-orgmode', { 'for': 'org' }
 " Increment dates, times, and more
 Plug 'tpope/vim-speeddating'
 
+" Insert or delete brackets, parens, quotes in pair
+Plug 'jiangmiao/auto-pairs'
+
 call plug#end()
 
 
