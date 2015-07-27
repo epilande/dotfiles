@@ -35,9 +35,6 @@ Plug 'jlanzarotta/bufexplorer'
 " Tree explorer for vim.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-" Snippet files for various programming languages
-Plug 'honza/vim-snippets'
-
 " Syntax checking
 Plug 'scrooloose/syntastic'
 
@@ -70,6 +67,9 @@ Plug 'tpope/vim-repeat'
 
 " Ultimate snippet solution
 Plug 'SirVer/ultisnips'
+
+" Snippet files for various programming languages
+Plug 'honza/vim-snippets'
 
 " Quoting/parenthesizing made simple
 Plug 'tpope/vim-surround'
@@ -366,8 +366,8 @@ set diffopt+=vertical
 """"""""""""""""""""""""""""""
 " Trigger configuration
 let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<C-n>"
-let g:UltiSnipsJumpBackwardTrigger="<C-p>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 
 """"""""""""""""""""""""""""""
