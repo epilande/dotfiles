@@ -19,6 +19,8 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 " Emmet for vim
 Plug 'mattn/emmet-vim'
 
+" Code search and view tool
+Plug 'dyng/ctrlsf.vim'
 
 " BufExplorer quickly and easily switch between buffer
 Plug 'jlanzarotta/bufexplorer'
@@ -332,3 +334,15 @@ endif
 """"""""""""""""""""""""""""""
 nnoremap <silent> <leader>z :ZoomWinTabToggle<cr>
 
+
+""""""""""""""""""""""""""""""
+" CtrlSF
+""""""""""""""""""""""""""""""
+" Prompt CtrlSF using ALT+f
+nmap ƒ <Plug>CtrlSFPrompt
+vmap ƒ <Plug>CtrlSFVwordPath
+
+" Toggle CtrlSF result display
+map † :CtrlSFToggle<CR>
+
+let g:ctrlsf_indent = 2
