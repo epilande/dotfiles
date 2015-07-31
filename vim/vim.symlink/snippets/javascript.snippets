@@ -19,7 +19,7 @@ snippet timeout "setTimeout(function() { ... })"
 
 # Log Snippets
 snippet log "console.log(...)"
-	console.log(${1});
+	console.log('${1}', ${2:$1});
 
 snippet al "alert(...)"
 	alert(${1});
