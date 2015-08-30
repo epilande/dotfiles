@@ -38,6 +38,8 @@ export TERM=xterm-256color
 # Switch vim to macvim
 # alias vim='mvim -v'
 
+alias ":q"="exit"
+
 # Show/Hide finder hidden files
 alias showHidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideHidden='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
