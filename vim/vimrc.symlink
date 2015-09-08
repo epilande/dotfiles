@@ -315,8 +315,10 @@ inoremap jk <ESC>
 nmap <leader>w :w!<cr>
 
 " Copy/Paste to clipboard
-map <leader>cc "+y
-map <leader>vv "+p
+vmap <leader>y "+y
+vmap <leader>d "+d
+map <leader>p "+p
+map <leader>P "+P
 
 " Indent/Unindent
 noremap > >>
@@ -335,12 +337,6 @@ nmap ∆ mz:m+<cr>`z
 nmap ˚ mz:m-2<cr>`z
 vmap ∆ :m'>+<cr>`<my`>mzgv`yo`z
 vmap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
-
-" Insert mode movements
-imap II <Esc>I
-imap AA <Esc>A
-imap KK <Esc>O
-imap JJ <Esc>o
 
 
 if has("mac") || has("macunix")
