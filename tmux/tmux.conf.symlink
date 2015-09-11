@@ -53,6 +53,9 @@ set-option -g allow-rename off
 # reload config file
 bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
 
+# load dev config
+bind C-d source-file ~/.tmux/dev.conf \; display "Dev config loaded!"
+
 # quickly open a new window
 bind N new-window
 
