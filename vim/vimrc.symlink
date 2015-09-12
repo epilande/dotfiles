@@ -389,6 +389,8 @@ nnoremap Q @q
 " Switch between the last two files
 nnoremap <leader><leader> <C-^>
 
+" Math macro, do math on current line
+nnoremap <leader>m 0v$hyA = <C-r>=<C-r>"<CR><Esc>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
