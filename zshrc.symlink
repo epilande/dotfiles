@@ -1,7 +1,7 @@
 # Path to oh-my-zsh configuration
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="nicoulaj"
+ZSH_THEME="erp"
 
 # Plugins
 plugins=(git osx npm jump zsh-syntax-highlighting jsontools web-search jira)
