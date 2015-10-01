@@ -365,10 +365,13 @@ let g:notes_folder = '~/Desktop/Notes/'
 let g:notes = g:notes_folder . fnamemodify(getcwd(), ':t') . '.md'
 let g:note_size = 15
 " Open current project notes
-map <leader>n :execute ':topleft split ' . g:notes<cr>:execute ':resize' . g:note_size<cr>
+map <silent> <leader>n :execute ':topleft split ' . g:notes<cr>:execute ':resize' . g:note_size<cr>
 " Open daily notes
 let g:daily_notes = g:notes_folder . 'daily-notes.org'
-map <leader>nn :execute ':topleft split ' . g:daily_notes<cr>:execute ':resize' . g:note_size<cr>
+map <silent> <leader>nn :execute ':topleft split ' . g:daily_notes<cr>:execute ':resize' . g:note_size<cr>
+" Open school notes
+let g:school_notes = g:notes_folder . 'school-notes.md'
+map <silent> <leader>ns :execute ':topleft split ' . g:school_notes<cr>:execute ':resize' . g:note_size<cr>
 
 " Toggle quotes for json file
 map <leader>" :call ConcealJsonToggle()<cr>
@@ -379,9 +382,6 @@ nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 
 " Paste in visual mode without updating default register
 vnoremap p "_c<Esc>p
-
-" Delete selected words without updating default register
-vnoremap <leader>d "_d
 
 " Quick macro invocation with q register
 nnoremap Q @q
