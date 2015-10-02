@@ -112,9 +112,6 @@ Plug 'terryma/vim-multiple-cursors'
 " Mustache and handlebars mode for vim
 Plug 'mustache/vim-mustache-handlebars'
 
-" Paste in Vim with indentation adjusted to destination context
-Plug 'sickill/vim-pasta'
-
 " Toggle, display and navigate marks
 Plug 'kshenoy/vim-signature'
 
@@ -270,7 +267,7 @@ let g:airline#extensions#default#section_truncate_width = {
 """"""""""""""""""""""""""""""
 map s <Plug>(easymotion-s)
 map <leader>ss <Plug>(easymotion-s2)
-map <leader><leader><leader> <Plug>(easymotion-prefix)
+map <leader>_ <Plug>(easymotion-prefix)
 
 " match lower & upper case
 let g:EasyMotion_smartcase = 1
