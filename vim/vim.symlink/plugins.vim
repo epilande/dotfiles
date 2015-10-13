@@ -139,6 +139,9 @@ Plug 'tpope/vim-speeddating'
 " Insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
 
+" React JSX syntax highlighting & indenting
+Plug 'mxw/vim-jsx'
+
 call plug#end()
 
 
@@ -373,3 +376,11 @@ let g:tmuxline_separators = {
   \ 'right' : '',
   \ 'right_alt' : '',
   \ 'space' : ' '}
+
+
+""""""""""""""""""""""""""""""
+" vim-jsx
+""""""""""""""""""""""""""""""
+let g:jsx_ext_required = 0 " Allow JSX in normal JS files
+
+
