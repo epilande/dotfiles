@@ -212,7 +212,7 @@ let g:unite_prompt='❯ '
 
 nnoremap <C-f> :<C-u>Unite -buffer-name=files file_mru file_rec/async:!<CR>
 nnoremap <leader>f :<C-u>Unite -no-split -no-resize -direction=topleft -buffer-name=mru file_mru<CR>
-map <leader>y :<C-u>Unite -no-start-insert history/yank<CR>
+nnoremap <leader>y :<C-u>Unite -no-start-insert history/yank<CR>
 nnoremap <leader>/ :<C-u>Unite grep:.<CR>
 
 " Custom mappings for the unite buffer
