@@ -47,7 +47,7 @@ Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-fugitive'
 
 " LESS syntax highlighting
-Plug 'groenewege/vim-less'
+" Plug 'groenewege/vim-less'
 
 " SCSS syntax highlighting
 Plug 'cakebaker/scss-syntax.vim'
@@ -74,7 +74,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'edkolev/tmuxline.vim'
 
 " Typescript syntax highlighting
-Plug 'leafgarland/typescript-vim'
+" Plug 'leafgarland/typescript-vim'
 
 " Undo history visualizer
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
@@ -98,7 +98,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 
 " Jade syntax highlighting
-Plug 'digitaltoad/vim-jade'
+" Plug 'digitaltoad/vim-jade'
 
 " Javascript indentation and syntax support
 Plug 'pangloss/vim-javascript'
@@ -110,7 +110,7 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'terryma/vim-multiple-cursors'
 
 " Mustache and handlebars mode for vim
-Plug 'mustache/vim-mustache-handlebars'
+" Plug 'mustache/vim-mustache-handlebars'
 
 " Toggle, display and navigate marks
 Plug 'kshenoy/vim-signature'
