@@ -139,6 +139,9 @@ Plug 'tpope/vim-speeddating'
 " Insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
 
+" Tern-based JavaScript editing support
+Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+
 " React JSX syntax highlighting & indenting
 Plug 'mxw/vim-jsx'
 
