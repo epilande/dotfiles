@@ -396,7 +396,7 @@ nnoremap <leader>m 0v$hyA = <C-r>=<C-r>"<CR><Esc>
 nnoremap gV `[v`]
 
 " Search & replace word under cursor
-nnoremap S yiw:,$s:<C-r>0::gc\|1,''-&&<C-f>F:i
+nnoremap S :,$s:<C-r><C-w>::gc\|1,''-&&<C-f>F:i
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
