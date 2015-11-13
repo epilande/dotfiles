@@ -395,6 +395,9 @@ nnoremap <leader>m 0v$hyA = <C-r>=<C-r>"<CR><Esc>
 " Quickly select text you just pasted
 nnoremap gV `[v`]
 
+" Search & replace word under cursor
+nnoremap S yiw:,$s:<C-r>0::gc\|1,''-&&<C-f>F:i
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
