@@ -98,7 +98,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 
 " Jade syntax highlighting
-" Plug 'digitaltoad/vim-jade'
+Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 
 " Javascript indentation and syntax support
 Plug 'pangloss/vim-javascript'
