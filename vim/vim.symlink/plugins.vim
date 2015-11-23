@@ -119,7 +119,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Add filetype glyphs (icons)
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 " Zoom in/out of windows
 Plug 'troydm/zoomwintab.vim'
