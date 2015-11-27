@@ -29,7 +29,10 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Syntax checking
-Plug 'scrooloose/syntastic'
+" Plug 'scrooloose/syntastic'
+
+" Asynchronous linter
+Plug 'benekastah/neomake'
 
 " Cache file automatically
 Plug 'MarcWeber/vim-addon-mw-utils'
