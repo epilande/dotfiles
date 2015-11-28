@@ -390,3 +390,11 @@ let g:tmuxline_separators = {
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 
+""""""""""""""""""""""""""""""
+" Neomake
+""""""""""""""""""""""""""""""
+autocmd! BufWritePost * Neomake
+let g:neomake_verbose = -1
+let g:neomake_open_list = 2
+let g:neomake_list_height = 7
+
