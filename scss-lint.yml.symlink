@@ -15,7 +15,7 @@ linters:
     enabled: true
 
   Comment:
-    enabled: false
+    enabled: true
 
   DebugStatement:
     enabled: true
@@ -24,14 +24,14 @@ linters:
     enabled: true
 
   DuplicateProperty:
-    enabled: false
+    enabled: true
 
   ElsePlacement:
     enabled: true
     style: same_line # or 'new_line'
 
   EmptyLineBetweenBlocks:
-    enabled: false
+    enabled: true
     ignore_single_line_blocks: true
 
   EmptyRule:
@@ -52,7 +52,10 @@ linters:
   HexValidation:
     enabled: true
 
-  IdWithExtraneousSelector:
+  IdSelector:
+    enabled: true
+
+  ImportantRule:
     enabled: true
 
   ImportPath:
@@ -75,6 +78,7 @@ linters:
 
   NameFormat:
     enabled: true
+    allow_leading_underscore: true
     convention: hyphenated_lowercase # or 'BEM', or a regex pattern
 
   NestingDepth:
@@ -94,9 +98,9 @@ linters:
     extra_properties: ['stroke', 'fill', 'stroke-width']
 
   QualifyingElement:
-    enabled: false
-    allow_element_with_attribute: false
-    allow_element_with_class: false
+    enabled: true
+    allow_element_with_attribute: true
+    allow_element_with_class: true
     allow_element_with_id: false
 
   SelectorDepth:
@@ -115,14 +119,14 @@ linters:
     allow_single_line_rule_sets: true
 
   SingleLinePerSelector:
-    enabled: false
+    enabled: true
 
   SpaceAfterComma:
     enabled: true
 
   SpaceAfterPropertyColon:
     enabled: true
-    style: one_space # or 'no_space', or 'at_least_one_space', or 'aligned'
+    style: at_least_one_space # or 'one_space', or 'no_space', or 'at_least_one_space', or 'aligned'
 
   SpaceAfterPropertyName:
     enabled: true
