@@ -141,8 +141,11 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Add a bit extra margin to the left
-set foldcolumn=1
+" Set up code folding
+set foldmethod=indent
+set foldnestmax=20
+" set foldlevelstart=20
+set nofoldenable
 
 " Disable scrollbars (real hackers don't use scrollbars for navigation!)
 set guioptions-=r
