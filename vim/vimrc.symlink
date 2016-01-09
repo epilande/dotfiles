@@ -163,7 +163,7 @@ hi VertSplit cterm=none ctermbg=none ctermfg=23
 hi Visual cterm=none ctermbg=11 ctermfg=none
 
 " Set folded highlight color
-hi Folded ctermbg=10
+hi Folded ctermbg=10 ctermfg=10
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
