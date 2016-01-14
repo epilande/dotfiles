@@ -402,6 +402,9 @@ nnoremap gV `[v`]
 " Search & replace word under cursor
 nnoremap S :,$s:<C-r><C-w>::gc\|1,''-&&<C-f>F:i
 
+" Insert current date
+map cd "=strftime("[%Y-%m-%d %a]")<CR>P
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
