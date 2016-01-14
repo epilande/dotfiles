@@ -394,7 +394,7 @@ nnoremap Q @q
 nnoremap <leader><leader> <C-^>
 
 " Math macro, do math on current line
-nnoremap <leader>m 0v$hyA = <C-r>=<C-r>"<CR><Esc>
+nnoremap <leader>= 0v$hyA = <C-r>=<C-r>"<CR><Esc>
 
 " Quickly select text you just pasted
 nnoremap gV `[v`]
