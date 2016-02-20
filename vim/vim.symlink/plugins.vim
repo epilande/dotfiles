@@ -28,9 +28,6 @@ Plug 'jlanzarotta/bufexplorer'
 " Tree explorer for vim.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-" Syntax checking
-" Plug 'scrooloose/syntastic'
-
 " Asynchronous linter
 Plug 'benekastah/neomake'
 
@@ -48,9 +45,6 @@ Plug 'terryma/vim-expand-region'
 
 " Git wrapper
 Plug 'tpope/vim-fugitive'
-
-" LESS syntax highlighting
-" Plug 'groenewege/vim-less'
 
 " SCSS syntax highlighting
 Plug 'cakebaker/scss-syntax.vim'
@@ -75,9 +69,6 @@ Plug 'Yggdroot/indentLine'
 
 " Tmux statusline generator with support for airline
 Plug 'edkolev/tmuxline.vim'
-
-" Typescript syntax highlighting
-" Plug 'leafgarland/typescript-vim'
 
 " Undo history visualizer
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
@@ -111,12 +102,6 @@ Plug 'jelera/vim-javascript-syntax'
 
 " Sublime Text style multiple selections
 Plug 'terryma/vim-multiple-cursors'
-
-" Mustache and handlebars mode for vim
-" Plug 'mustache/vim-mustache-handlebars'
-
-" Toggle, display and navigate marks
-Plug 'kshenoy/vim-signature'
 
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
