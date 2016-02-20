@@ -329,13 +329,6 @@ map 0 ^
 " Trim WhiteSpace
 nnoremap <Leader>tws :%s/\s\+$//e<CR>
 
-" Move a line of text using ALT+[jk]
-nmap ∆ mz:m+<cr>`z
-nmap ˚ mz:m-2<cr>`z
-vmap ∆ :m'>+<cr>`<my`>mzgv`yo`z
-vmap ˚ :m'<-2<cr>`>my`<mzgv`yo`z
-
-
 if has("mac") || has("macunix")
   nmap <D-j> <M-j>
   nmap <D-k> <M-k>
