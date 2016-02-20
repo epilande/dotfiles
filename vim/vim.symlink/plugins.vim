@@ -97,8 +97,8 @@ Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 " Javascript indentation and syntax support
 Plug 'pangloss/vim-javascript'
 
-" Enhanced javascript syntax
-Plug 'jelera/vim-javascript-syntax'
+" Yet Another JavaScript Syntax
+Plug 'othree/yajs.vim'
 
 " Sublime Text style multiple selections
 Plug 'terryma/vim-multiple-cursors'
@@ -107,7 +107,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'christoomey/vim-tmux-navigator'
 
 " Add filetype glyphs (icons)
-" Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
 " Zoom in/out of windows
 Plug 'troydm/zoomwintab.vim'
