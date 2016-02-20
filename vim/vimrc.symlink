@@ -251,6 +251,12 @@ if has('nvim')
   tnoremap <C-l> <C-\><C-n><C-w>l
 endif
 
+" Map Alt-[h,j,k,l] for resizing a window split
+nnoremap <silent> ˙ :vertical resize -2<CR>
+nnoremap <silent> ˚ :resize -2<CR>
+nnoremap <silent> ∆ :resize +2<CR>
+nnoremap <silent> ¬ :vertical resize +2<CR>
+
 " Close the current buffer
 map <leader>bd :Bclose<cr>
 
