@@ -13,6 +13,10 @@ Plug 'Shougo/unite.vim'
 " Most Recently Used
 Plug 'Shougo/neomru.vim'
 
+" Command-line fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+
 " Code completion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 

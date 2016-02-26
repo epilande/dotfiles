@@ -37,7 +37,7 @@ function colours() {
 export TERM=xterm-256color
 
 # Switch vim to macvim
-# alias vim='mvim -v'
+alias vim='mvim -v'
 
 alias ":q"="exit"
 alias stfu="osascript -e 'set volume output muted true'"
@@ -55,3 +55,5 @@ alias meteors='meteor --settings ./config/settings.json'
 export NVM_DIR="/Users/ERP/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
+# Load fzf
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
