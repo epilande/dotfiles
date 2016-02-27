@@ -397,6 +397,10 @@ nnoremap S :,$s:<C-r><C-w>::gc\|1,''-&&<C-f>F:i
 " Insert current date
 map cd "=strftime("[%Y-%m-%d %a]")<CR>P
 
+" Saner behavior of n and N
+nnoremap <expr> n  'Nn'[v:searchforward]
+nnoremap <expr> N  'nN'[v:searchforward]
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
