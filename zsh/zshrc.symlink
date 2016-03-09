@@ -15,7 +15,7 @@ fi
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # Fix perl warning
 export LC_CTYPE=en_US.UTF-8
