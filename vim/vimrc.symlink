@@ -366,9 +366,6 @@ map <silent> <leader>n :execute ':topleft split ' . g:notes<cr>:execute ':resize
 " Open daily notes
 let g:daily_notes = g:notes_folder . 'daily-notes.org'
 map <silent> <leader>nn :execute ':topleft split ' . g:daily_notes<cr>:execute ':resize' . g:note_size<cr>
-" Open school notes
-let g:school_notes = g:notes_folder . 'school-notes.md'
-map <silent> <leader>ns :execute ':topleft split ' . g:school_notes<cr>:execute ':resize' . g:note_size<cr>
 
 " Toggle quotes for json file
 map <leader>" :call ConcealJsonToggle()<cr>
@@ -392,8 +389,6 @@ nnoremap <leader>= 0v$hyA = <C-r>=<C-r>"<CR><Esc>
 " Quickly select text you just pasted
 nnoremap gV `[v`]
 
-" Search & replace word under cursor
-nnoremap S :,$s:<C-r><C-w>::gc\|1,''-&&<C-f>F:i
 
 " Insert current date
 map cd "=strftime("[%Y-%m-%d %a]")<CR>P
