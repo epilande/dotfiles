@@ -51,10 +51,10 @@ Plug 'terryma/vim-expand-region'
 Plug 'tpope/vim-fugitive'
 
 " SCSS syntax highlighting
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 
 " Markdown syntax highlighting
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'md' }
 
 " Enable repeating supported plugin maps
 Plug 'tpope/vim-repeat'
