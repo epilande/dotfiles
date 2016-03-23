@@ -391,7 +391,7 @@ nnoremap gV `[v`]
 
 
 " Insert current date
-map cd "=strftime("[%Y-%m-%d %a]")<CR>P
+nnoremap <leader>cd "=strftime("[%Y-%m-%d %a]")<CR>P
 
 " Saner behavior of n and N
 nnoremap <expr> n  'Nn'[v:searchforward]
