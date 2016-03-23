@@ -137,6 +137,9 @@ Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
 " React JSX syntax highlighting & indenting
 Plug 'mxw/vim-jsx'
 
+" Class outline viewer
+Plug 'majutsushi/tagbar'
+
 call plug#end()
 
 
@@ -403,4 +406,12 @@ let g:neomake_error_sign = {
   \ 'text': 'E',
   \ 'texthl': 'GitGutterDeleteDefault',
   \ }
+
+
+""""""""""""""""""""""""""""""
+" Tagbar
+""""""""""""""""""""""""""""""
+nmap <leader>t :TagbarToggle<CR>
+let g:tagbar_iconchars = ['▸', '▾']
+
 
