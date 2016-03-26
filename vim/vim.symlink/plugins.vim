@@ -284,7 +284,7 @@ let g:airline#extensions#tagbar#enabled = 0
 " vim-easymotion
 """"""""""""""""""""""""""""""
 map s <Plug>(easymotion-s)
-map <leader>ss <Plug>(easymotion-s2)
+map <leader>s <Plug>(easymotion-s2)
 map <leader>_ <Plug>(easymotion-prefix)
 
 " match lower & upper case
