@@ -60,6 +60,18 @@ else
   endtry
 endif
 
+function! ReverseBackground()
+  if &background=="light"
+    set background=dark
+    colorscheme gotham
+  else
+    set background=light
+    colorscheme solarized
+    execute 'AirlineTheme solarized'
+  endif
+endfunction
+command! Invbg call ReverseBackground()
+
 " Set extra options when running in GUI mode
 if has("gui_running")
   set guioptions-=T
