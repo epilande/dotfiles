@@ -123,6 +123,9 @@ Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
 " Gotham colorscheme
 Plug 'whatyouhide/vim-gotham'
 
+" Solarized colorscheme
+Plug 'altercation/vim-colors-solarized'
+
 " Vim Orgmode
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 
