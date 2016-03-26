@@ -206,13 +206,15 @@ let g:unite_data_directory='~/.vim/.cache/unite'
 let g:unite_source_history_yank_enable=1
 let g:unite_source_rec_max_cache_files=5000
 let g:unite_source_file_mru_limit=200
-let g:unite_source_rec_async_command='ag --nocolor --nogroup --hidden -g ""'
+let g:unite_source_rec_async_command =
+      \ ['ag', '--follow', '--nocolor', '--nogroup',
+      \  '--hidden', '-g', '']
 let g:unite_source_grep_command = 'ag'
 let g:unite_source_grep_default_opts = '-s -H --nocolor --nogroup --column'
 let g:unite_source_grep_recursive_opt = ''
 let g:unite_prompt='❯ '
 
-nnoremap <C-f> :<C-u>Unite -buffer-name=files file_mru file_rec/async:!<CR>
+" nnoremap <C-f> :<C-u>Unite -buffer-name=files file_mru file_rec/async:!<CR>
 nnoremap <leader>f :<C-u>Unite -no-split -no-resize -direction=topleft -buffer-name=mru file_mru<CR>
 nnoremap <leader>y :<C-u>Unite -no-start-insert history/yank<CR>
 nnoremap <leader>/ :<C-u>Unite grep:.<CR>
@@ -235,6 +237,9 @@ endfunction
 " FZF
 """"""""""""""""""""""""""""""
 let g:fzf_layout = { 'down': '40%' }
+
+nnoremap <silent> <C-f> :GitFiles<CR>
+" nnoremap <silent> <C-f> :Files<CR>
 
 
 """"""""""""""""""""""""""""""
