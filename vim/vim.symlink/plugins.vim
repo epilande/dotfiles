@@ -277,6 +277,8 @@ let g:airline#extensions#default#section_truncate_width = {
   \ 'warning': 50,
   \ }
 
+let g:airline#extensions#tagbar#enabled = 0
+
 
 """"""""""""""""""""""""""""""
 " vim-easymotion
