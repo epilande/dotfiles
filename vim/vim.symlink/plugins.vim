@@ -144,6 +144,9 @@ Plug 'mxw/vim-jsx'
 " Class outline viewer
 Plug 'majutsushi/tagbar'
 
+" Provides additional text objects
+Plug 'wellle/targets.vim'
+
 call plug#end()
 
 
