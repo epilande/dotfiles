@@ -409,6 +409,9 @@ nnoremap <leader>cd "=strftime("[%Y-%m-%d %a]")<CR>P
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 
+" Search current word without moving cursor
+nmap<silent> K :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
