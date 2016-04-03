@@ -401,6 +401,9 @@ nnoremap <leader>= 0v$hyA = <C-r>=<C-r>"<CR><Esc>
 " Quickly select text you just pasted
 nnoremap gV `[v`]
 
+" Quickly edit your macros
+" Usage <leader>m or "q<leader>m
+nnoremap <leader>m  :<c-u><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
 " Insert current date
 nnoremap <leader>cd "=strftime("[%Y-%m-%d %a]")<CR>P
