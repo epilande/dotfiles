@@ -43,6 +43,7 @@ alias ":q"="exit"
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 
+alias f='ranger'
 
 # Show/Hide finder hidden files
 alias showHidden='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
