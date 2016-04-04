@@ -117,6 +117,8 @@ bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 
 # switch to Pandora session
 bind m switchc -t Pandora
+# switch to Ranger session
+bind f switchc -t Finder
 # switch back to last session
 bind b switchc -l
 
