@@ -415,6 +415,10 @@ nnoremap <expr> N  'nN'[v:searchforward]
 " Search current word without moving cursor
 nmap<silent> K :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
+" Easily jump between brackets
+map <tab> %
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
 """"""""""""""""""""""""""""""""""""""""""""""""""
