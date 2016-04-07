@@ -411,7 +411,6 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
 let g:neomake_list_height = 7
-let g:neomake_javascript_enabled_makers = ['eslint']
 
 let g:neomake_warning_sign = {
   \ 'text': 'W',
@@ -422,6 +421,9 @@ let g:neomake_error_sign = {
   \ 'text': 'E',
   \ 'texthl': 'GitGutterDeleteDefault',
   \ }
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_json_enabled_makers = ['jsonlint']
 
 
 """"""""""""""""""""""""""""""
