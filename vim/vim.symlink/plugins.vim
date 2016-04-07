@@ -412,6 +412,10 @@ autocmd! BufWritePost * Neomake
 let g:neomake_open_list = 2
 let g:neomake_list_height = 7
 
+let g:neomake_stylelint = {
+  \ 'errorformat': '%+P%f, %W%l:%c%*\s%m, %-Q',
+  \ }
+
 let g:neomake_warning_sign = {
   \ 'text': 'W',
   \ 'texthl': 'GitGutterChangeDefault',
@@ -424,6 +428,10 @@ let g:neomake_error_sign = {
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_json_enabled_makers = ['jsonlint']
+let g:neomake_css_stylelint_maker = neomake_stylelint
+let g:neomake_scss_stylelint_maker = neomake_stylelint
+let g:neomake_css_enabled_makers = ['stylelint']
+let g:neomake_scss_enabled_makers = ['stylelint']
 
 
 """"""""""""""""""""""""""""""
