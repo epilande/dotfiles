@@ -5,7 +5,7 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 ZSH_THEME="erp"
 
 # Plugins
-plugins=(git osx npm jump zsh-syntax-highlighting jsontools web-search jira)
+plugins=(git osx npm zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
