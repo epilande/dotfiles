@@ -259,7 +259,8 @@ if has('nvim')
   nnoremap <BS> <C-W>h
 
   " Exit terminal input mode
-  tnoremap <Esc> <C-\><C-n>
+  " tnoremap <Esc> <C-\><C-n>
+
   " Easy navigation from terminal
   tnoremap <C-h> <C-\><C-n><C-w>h
   tnoremap <C-j> <C-\><C-n><C-w>j
