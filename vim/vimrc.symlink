@@ -225,7 +225,7 @@ set wrap "Wrap lines
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 " Automatically recognize filetypes by extension
-autocmd BufRead,BufNewFile .*rc set filetype=json
+autocmd BufRead,BufNewFile .{babel,eslint,stylelint}rc set filetype=json
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
