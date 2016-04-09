@@ -36,8 +36,8 @@ function colours() {
 # Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color
 
-# Switch vim to macvim
-alias vim='mvim -v'
+# Switch vim to neovim
+alias vim="nvim"
 
 alias ":q"="exit"
 alias stfu="osascript -e 'set volume output muted true'"
