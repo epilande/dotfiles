@@ -84,9 +84,6 @@ Plug 'ap/vim-css-color'
 " CSS3 syntax support
 Plug 'hail2u/vim-css3-syntax'
 
-" Vim Workspace Controller
-Plug 'szw/vim-ctrlspace'
-
 " Vim motions on speed
 Plug 'easymotion/vim-easymotion'
 
@@ -106,7 +103,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/yajs.vim'
 
 " Sublime Text style multiple selections
-Plug 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
@@ -116,9 +113,6 @@ Plug 'ryanoasis/vim-devicons'
 
 " Zoom in/out of windows
 Plug 'troydm/zoomwintab.vim'
-
-" Search Dash from vim
-Plug 'rizzatti/dash.vim', { 'on': 'Dash' }
 
 " Gotham colorscheme
 Plug 'whatyouhide/vim-gotham'

@@ -409,9 +409,6 @@ nnoremap gV `[v`]
 " Usage <leader>m or "q<leader>m
 nnoremap <leader>m  :<c-u><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
-" Insert current date
-nnoremap <leader>cd "=strftime("[%Y-%m-%d %a]")<CR>P
-
 " Saner behavior of n and N
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
