@@ -8,7 +8,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 " Unite. The interface to rule almost everything
-Plug 'Shougo/unite.vim'
+" Plug 'Shougo/unite.vim'
 
 " Most Recently Used
 Plug 'Shougo/neomru.vim'
@@ -173,73 +173,78 @@ let MRU_Max_Entries = 400
 """"""""""""""""""""""""""""""
 
 " Use the fuzzy matcher for everything
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#converter_default#use(['converter_relative_word'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_mru,file_rec,file_rec/async', 'converters', 'converter_relative_word')
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#converter_default#use(['converter_relative_word'])
+" call unite#filters#sorter_default#use(['sorter_rank'])
+" call unite#custom#source('file_mru,file_rec,file_rec/async', 'converters', 'converter_relative_word')
 
 " Restrict mru to display files for current project
-call unite#custom#source(
-  \ 'file_mru', 'matchers',
-  \ ['matcher_project_files', 'matcher_fuzzy'])
+" call unite#custom#source(
+"   \ 'file_mru', 'matchers',
+"   \ ['matcher_project_files', 'matcher_fuzzy'])
 
-call unite#custom#profile('default', 'context', {
-  \ 'cursor_line_highlight' : 'CursorLine',
-  \ 'start_insert': 1,
-  \ 'winheight': 10,
-  \ 'direction': 'botright',
-  \ })
+" call unite#custom#profile('default', 'context', {
+"   \ 'cursor_line_highlight' : 'CursorLine',
+"   \ 'start_insert': 1,
+"   \ 'winheight': 10,
+"   \ 'direction': 'botright',
+"   \ })
 
 " Set up some custom ignores
-call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
-  \ 'ignore_pattern', join([
-  \ '\.git/',
-  \ 'tmp/',
-  \ '.sass-cache',
-  \ 'node_modules/',
-  \ 'bower_components/',
-  \ 'dist/',
-  \ '.pyc',
-  \ ], '\|'))
+" call unite#custom_source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+"   \ 'ignore_pattern', join([
+"   \ '\.git/',
+"   \ 'tmp/',
+"   \ '.sass-cache',
+"   \ 'node_modules/',
+"   \ 'bower_components/',
+"   \ 'dist/',
+"   \ '.pyc',
+"   \ ], '\|'))
 
-let g:unite_data_directory='~/.vim/.cache/unite'
-let g:unite_source_history_yank_enable=1
-let g:unite_source_rec_max_cache_files=5000
-let g:unite_source_file_mru_limit=200
-let g:unite_source_rec_async_command =
-      \ ['ag', '--follow', '--nocolor', '--nogroup',
-      \  '--hidden', '-g', '']
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '-s -H --nocolor --nogroup --column'
-let g:unite_source_grep_recursive_opt = ''
-let g:unite_prompt='❯ '
+" let g:unite_data_directory='~/.vim/.cache/unite'
+" let g:unite_source_history_yank_enable=1
+" let g:unite_source_rec_max_cache_files=5000
+" let g:unite_source_file_mru_limit=200
+" let g:unite_source_rec_async_command =
+"       \ ['ag', '--follow', '--nocolor', '--nogroup',
+"       \  '--hidden', '-g', '']
+" let g:unite_source_grep_command = 'ag'
+" let g:unite_source_grep_default_opts = '-s -H --nocolor --nogroup --column'
+" let g:unite_source_grep_recursive_opt = ''
+" let g:unite_prompt='❯ '
 
 " nnoremap <C-f> :<C-u>Unite -buffer-name=files file_mru file_rec/async:!<CR>
-nnoremap <leader>f :<C-u>Unite -no-split -no-resize -direction=topleft -buffer-name=mru file_mru<CR>
-nnoremap <leader>y :<C-u>Unite -no-start-insert history/yank<CR>
-nnoremap <leader>/ :<C-u>Unite grep:.<CR>
+" nnoremap <leader>f :<C-u>Unite -no-split -no-resize -direction=topleft -buffer-name=mru file_mru<CR>
+" nnoremap <leader>y :<C-u>Unite -no-start-insert history/yank<CR>
+" nnoremap <leader>/ :<C-u>Unite grep:.<CR>
 
 " Custom mappings for the unite buffer
-autocmd FileType unite call s:unite_keymaps()
+" autocmd FileType unite call s:unite_keymaps()
 
-function! s:unite_keymaps()
-  " Enable navigation with control-j and control-k in insert mode
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+" function! s:unite_keymaps()
+"   " Enable navigation with control-j and control-k in insert mode
+"   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+"   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
 
-  " Exit unite with Esc while in insert mode
-  nmap <buffer> <Esc>   <Plug>(unite_exit)
-  imap <buffer> <Esc>   <Plug>(unite_exit)
-endfunction
+"   " Exit unite with Esc while in insert mode
+"   nmap <buffer> <Esc>   <Plug>(unite_exit)
+"   imap <buffer> <Esc>   <Plug>(unite_exit)
+" endfunction
 
 
 """"""""""""""""""""""""""""""
 " FZF
 """"""""""""""""""""""""""""""
 let g:fzf_layout = { 'down': '40%' }
+" Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
-nnoremap <silent> <C-f> :GitFiles<CR>
-" nnoremap <silent> <C-f> :Files<CR>
+" Search project files, respecting git ignore
+nnoremap <silent> <C-f> :FZF<CR>
+" Search MRU buffers
+nnoremap <silent> <leader>f :Buffers<CR>
+nnoremap <silent> <leader>` :Marks<CR>
 
 
 """"""""""""""""""""""""""""""
