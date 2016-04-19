@@ -57,7 +57,8 @@ export NVM_DIR="/Users/ERP/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
 # Load fzf
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g "" -u'
+# export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g "" -u'
+export FZF_DEFAULT_COMMAND='ag -g ""'
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
