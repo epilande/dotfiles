@@ -242,6 +242,9 @@ let g:fzf_buffers_jump = 1
 
 " Search project files, respecting git ignore
 nnoremap <silent> <C-f> :FZF<CR>
+" Search all files, e.g. node_modules/
+nnoremap <silent> <leader>af :call fzf#vim#files('',
+      \ {'source': 'ag --hidden --ignore .git -f -g "" -u', 'down': '40%'})<CR>
 " Search MRU buffers
 nnoremap <silent> <leader>f :Buffers<CR>
 nnoremap <silent> <leader>` :Marks<CR>
