@@ -417,7 +417,7 @@ nnoremap <expr> N  'nN'[v:searchforward]
 nmap<silent> K :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 " Easily jump between brackets
-map <tab> %
+map <S-Tab> %
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
