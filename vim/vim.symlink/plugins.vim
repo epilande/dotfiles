@@ -254,6 +254,7 @@ nnoremap <silent> <leader>` :Marks<CR>
 " NERDTree
 """"""""""""""""""""""""""""""
 let g:NERDTreeWinPos = "left"
+let g:NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.js.map$', '\.DS_Store$']
 let g:NERDTreeWinSize=35
 map <C-e> :NERDTreeToggle<CR>
