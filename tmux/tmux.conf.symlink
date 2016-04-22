@@ -127,6 +127,7 @@ bind b switchc -l
 # => PLUGINS
 ##############################
 set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sessionist'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 
 # Initialize TMUX plugin manager
