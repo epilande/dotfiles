@@ -9,7 +9,7 @@ let ${1} = ${2:'$1'};
 endsnippet
 
 snippet i "import" b
-import ${1} from '${2:$1}';
+import ${1} from '${2:./}${3:$1}';
 endsnippet
 
 snippet e "export" b
@@ -17,7 +17,7 @@ export ${1:default }
 endsnippet
 
 snippet ie "Import file then export" b
-import ${1} from '${2:$1}';
+import ${1} from '${2:./}${3:$1}';
 
 export ${4:default} $1;
 endsnippet
@@ -54,7 +54,7 @@ snippet =>
 }${2:;}
 endsnippet
 
-snippet =>>
+snippet =>> "Inline"
 (${1:args}) => (${3});
 endsnippet
 
