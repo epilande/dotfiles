@@ -377,7 +377,7 @@ let g:ctrlsf_indent = 2
 """"""""""""""""""""""""""""""
 let g:org_export_emacs="/usr/local/bin/emacs"
 let g:org_agenda_files = ['~/Desktop/Notes/daily-notes.org']
-let g:org_todo_keywords = ['TODO', 'WAITING', '|', 'DONE']
+let g:org_todo_keywords = ['TODO', '|', 'DONE']
 let g:org_aggressive_conceal = 1
 
 
