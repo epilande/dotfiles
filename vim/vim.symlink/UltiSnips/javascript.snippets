@@ -56,6 +56,87 @@ snippet =>> "Inline"
 (${1:args}) => (${3});
 endsnippet
 
+
+# React & JSX
+snippet rrcc "React Redux Class Component" b
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import styles from './${1:Component}.css';
+
+class $1 extends Component {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired,
+	};
+
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			<div className={styles.base}>
+				${2}
+			</div>
+		);
+	}
+}
+
+function mapStateToProps(state) {
+	return {};
+}
+
+export default connect(mapStateToProps)($1);
+endsnippet
+
+snippet rcc "React Class Component" b
+import React, { Component, PropTypes } from 'react';
+import styles from './${1:Component}.css';
+
+class $1 extends Component {
+	static propTypes = {
+	};
+
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			<div className={styles.base}>
+				${2}
+			</div>
+		);
+	}
+}
+
+export default $1;
+endsnippet
+
+snippet rsc "React Stateless Component" b
+import React, { PropTypes } from 'react';
+import styles from './${1:Component}.css';
+
+const $1 = ({ ${2:...props} }) => (
+	<div className={styles.base}>
+		$3
+	</div>
+);
+
+$1.defaultProps = {
+};
+
+$1.propTypes = {
+};
+
+export default $1;
+endsnippet
+
+snippet cn "className"
+className="${1}"
+endsnippet
+
+
+
 snippet cl "console.log(...)" b
 console.log('${2:$1: }', ${1});
 endsnippet
