@@ -36,16 +36,14 @@ ${1:method_name}: function (${2:args}) {
 }
 endsnippet
 
-snippet map
-${1:array}.map((${2:c, i}) => {
-	${3}
+snippet "\.(map|filter|forEach|reduce)" "Array method with an arrow function" r
+.`!p snip.rv = match.group(1)`(${1:(c, i)} => {
+	return $2;
 });
 endsnippet
 
-snippet arr
-${1:array}.${2:filter}((${3:c, i}) => {
-	${4}
-});
+snippet "\.(map|filter|forEach|reduce)=" "Array method with an arrow function inline" r
+.`!p snip.rv = match.group(1)`(${1:(c, i)} => $2);
 endsnippet
 
 snippet =>
