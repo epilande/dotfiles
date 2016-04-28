@@ -17,8 +17,13 @@ Plug 'Shougo/neomru.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Code completion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+if has('nvim')
+  " Asynchronous completion for neovim
+  Plug 'Shougo/deoplete.nvim'
+else
+  " Code completion
+  Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+endif
 
 " Emmet for vim
 Plug 'mattn/emmet-vim'
@@ -318,12 +323,41 @@ set diffopt+=vertical
 
 
 """"""""""""""""""""""""""""""
+" Deoplete
+""""""""""""""""""""""""""""""
+if has('nvim')
+  " Enable deoplete.
+  let g:deoplete#enable_at_startup = 1
+
+  if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
+  endif
+
+  augroup omnifuncs
+    autocmd!
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=tern#Complete
+  augroup end
+
+  let g:tern_request_timeout = 1
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 0
+
+  " Automatically close preview window after autocompletion
+  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
+endif
+
+
+""""""""""""""""""""""""""""""
 " Ultisnips
 """"""""""""""""""""""""""""""
 " Trigger configuration
-let g:UltiSnipsExpandTrigger="<C-Space>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsExpandTrigger="<C-l>"
+" let g:UltiSnipsJumpForwardTrigger="<Tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 
 """"""""""""""""""""""""""""""
