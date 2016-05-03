@@ -307,7 +307,7 @@ set laststatus=2
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 " Hide tabline
-set showtabline=0
+set showtabline=1
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
