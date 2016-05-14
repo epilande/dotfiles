@@ -90,7 +90,7 @@ Plug 'ap/vim-css-color'
 Plug 'hail2u/vim-css3-syntax'
 
 " Vim motions on speed
-Plug 'easymotion/vim-easymotion'
+" Plug 'easymotion/vim-easymotion'
 
 " Shows a git diff in the gutter
 Plug 'airblade/vim-gitgutter'
@@ -297,21 +297,21 @@ let g:airline#extensions#tagbar#enabled = 0
 """"""""""""""""""""""""""""""
 " vim-easymotion
 """"""""""""""""""""""""""""""
-map s <Plug>(easymotion-s)
-map <leader>s <Plug>(easymotion-s2)
-map <leader>_ <Plug>(easymotion-prefix)
+" map s <Plug>(easymotion-s)
+" map <leader>s <Plug>(easymotion-s2)
+" map <leader>_ <Plug>(easymotion-prefix)
 
-" match lower & upper case
-let g:EasyMotion_smartcase = 1
+" " match lower & upper case
+" let g:EasyMotion_smartcase = 1
 
-let g:EasyMotion_use_smartsign_us = 1
+" let g:EasyMotion_use_smartsign_us = 1
 
-map <leader>l <Plug>(easymotion-lineforward)
-map <leader>j <Plug>(easymotion-j)
-map <leader>k <Plug>(easymotion-k)
-map <leader>h <Plug>(easymotion-linebackward)
+" map <leader>l <Plug>(easymotion-lineforward)
+" map <leader>j <Plug>(easymotion-j)
+" map <leader>k <Plug>(easymotion-k)
+" map <leader>h <Plug>(easymotion-linebackward)
 
-let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
+" let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 
 """"""""""""""""""""""""""""""
