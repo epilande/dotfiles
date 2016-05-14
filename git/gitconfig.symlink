@@ -17,7 +17,7 @@
 [core]
   excludesfiles = ~/.gitignore
   excludesfile = ~/.gitignore_global
-  editor = vim
+  editor = nvim
 [merge]
   tool = kdiff3
 [mergetool "kdiff3"]
