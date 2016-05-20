@@ -151,6 +151,12 @@ Plug 'majutsushi/tagbar'
 " Provides additional text objects
 Plug 'wellle/targets.vim'
 
+" Speed up Vim by updating folds only when called-for
+Plug 'Konfekt/FastFold'
+
+" Metrics, insights, and time tracking
+Plug 'wakatime/vim-wakatime'
+
 call plug#end()
 
 
