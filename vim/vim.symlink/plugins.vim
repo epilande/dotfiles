@@ -20,6 +20,8 @@ Plug 'junegunn/fzf.vim'
 if has('nvim')
   " Asynchronous completion for neovim
   Plug 'Shougo/deoplete.nvim'
+  " Tern-based JavaScript editing support
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 else
   " Code completion
   Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
@@ -135,7 +137,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'jiangmiao/auto-pairs'
 
 " Tern-based JavaScript editing support
-Plug 'marijnh/tern_for_vim', { 'do': 'npm install' }
+" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " React JSX syntax highlighting & indenting
 Plug 'mxw/vim-jsx'
