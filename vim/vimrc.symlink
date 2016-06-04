@@ -241,9 +241,14 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 " => MOVING AROUND
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+" Treat long lines as break lines (useful when moving around in them).
+" Store relative line number jumps in the jumplist.
+noremap <expr> j v:count > 1 ? 'm`' . v:count . 'j' : 'gj'
+noremap <expr> k v:count > 1 ? 'm`' . v:count . 'k' : 'gk'
+
+" Use gj gk to go quicker
+noremap gj 5gj
+noremap gk 5gk
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
