@@ -145,9 +145,6 @@ Plug 'mxw/vim-jsx'
 " EditorConfig for consistent coding style
 Plug 'editorconfig/editorconfig-vim'
 
-" Class outline viewer
-Plug 'majutsushi/tagbar'
-
 " Provides additional text objects
 Plug 'wellle/targets.vim'
 
@@ -298,8 +295,6 @@ let g:airline#extensions#default#section_truncate_width = {
   \ 'z': 50,
   \ 'warning': 50,
   \ }
-
-let g:airline#extensions#tagbar#enabled = 0
 
 
 """"""""""""""""""""""""""""""
@@ -478,13 +473,6 @@ let g:neomake_css_stylelint_maker = neomake_stylelint
 let g:neomake_scss_stylelint_maker = neomake_stylelint
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_scss_enabled_makers = ['stylelint']
-
-
-""""""""""""""""""""""""""""""
-" Tagbar
-""""""""""""""""""""""""""""""
-nmap <leader>t :TagbarToggle<CR>
-let g:tagbar_iconchars = ['▸', '▾']
 
 
 """"""""""""""""""""""""""""""

@@ -177,7 +177,6 @@ hi Visual cterm=none ctermbg=11 ctermfg=none
 " Set folded highlight color
 hi Folded ctermbg=10 ctermfg=10
 
-hi TagbarHighlight ctermbg=10 ctermfg=7
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => FILES, BACKUPS, AND UNDO
