@@ -350,8 +350,11 @@ noremap < <<
 vnoremap > >gv
 vnoremap < <gv
 
-" Remap VIM 0 to first non-blank character
-map 0 ^
+" To the leftmost non-blank character of the current line
+map 0 g^
+
+" To the rightmost character of the current line
+map $ g$
 
 " Trim WhiteSpace
 nnoremap <Leader>tws :%s/\s\+$//e<CR>
