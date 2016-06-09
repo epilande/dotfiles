@@ -379,12 +379,12 @@ map <leader>r :e<cr>
 " Directory to notes folder
 let g:notes_folder = '~/Desktop/Notes/'
 " Project specific notes
-let g:notes = g:notes_folder . fnamemodify(getcwd(), ':t') . '.md'
+let g:notes = g:notes_folder . 'Projects/' . fnamemodify(getcwd(), ':t') . '.md'
 let g:note_size = 15
 " Open current project notes
 map <silent> <leader>n :execute ':topleft split ' . g:notes<cr>:execute ':resize' . g:note_size<cr>
 " Open daily notes
-let g:daily_notes = g:notes_folder . 'daily-notes.org'
+let g:daily_notes = g:notes_folder . 'Daily/daily-notes.org'
 map <silent> <leader>nn :execute ':topleft split ' . g:daily_notes<cr>:execute ':resize' . g:note_size<cr>
 
 " Toggle quotes for json file
