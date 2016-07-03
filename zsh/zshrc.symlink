@@ -15,8 +15,6 @@ fi
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
-export EDITOR='nvim'
-
 # Fix perl warning
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
@@ -35,6 +33,8 @@ function colours() {
 
 # Set colors to match iTerm2 Terminal Colors
 export TERM=xterm-256color
+
+export EDITOR='nvim'
 
 # Switch vim to neovim
 alias vim="nvim"
