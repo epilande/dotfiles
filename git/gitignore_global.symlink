@@ -36,12 +36,15 @@
 ehthumbs.db
 Thumbs.db
 
-
 # Sass Cache #
 ##############
 *.sassc
 .sass-cache
 
-# WebStorm
-##############
+# WebStorm #
+############
 .idea
+
+# VIM #
+#######
+tags
