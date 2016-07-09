@@ -1,0 +1,36 @@
+--recurse=yes
+
+
+--exclude=.git
+--exclude=node_modules
+--exclude=test
+--exclude=db
+--exclude=log
+--exclude=dist
+--exclude=public
+
+
+--langdef=js
+--langmap=js:.js
+--langmap=js:+.jsx
+--regex-js=/[ \t.]([A-Z][A-Z0-9._$]+)[ \t]*[=:][ \t]*([0-9"'\[\{]|null)/\1/n,constant/
+--regex-js=/\.([A-Za-z0-9._$]+)[ \t]*=[ \t]*\{/\1/o,object/
+--regex-js=/['"]*([A-Za-z0-9_$]+)['"]*[ \t]*:[ \t]*\{/\1/o,object/
+--regex-js=/([A-Za-z0-9._$]+)\[["']([A-Za-z0-9_$]+)["']\][ \t]*=[ \t]*\{/\1\.\2/o,object/
+--regex-js=/([A-Za-z0-9._$]+)[ \t]*=[ \t]*\(function\(\)/\1/c,class/
+--regex-js=/['"]*([A-Za-z0-9_$]+)['"]*:[ \t]*\(function\(\)/\1/c,class/
+--regex-js=/class[ \t]+([A-Za-z0-9._$]+)[ \t]*/\1/c,class/
+--regex-js=/([A-Za-z$][A-Za-z0-9_$]+)[ \t]*=[ \t]*function[ \t]*\(/\1/f,function/
+--regex-js=/^[ \t]*(export)[ \t](default)?[ \t]*(function)?[ \t]+([a-zA-Z0-9_]+)/\4/e,export/
+
+
+--langdef=css
+--langmap=css:.css
+--langmap=css:+.scss
+--langmap=css:+.styl
+--langmap=css:+.less
+--regex-css=/^[ \t]*\.([A-Za-z0-9_-]+)/\1/c,class,classes/
+--regex-css=/^[ \t]*#([A-Za-z0-9_-]+)/\1/i,id,ids/
+--regex-css=/^[ \t]*(([A-Za-z0-9_-]+[ \t\n,]+)+)\{/\1/t,tag,tags/
+--regex-css=/^[ \t]*@media\s+([A-Za-z0-9_-]+)/\1/m,media,medias/
+
