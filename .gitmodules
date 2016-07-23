@@ -9,3 +9,7 @@
 [submodule "zsh/zsh_custom.symlink/plugins/zsh-syntax-highlighting"]
   path = zsh/zsh_custom.symlink/plugins/zsh-syntax-highlighting
   url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+[submodule "iterm/oceanic-next-iterm"]
+  path = iterm/oceanic-next-iterm
+  url = https://github.com/mhartington/oceanic-next-iterm.git
