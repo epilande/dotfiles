@@ -55,7 +55,7 @@ if has("gui_running")
   set noantialias
 else
   try
-    colorscheme gotham
+    colorscheme OceanicNext
   catch
   endtry
 endif
@@ -63,7 +63,7 @@ endif
 function! ReverseBackground()
   if &background=="light"
     set background=dark
-    colorscheme gotham
+    colorscheme OceanicNext
   else
     set background=light
     colorscheme solarized

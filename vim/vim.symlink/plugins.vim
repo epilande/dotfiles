@@ -124,6 +124,9 @@ Plug 'troydm/zoomwintab.vim'
 " Gotham colorscheme
 Plug 'whatyouhide/vim-gotham'
 
+" Oceanic Next colorscheme
+Plug 'mhartington/oceanic-next'
+
 " Solarized colorscheme
 Plug 'altercation/vim-colors-solarized'
 
@@ -288,7 +291,7 @@ let g:airline_powerline_fonts = 1
 if has("gui_running")
   let g:airline_theme="luna"
 else
-  let g:airline_theme="gotham"
+  let g:airline_theme="oceanicnext"
 endif
 
 " Automatically truncate sections
