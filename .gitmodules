@@ -1,0 +1,11 @@
+[submodule "tmux/tmux.symlink/plugins/tpm"]
+  path = tmux/tmux.symlink/plugins/tpm
+  url = https://github.com/tmux-plugins/tpm.git
+
+[submodule "zsh/oh-my-zsh.symlink"]
+  path = zsh/oh-my-zsh.symlink
+  url = https://github.com/robbyrussell/oh-my-zsh.git
+
+[submodule "zsh/zsh_custom.symlink/plugins/zsh-syntax-highlighting"]
+  path = zsh/zsh_custom.symlink/plugins/zsh-syntax-highlighting
+  url = https://github.com/zsh-users/zsh-syntax-highlighting.git
