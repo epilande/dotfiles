@@ -5,6 +5,9 @@ set nocompatible
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
 
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => LOAD PLUGINS
