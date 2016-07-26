@@ -123,6 +123,8 @@ bind m switchc -t Pandora
 bind f switchc -t Finder
 # switch back to last session
 bind b switchc -l
+# switch between windows
+bind C-a last-window
 
 
 ##############################
