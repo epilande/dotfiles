@@ -282,10 +282,10 @@ nnoremap <silent> ∆ :resize +2<CR>
 nnoremap <silent> ¬ :vertical resize +2<CR>
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+" map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+" map <leader>ba :1,1000 bd!<cr>
 
 " Specify the behavior when switching between buffers
 try
@@ -429,13 +429,13 @@ nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 
 " Search current word without moving cursor
-nnoremap<silent> K :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
+nnoremap <silent> K :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 " Easily jump between brackets
 map <S-Tab> %
 
-" nnoremap <expr> <UP> len(getline(line('.')-1)) > 0 ? '{+' : '{-'
-" nnoremap <expr> <DOWN> len(getline(line('.')+1)) > 0 ? '}-' : '}+'
+nnoremap <expr> <UP> len(getline(line('.')-1)) > 0 ? '{+' : '{-'
+nnoremap <expr> <DOWN> len(getline(line('.')+1)) > 0 ? '}-' : '}+'
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""

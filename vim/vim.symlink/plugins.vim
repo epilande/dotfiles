@@ -13,6 +13,9 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Most Recently Used
 Plug 'Shougo/neomru.vim'
 
+" Add filetype glyphs (icons)
+Plug 'ryanoasis/vim-devicons'
+
 " Command-line fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -123,9 +126,6 @@ Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
 
 " Seamless navigation between tmux panes and vim splits
 Plug 'christoomey/vim-tmux-navigator'
-
-" Add filetype glyphs (icons)
-Plug 'ryanoasis/vim-devicons'
 
 " Zoom in/out of windows
 Plug 'troydm/zoomwintab.vim'
@@ -271,6 +271,7 @@ nnoremap <silent> <leader>` :Marks<CR>
 " [Tags] Command to generate tags file
 " let g:fzf_tags_command = 'ctags -R --exclude=.git --exclude=node_modules --exclude=test'
 nnoremap <silent> <leader>t :Tags<CR>
+nnoremap <silent> <leader>b :BTags<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -280,13 +281,13 @@ let g:NERDTreeWinPos = "left"
 let g:NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.js.map$', '\.DS_Store$']
 let g:NERDTreeWinSize=35
-map <C-e> :NERDTreeToggle<CR>
+map <silent> <C-e> :NERDTreeToggle<CR>
 
 
 """"""""""""""""""""""""""""""
 " vim-multiple-cursors
 """"""""""""""""""""""""""""""
-let g:multi_cursor_next_key="\<C-s>"
+" let g:multi_cursor_next_key="\<C-s>"
 
 
 """"""""""""""""""""""""""""""
