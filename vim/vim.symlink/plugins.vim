@@ -463,6 +463,12 @@ let g:jsdoc_enable_es6=1
 
 
 """"""""""""""""""""""""""""""
+" vim-javascript
+""""""""""""""""""""""""""""""
+let g:javascript_plugin_jdoc = 1 " Enables syntax highlighting for JSDocs.
+
+
+""""""""""""""""""""""""""""""
 " vim-jsx
 """"""""""""""""""""""""""""""
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
