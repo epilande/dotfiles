@@ -437,6 +437,10 @@ map <S-Tab> %
 nnoremap <expr> <UP> len(getline(line('.')-1)) > 0 ? '{+' : '{-'
 nnoremap <expr> <DOWN> len(getline(line('.')+1)) > 0 ? '}-' : '}+'
 
+" Read selected text
+" TODO: escape single quote (') characters
+xnoremap <silent> <leader>s y:call jobstart('say -v Samantha -r 300 <C-r>"')<CR>
+
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => HELPER FUNCTIONS
