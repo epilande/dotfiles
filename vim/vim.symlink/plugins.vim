@@ -115,6 +115,9 @@ Plug 'othree/yajs.vim', {'for': 'javascript'}
 " Syntax for JavaScript libraries
 Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 
+" Block comments based on a function signature
+Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
+
 " Sublime Text style multiple selections
 " Plug 'terryma/vim-multiple-cursors'
 
@@ -448,6 +451,15 @@ let g:tmuxline_separators = {
   \ 'right' : '',
   \ 'right_alt' : '',
   \ 'space' : ' '}
+
+
+""""""""""""""""""""""""""""""
+" vim-jsdoc
+""""""""""""""""""""""""""""""
+let g:jsdoc_allow_input_prompt=1
+let g:jsdoc_input_description=1
+let g:jsdoc_underscore_private=1
+let g:jsdoc_enable_es6=1
 
 
 """"""""""""""""""""""""""""""
