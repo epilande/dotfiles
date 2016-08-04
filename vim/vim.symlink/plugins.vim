@@ -104,10 +104,16 @@ Plug 'suan/vim-instant-markdown'
 Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
 
 " Javascript indentation and syntax support
-Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+
+" React JSX syntax highlighting & indenting
+Plug 'mxw/vim-jsx', {'for': 'javascript'}
 
 " Yet Another JavaScript Syntax
-Plug 'othree/yajs.vim'
+Plug 'othree/yajs.vim', {'for': 'javascript'}
+
+" Syntax for JavaScript libraries
+Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 
 " Sublime Text style multiple selections
 " Plug 'terryma/vim-multiple-cursors'
@@ -141,9 +147,6 @@ Plug 'jiangmiao/auto-pairs'
 
 " Tern-based JavaScript editing support
 " Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
-
-" React JSX syntax highlighting & indenting
-Plug 'mxw/vim-jsx'
 
 " EditorConfig for consistent coding style
 Plug 'editorconfig/editorconfig-vim'
