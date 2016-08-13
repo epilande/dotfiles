@@ -7,6 +7,15 @@ if test ! $(which brew); then
   ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+# Make sure we're using the latest Homebrew
+brew update
+
+# Upgrade installed formulae
+brew upgrade
+
+echo -e "\n\nInstalling homebrew packages..."
+echo "=============================="
+
 brew install coreutils
 brew install moreutils
 brew install findutils
