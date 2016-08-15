@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Disable Command-F1</name>
+    <identifier>private.disable_command_f1</identifier>
+    <autogen>__KeyToKey__ KeyCode::F1, ModifierFlag::COMMAND_L, KeyCode::VK_NONE</autogen>
+  </item>
+</root>
