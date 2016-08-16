@@ -21,7 +21,7 @@ brew cask install gyazo
 brew cask install rescuetime
 brew cask install sublime-text
 brew cask install atom
-brew cask install imageotim
+brew cask install imageoptim
 brew cask install vlc
 brew cask install licecap
 brew cask install caffeine
