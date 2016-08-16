@@ -45,6 +45,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Asynchronous linter
 Plug 'benekastah/neomake'
 
+" Prefer local eslint over global with neomake
+Plug 'epilande/neomake-local-eslint.vim'
+
 " Cache file automatically
 Plug 'MarcWeber/vim-addon-mw-utils'
 
@@ -483,7 +486,10 @@ let g:neomake_open_list = 2
 let g:neomake_list_height = 7
 
 let g:neomake_stylelint = {
-  \ 'errorformat': '%+P%f, %W%l:%c%*\s%m, %-Q',
+  \ 'errorformat':
+  \ '%+P%f,' .
+  \ '%*\s%l:%c  %t  %m,' .
+  \ '%-Q'
   \ }
 
 let g:neomake_warning_sign = {
