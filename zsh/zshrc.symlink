@@ -53,8 +53,8 @@ alias hideHidden="defaults write com.apple.finder AppleShowAllFiles NO; killall 
 alias meteors="meteor --settings ./config/settings.json"
 
 # Load NVM
-export NVM_DIR="/Users/ERP/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+export NVM_DIR="$HOME/.nvm"
+. "$(brew --prefix nvm)/nvm.sh"
 
 # Load fzf
 # export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g "" -u"
