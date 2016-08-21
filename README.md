@@ -30,3 +30,12 @@ cd nerd-fonts
 #### Instant markdown preview
 `npm -g install instant-markdown-d`
 
+
+### Credits
+Inspiration and code was taken from many sources, including:
+
+- [@nicknisi](https://github.com/nicknisi) – https://github.com/nicknisi/dotfiles
+- [@paulirish](https://github.com/paulirish) – https://github.com/paulirish/dotfiles
+- [@mathiasbynens](https://github.com/mathiasbynens) – https://github.com/mathiasbynens/dotfiles
+- [@necolas](https://github.com/necolas) – https://github.com/necolas/dotfiles
+- [@cowboy](https://github.com/cowboy) – https://github.com/cowboy/dotfiles
