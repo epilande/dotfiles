@@ -1,13 +1,3 @@
-[user]
-  name = Emmanuel Pilande
-  email = epilande@gmail.com
-[alias]
-  gm = "config user.email 'epilande@gmail.com'"
-  sk = "config user.email 'manny@sudokrew.com'"
-  wm = "config user.email 'emmanuelpilande@webmocha.com'"
-  hp = "config user.email 'manny.pilande@hpe.com'"
-[github]
-  user = epilande
 [color]
   diff = auto
   status = auto
