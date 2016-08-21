@@ -1,3 +1,4 @@
+export DOTFILES=$HOME/.dotfiles
 # Path to oh-my-zsh configuration
 export ZSH=$HOME/.oh-my-zsh
 
@@ -8,6 +9,9 @@ ZSH_THEME="erp"
 plugins=(git osx npm zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+# source all .zsh files inside of the zsh/zsh directory
+for config ($DOTFILES/zsh/zsh/*.zsh) source $config
 
 # Stash your environment variables in ~/.localrc. This means they'll stay out
 # of your main dotfiles repository (which may be public, like this one), but
