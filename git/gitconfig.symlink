@@ -1,18 +1,18 @@
 [color]
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	ui = auto
 [core]
-  excludesfiles = ~/.gitignore
-  excludesfile = ~/.gitignore_global
-  editor = nvim
+	excludesfiles = ~/.gitignore
+	excludesfile = ~/.gitignore_global
+	editor = nvim
 [merge]
-  tool = kdiff3
+	tool = kdiff3
 [mergetool "kdiff3"]
-  path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
+	path = /Applications/kdiff3.app/Contents/MacOS/kdiff3
 [push]
-  default = simple
+	default = simple
 [mergetool]
-  keepBackup = true
+	keepBackup = true
