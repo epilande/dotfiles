@@ -31,10 +31,24 @@ $ source ./install/brew-cask.sh
 ```
 
 
+## Neovim
+#### Install plugins
+Vim plugins are managed by [vim-plug](https://github.com/junegunn/vim-plug), when opening vim for the first time run:
+```bash
+$ nvim +PlugInstall
 ```
 
-#### Instant markdown preview
-`npm -g install instant-markdown-d`
+##### Nerd fonts for vim-devicons
+If you're seeing boxes `□`, this means your current font does not support
+powerline & nerd fonts. Install [nerd-fonts](https://github.com/ryanoasis/nerd-fonts#font-installation) and configure your gui/terminal, in my case iTerm, to use a patched font for non-ascii characters. If you prefer not to do this, then simply remove the `Plug 'ryanoasis/vim-devicons'` plugin from [`plugins.vim`](vim/vim.symlink/plugins.vim).
+
+My default font is currently `Monaco`, and for non-ascii characters I'm using `Droid Sans Mono Nerd Font`.
+
+
+### Node packages
+```bash
+$ npm install -g instant-markdown-d eslint jsonlint stylelint
+```
 
 
 ### Credits
