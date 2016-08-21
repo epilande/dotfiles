@@ -13,7 +13,7 @@ $ cd ~/.dotfiles
 ```
 
 #### Symlink
-Every file with a `.symlink` extension will be symlinked to the `~/` home directory with a `.` in front of it. For example, `vimrc.symlink` will be symlinked in the home directory as `~/.vimrc`. Additionally, all files in the `$DOTFILES/config` directory will be symlinked to the `~/.config/` directory for applications that follow the XDG base directory specification, such as neovim.
+Every file with a `.symlink` extension will be symlinked to the `~/` home directory with a `.` in front of it. For example, [`vimrc.symlink`](vim/vimrc.symlink) will be symlinked in the home directory as `~/.vimrc`. Additionally, all files in the `$DOTFILES/config` directory will be symlinked to the `~/.config/` directory for applications that follow the XDG base directory specification, such as neovim.
 ``` bash
 $ source ./install/link.sh
 ```
@@ -29,6 +29,7 @@ Use brew cask to install native apps listed in [`brew-cask.sh`](install/brew-cas
 ```bash
 $ source ./install/brew-cask.sh
 ```
+
 
 ## Local/Private configuration
 Any private and custom commands and configuration should be placed in a `~/.localrc` file. This file will not be under version control or committed to a public repository. If `~/.localrc` exists, it will be sourced for inclusion in [`.zshrc`](zsh/zshrc.symlink).
@@ -49,7 +50,6 @@ git config --global user.email "$GIT_AUTHOR_EMAIL"
 alias s="cd ~/Sites"
 alias p="cd ~/Projects"
 ```
-
 
 
 ## Neovim
