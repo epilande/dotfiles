@@ -1,7 +1,7 @@
 # Dotfiles
 :house_with_garden: dotfiles configuration
 
-![Screenshot](http://i.imgur.com/Fv4Dqdf.png)
+![Screenshot](http://i.imgur.com/lcfbXyE.png)
 
 
 ## Installation
