@@ -5,26 +5,32 @@
 
 
 ## Installation
+#### Clone this repo
+First step, clone the dotfiles repository to your computer. This can be placed anywhere, and symbolic links will be created to reference it from your home directory.
 ``` bash
-git clone https://github.com/epilande/dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
-source ./install/link.sh
+$ git clone https://github.com/epilande/dotfiles.git ~/.dotfiles
+$ cd ~/.dotfiles
 ```
 
-## tmux
-- `brew install tmux`
-- `brew install reattach-to-user-namespace`
-
-## vim/nvim
-#### Install plugins
-- Open vim OR nvim
-- In command mode run `:PlugInstall`
-
-#### Nerd fonts for vim-devicons
+#### Symlink
+Every file with a `.symlink` extension will be symlinked to the `~/` home directory with a `.` in front of it. For example, `vimrc.symlink` will be symlinked in the home directory as `~/.vimrc`. Additionally, all files in the `$DOTFILES/config` directory will be symlinked to the `~/.config/` directory for applications that follow the XDG base directory specification, such as neovim.
 ``` bash
-git clone https://github.com/ryanoasis/nerd-fonts
-cd nerd-fonts
-./install.sh
+$ source ./install/link.sh
+```
+
+#### Install Homebrew formulae
+Install homebrew if it is not currently installed, then install the homebrew packages listed in [`brew.sh`](install/brew.sh).
+```bash
+$ source ./install/brew.sh
+```
+
+#### Install native apps
+Use brew cask to install native apps listed in [`brew-cask.sh`](install/brew-cask.sh).
+```bash
+$ source ./install/brew-cask.sh
+```
+
+
 ```
 
 #### Instant markdown preview
