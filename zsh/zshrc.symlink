@@ -6,7 +6,7 @@ ZSH_CUSTOM=$HOME/.zsh_custom
 ZSH_THEME="erp"
 
 # Plugins
-plugins=(git osx npm zsh-syntax-highlighting)
+plugins=(git osx npm z zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
