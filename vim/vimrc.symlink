@@ -321,6 +321,8 @@ set showtabline=1
 " => SPELLING CHECK
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
+hi SpellBad cterm=underline,bold ctermfg=red gui=underline,bold guifg=red
+
 " Toggle and untoggle spell checking
 map <leader>sc :setlocal spell!<cr>
 
