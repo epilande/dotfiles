@@ -22,9 +22,9 @@ Plug 'junegunn/fzf.vim'
 
 if has('nvim')
   " Asynchronous completion for neovim
-  Plug 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
   " Tern-based JavaScript editing support
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
 else
   " Code completion
   Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
@@ -107,22 +107,22 @@ Plug 'airblade/vim-gitgutter'
 Plug 'suan/vim-instant-markdown'
 
 " Jade syntax highlighting
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+" Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
 
 " Javascript indentation and syntax support
-Plug 'pangloss/vim-javascript', {'for': 'javascript'}
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 
 " React JSX syntax highlighting & indenting
-Plug 'mxw/vim-jsx', {'for': 'javascript'}
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Yet Another JavaScript Syntax
-Plug 'othree/yajs.vim', {'for': 'javascript'}
+Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Syntax for JavaScript libraries
-Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Block comments based on a function signature
-Plug 'heavenshell/vim-jsdoc', { 'for': 'javascript' }
+Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Sublime Text style multiple selections
 " Plug 'terryma/vim-multiple-cursors'
