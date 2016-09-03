@@ -417,11 +417,11 @@ nnoremap <silent> <leader>z :ZoomWinTabToggle<cr>
 " CtrlSF
 """"""""""""""""""""""""""""""
 " Prompt CtrlSF using ALT+f
-nmap ƒ <Plug>CtrlSFPrompt
-vmap ƒ <Plug>CtrlSFVwordPath
+nmap <M-f> <Plug>CtrlSFPrompt
+vmap <M-f> <Plug>CtrlSFVwordPath
 
 " Toggle CtrlSF result display
-map † :CtrlSFToggle<CR>
+map <M-t> :CtrlSFToggle<CR>
 
 let g:ctrlsf_indent = 2
 
