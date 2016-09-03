@@ -5,6 +5,9 @@ alias reload!='source ~/.zshrc'
 alias vim="nvim"
 alias ":q"="exit"
 
+# Tower
+alias tower="gittower ."
+
 # tmux aliases
 alias ta='tmux attach'
 alias tls='tmux ls'
