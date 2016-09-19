@@ -46,7 +46,7 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'benekastah/neomake'
 
 " Prefer local eslint over global with neomake
-Plug 'epilande/neomake-local-eslint.vim'
+" Plug 'epilande/neomake-local-eslint.vim'
 
 " Cache file automatically
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -482,8 +482,10 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 " Neomake
 """"""""""""""""""""""""""""""
 autocmd! BufWritePost * Neomake
+
+" let g:neomake_verbose = 3 " debug flag
 let g:neomake_open_list = 2
-let g:neomake_list_height = 7
+let g:neomake_list_height = 5
 
 let g:neomake_stylelint = {
   \ 'errorformat':
@@ -502,12 +504,21 @@ let g:neomake_error_sign = {
   \ 'texthl': 'GitGutterDeleteDefault',
   \ }
 
+" Prefer local project eslint over global
+let g:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+let g:neomake_javascript_eslint_exe = substitute(g:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+
+" Prefer local project stylelint over global
+let g:stylelint_path = system('PATH=$(npm bin):$PATH && which stylelint')
+let g:neomake_css_stylelint_exe = substitute(g:stylelint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+
 let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_json_enabled_makers = ['jsonlint']
-let g:neomake_css_stylelint_maker = neomake_stylelint
-let g:neomake_scss_stylelint_maker = neomake_stylelint
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_scss_enabled_makers = ['stylelint']
+
+let g:neomake_css_stylelint_maker = neomake_stylelint
+let g:neomake_scss_stylelint_maker = neomake_stylelint
 
 
 """"""""""""""""""""""""""""""
