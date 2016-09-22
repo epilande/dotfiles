@@ -166,6 +166,9 @@ Plug 'Konfekt/FastFold'
 " Metrics, insights, and time tracking
 Plug 'wakatime/vim-wakatime'
 
+" Interactive Scratchpad
+Plug 'metakirby5/codi.vim'
+
 call plug#end()
 
 
@@ -526,3 +529,15 @@ let g:neomake_scss_stylelint_maker = neomake_stylelint
 """"""""""""""""""""""""""""""
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
+
+""""""""""""""""""""""""""""""
+" Codi
+""""""""""""""""""""""""""""""
+function! Scratch(ft)
+  execute 'edit Scratch-' . strftime('%FT%T')
+  execute 'set filetype=' . a:ft
+  execute 'Codi ' . a:ft
+endfunction
+
+" command! -nargs=? Scratch execute s:Scratch("<args>")
+nnoremap <silent> <leader>JS :call Scratch('javascript')<CR>
