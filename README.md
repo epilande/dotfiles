@@ -32,7 +32,7 @@ $ source ./install/brew-cask.sh
 
 
 ## Local/Private configuration
-Any private and custom commands and configuration should be placed in a `~/.localrc` file. This file will not be under version control or committed to a public repository. If `~/.localrc` exists, it will be sourced for inclusion in [`.zshrc`](zsh/zshrc.symlink).
+Any private and custom commands and configuration should be placed in a `~/.localrc` file. This file will not be under version control or committed to a public repository. If `~/.localrc` exists, it will be sourced for the inclusion of [`.zshrc`](zsh/zshrc.symlink).
 
 Here is an example `~/.localrc`:
 ```bash
@@ -68,7 +68,7 @@ My default font is currently `Monaco`, and for non-ascii characters I'm using `D
 
 ### Node packages
 ```bash
-$ npm install -g instant-markdown-d eslint jsonlint stylelint
+$ npm install -g instant-markdown-d jsonlint
 ```
 
 
