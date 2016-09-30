@@ -134,7 +134,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'troydm/zoomwintab.vim'
 
 " Gotham colorscheme
-Plug 'whatyouhide/vim-gotham'
+" Plug 'whatyouhide/vim-gotham'
 
 " Oceanic Next colorscheme
 Plug 'mhartington/oceanic-next'
@@ -287,6 +287,8 @@ let g:NERDTreeWinPos = "left"
 let g:NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.js.map$', '\.DS_Store$']
 let g:NERDTreeWinSize=35
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 map <silent> <C-e> :NERDTreeToggle<CR>
 
 
