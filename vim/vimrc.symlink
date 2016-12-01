@@ -97,7 +97,11 @@ set ffs=unix,dos,mac
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
-" Turn on the WiLd menu
+" Search down into subfolders
+" Provides tab-completion for all file-related tasks
+set path+=**
+
+" Turn on the Wild menu
 set wildmenu
 set wildmode=full
 
@@ -356,10 +360,10 @@ vnoremap > >gv
 vnoremap < <gv
 
 " To the leftmost non-blank character of the current line
-map 0 g^
+map H g^
 
 " To the rightmost character of the current line
-map $ g$
+map L g$
 
 " Trim WhiteSpace
 nnoremap <Leader>tws :%s/\s\+$//e<CR>
