@@ -1,12 +1,9 @@
 {
   "rules": {
-    "at-rule-empty-line-before": [ "always", {
-      except: [
-        "blockless-after-same-name-blockless",
-        "first-nested",
-      ],
-      ignore: ["after-comment"],
-    } ],
+    "at-rule-empty-line-before": ["always", {
+      "except": ["blockless-group", "all-nested"],
+      "ignore": ["after-comment"]
+    }],
     "at-rule-name-case": "lower",
     "at-rule-name-space-after": "always-single-line",
     "at-rule-semicolon-newline-after": "always",
@@ -112,7 +109,9 @@
     "selector-list-comma-space-before": "never",
     "selector-max-empty-lines": 0,
     "selector-pseudo-class-case": "lower",
-    "selector-pseudo-class-no-unknown": true,
+    "selector-pseudo-class-no-unknown": [true, {
+      "ignorePseudoClasses": ["global"]
+    }]
     "selector-pseudo-class-parentheses-space-inside": "never",
     "selector-pseudo-element-case": "lower",
     "selector-pseudo-element-colon-notation": "double",
