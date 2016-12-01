@@ -73,6 +73,12 @@ Plug 'plasticboy/vim-markdown', { 'for': 'md' }
 " Enable repeating supported plugin maps
 Plug 'tpope/vim-repeat'
 
+" ES2015 code snippets
+Plug 'epilande/vim-es2015-snippets'
+
+" React code snippets
+Plug 'epilande/vim-react-snippets'
+
 " Ultimate snippet solution
 Plug 'SirVer/ultisnips'
 
