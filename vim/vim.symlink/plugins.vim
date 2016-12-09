@@ -549,3 +549,9 @@ endfunction
 
 " command! -nargs=? Scratch execute s:Scratch("<args>")
 nnoremap <silent> <leader>JS :call Scratch('javascript')<CR>
+
+
+""""""""""""""""""""""""""""""
+" indentLine
+""""""""""""""""""""""""""""""
+let g:indentLine_color_gui = '#65737E'
