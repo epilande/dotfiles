@@ -1,9 +1,12 @@
 {
   "rules": {
-    "at-rule-empty-line-before": ["always", {
-      "except": ["blockless-group", "all-nested"],
-      "ignore": ["after-comment"]
-    }],
+    "at-rule-empty-line-before": [ "always", {
+      except: [
+        "blockless-after-same-name-blockless",
+        "first-nested",
+      ],
+      ignore: ["after-comment"],
+    } ],
     "at-rule-name-case": "lower",
     "at-rule-name-space-after": "always-single-line",
     "at-rule-semicolon-newline-after": "always",
@@ -36,8 +39,9 @@
     } ],
     "declaration-bang-space-after": "never",
     "declaration-bang-space-before": "always",
-    "declaration-block-no-duplicate-properties": true,
-    "declaration-block-no-ignored-properties": true,
+    "declaration-block-no-duplicate-properties": [ true, {
+      ignore: ["consecutive-duplicates-with-different-values"],
+    } ],
     "declaration-block-no-redundant-longhand-properties": true,
     "declaration-block-no-shorthand-property-overrides": true,
     "declaration-block-semicolon-newline-after": "always-multi-line",
@@ -58,6 +62,7 @@
         "inside-single-line-block",
       ],
     } ],
+    "font-family-no-duplicate-names": true,
     "function-calc-no-unspaced-operator": true,
     "function-comma-newline-after": "always-multi-line",
     "function-comma-space-after": "always-single-line",
@@ -76,7 +81,6 @@
     "media-feature-colon-space-before": "never",
     "media-feature-name-case": "lower",
     "media-feature-name-no-unknown": true,
-    "media-feature-no-missing-punctuation": true,
     "media-feature-parentheses-space-inside": "never",
     "media-feature-range-operator-space-after": "always",
     "media-feature-range-operator-space-before": "always",
@@ -109,9 +113,7 @@
     "selector-list-comma-space-before": "never",
     "selector-max-empty-lines": 0,
     "selector-pseudo-class-case": "lower",
-    "selector-pseudo-class-no-unknown": [true, {
-      "ignorePseudoClasses": ["global"]
-    }]
+    "selector-pseudo-class-no-unknown": true,
     "selector-pseudo-class-parentheses-space-inside": "never",
     "selector-pseudo-element-case": "lower",
     "selector-pseudo-element-colon-notation": "double",
