@@ -31,6 +31,7 @@ brew cask install sketch
 brew cask install sketch-toolbox
 brew cask install vmware-fusion
 brew cask install lumen
+brew cask install toggldesktop
 
 # https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package
