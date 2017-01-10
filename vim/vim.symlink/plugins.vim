@@ -124,6 +124,9 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 " Yet Another JavaScript Syntax
 Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
+" ES.Next syntax
+Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
+
 " Syntax for JavaScript libraries
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
