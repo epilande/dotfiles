@@ -1,4 +1,4 @@
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:$PATH"
 
 # Language Support
 export LC_CTYPE=en_US.UTF-8
@@ -14,7 +14,7 @@ export EDITOR="nvim"
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
-. "$(brew --prefix nvm)/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # Load fzf
 # export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g "" -u"
