@@ -21,3 +21,5 @@ export NVM_DIR="$HOME/.nvm"
 export FZF_DEFAULT_COMMAND="ag -g ''"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Update PATH variable to access yarn binaries
+export PATH="$PATH:`yarn global bin`"

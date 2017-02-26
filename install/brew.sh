@@ -38,5 +38,6 @@ brew install tidy-html5
 brew install ranger
 brew install youtube-dl
 brew install pianobar
+brew install yarn
 
 brew cleanup
