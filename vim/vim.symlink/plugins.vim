@@ -519,14 +519,13 @@ let g:neomake_error_sign = {
   \ }
 
 " Prefer local project eslint over global
-let g:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-let g:neomake_javascript_eslint_exe = substitute(g:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
 
 " Prefer local project stylelint over global
-let g:stylelint_path = system('PATH=$(npm bin):$PATH && which stylelint')
-let g:neomake_css_stylelint_exe = substitute(g:stylelint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
 
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_jsx_enabled_makers = ['eslint']
 let g:neomake_json_enabled_makers = ['jsonlint']
 let g:neomake_css_enabled_makers = ['stylelint']
 let g:neomake_scss_enabled_makers = ['stylelint']
