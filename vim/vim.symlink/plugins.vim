@@ -133,6 +133,9 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascri
 " Block comments based on a function signature
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'javascript.jsx'] }
 
+" Syntax for styled-components
+Plug 'fleischie/vim-styled-components'
+
 " Sublime Text style multiple selections
 " Plug 'terryma/vim-multiple-cursors'
 
