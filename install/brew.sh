@@ -40,4 +40,8 @@ brew install youtube-dl
 brew install pianobar
 brew install yarn
 
+# Install python3
+brew install python3
+pip3 install neovim --upgrade
+
 brew cleanup
