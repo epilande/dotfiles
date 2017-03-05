@@ -14,7 +14,7 @@ export EDITOR="nvim"
 
 # Load NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+. "/usr/local/opt/nvm/nvm.sh"
 
 # Load fzf
 # export FZF_DEFAULT_COMMAND="ag --hidden --ignore .git -f -g "" -u"
