@@ -3,7 +3,8 @@
 ##############################
 
 # Fix pbpaste in tmux sessions
-# set-option -g default-command "reattach-to-user-namespace -l zsh"
+set -g default-shell /bin/zsh
+set -g default-command "reattach-to-user-namespace -l /bin/zsh"
 
 # Unbind default prefix and set it to Ctrl+a cause easier
 unbind C-b

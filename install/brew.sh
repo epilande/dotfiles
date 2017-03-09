@@ -36,6 +36,7 @@ brew install nvm
 brew install p7zip
 brew install tidy-html5
 brew install ranger
+brew install reattach-to-user-namespace
 brew install youtube-dl
 brew install pianobar
 brew install yarn
