@@ -36,5 +36,6 @@ brew cask install toggldesktop
 # https://github.com/sindresorhus/quick-look-plugins
 brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json qlprettypatch quicklook-csv betterzipql qlimagesize webpquicklook suspicious-package
 
-# Link cask apps to alfred
-brew cask alfred link
+# Install fonts
+brew tap caskroom/fonts
+brew cask install font-droidsansmono-nerd-font
