@@ -11,7 +11,7 @@ brew cask install iterm2
 brew cask install tower
 brew cask install slack
 brew cask install discord
-brew cask install karabiner
+brew cask install karabiner-elements
 brew cask install google-chrome
 brew cask install firefox
 brew cask install 1password
