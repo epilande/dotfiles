@@ -53,6 +53,12 @@ alias p="cd ~/Projects"
 ```
 
 
+## Tmux
+Install tmux plugins with [tpm](https://github.com/tmux-plugins/tpm) by pressing `prefix + I`.
+
+This will install the plugins listed in [`.tmux.conf`](https://github.com/epilande/dotfiles/blob/master/tmux/tmux.conf.symlink#L132).
+
+
 ## Neovim
 #### Install plugins
 Vim plugins are managed by [vim-plug](https://github.com/junegunn/vim-plug), when opening vim for the first time run:
