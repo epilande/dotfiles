@@ -10,6 +10,7 @@ First step, clone the dotfiles repository to your computer. This can be placed a
 ``` bash
 $ git clone https://github.com/epilande/dotfiles.git ~/.dotfiles
 $ cd ~/.dotfiles
+$ git submodule update --init --recursive
 ```
 
 #### Symlink
@@ -68,7 +69,7 @@ My default font is currently `Monaco`, and for non-ascii characters I'm using `D
 
 ### Node packages
 ```bash
-$ npm install -g instant-markdown-d jsonlint
+$ npm install -g instant-markdown-d jsonlint prettier
 ```
 
 
