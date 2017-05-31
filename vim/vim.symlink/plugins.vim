@@ -42,11 +42,8 @@ Plug 'jlanzarotta/bufexplorer'
 " Tree explorer for vim.
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 
-" Asynchronous linter
-Plug 'benekastah/neomake'
-
-" Prefer local eslint over global with neomake
-" Plug 'epilande/neomake-local-eslint.vim'
+" Asynchronous Lint Engine
+Plug 'w0rp/ale'
 
 " Cache file automatically
 Plug 'MarcWeber/vim-addon-mw-utils'
@@ -494,45 +491,11 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
 
 """"""""""""""""""""""""""""""
-" Neomake
+" ALE
 """"""""""""""""""""""""""""""
-autocmd! BufWritePost * Neomake
-
-" let g:neomake_verbose = 3 " debug flag
-let g:neomake_open_list = 2
-let g:neomake_list_height = 5
-
-let g:neomake_stylelint = {
-  \ 'errorformat':
-  \ '%+P%f,' .
-  \ '%*\s%l:%c  %t  %m,' .
-  \ '%-Q'
-  \ }
-
-let g:neomake_warning_sign = {
-  \ 'text': 'W',
-  \ 'texthl': 'GitGutterChangeDefault',
-  \ }
-
-let g:neomake_error_sign = {
-  \ 'text': 'E',
-  \ 'texthl': 'GitGutterDeleteDefault',
-  \ }
-
-" Prefer local project eslint over global
-let g:neomake_javascript_eslint_exe = system('PATH=$(npm bin):$PATH && which eslint | tr -d "\n"')
-
-" Prefer local project stylelint over global
-let g:neomake_css_stylelint_exe = system('PATH=$(npm bin):$PATH && which stylelint | tr -d "\n"')
-
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_jsx_enabled_makers = ['eslint']
-let g:neomake_json_enabled_makers = ['jsonlint']
-let g:neomake_css_enabled_makers = ['stylelint']
-let g:neomake_scss_enabled_makers = ['stylelint']
-
-let g:neomake_css_stylelint_maker = neomake_stylelint
-let g:neomake_scss_stylelint_maker = neomake_stylelint
+let g:ale_sign_error = 'E'
+let g:ale_sign_warning = 'W'
+let g:ale_open_list = 1
 
 
 """"""""""""""""""""""""""""""
