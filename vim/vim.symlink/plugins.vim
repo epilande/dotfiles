@@ -68,16 +68,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'cakebaker/scss-syntax.vim', { 'for': 'scss' }
 
 " Markdown syntax highlighting
-Plug 'plasticboy/vim-markdown', { 'for': 'md' }
+" Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 " Enable repeating supported plugin maps
 Plug 'tpope/vim-repeat'
 
 " ES2015 code snippets
-Plug 'epilande/vim-es2015-snippets'
+Plug 'epilande/vim-es2015-snippets', { 'for': ['javascript', 'javascript.jsx'] }
 
 " React code snippets
-Plug 'epilande/vim-react-snippets'
+Plug 'epilande/vim-react-snippets', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Ultimate snippet solution
 Plug 'SirVer/ultisnips'
@@ -110,7 +110,7 @@ Plug 'hail2u/vim-css3-syntax'
 Plug 'airblade/vim-gitgutter'
 
 " Instant Markdown previews
-Plug 'suan/vim-instant-markdown'
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
 " Jade syntax highlighting
 " Plug 'digitaltoad/vim-pug', { 'for': ['jade', 'pug'] }
@@ -134,7 +134,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascri
 Plug 'heavenshell/vim-jsdoc', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Syntax for styled-components
-Plug 'fleischie/vim-styled-components'
+Plug 'fleischie/vim-styled-components', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Sublime Text style multiple selections
 " Plug 'terryma/vim-multiple-cursors'
@@ -158,7 +158,7 @@ Plug 'mhartington/oceanic-next'
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
 
 " Increment dates, times, and more
-Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-speeddating', { 'for': 'org' }
 
 " Insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
