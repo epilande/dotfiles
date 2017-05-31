@@ -152,7 +152,7 @@ Plug 'troydm/zoomwintab.vim'
 Plug 'mhartington/oceanic-next'
 
 " Solarized colorscheme
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 
 " Vim Orgmode
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
@@ -176,10 +176,8 @@ Plug 'wellle/targets.vim'
 Plug 'Konfekt/FastFold'
 
 " Metrics, insights, and time tracking
-Plug 'wakatime/vim-wakatime'
+" Plug 'wakatime/vim-wakatime'
 
-" Interactive Scratchpad
-Plug 'metakirby5/codi.vim'
 
 call plug#end()
 
@@ -544,19 +542,10 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 
 """"""""""""""""""""""""""""""
-" Codi
-""""""""""""""""""""""""""""""
-function! Scratch(ft)
-  execute 'edit Scratch-' . strftime('%FT%T')
-  execute 'set filetype=' . a:ft
-  execute 'Codi ' . a:ft
-endfunction
-
-" command! -nargs=? Scratch execute s:Scratch("<args>")
-nnoremap <silent> <leader>JS :call Scratch('javascript')<CR>
-
-
-""""""""""""""""""""""""""""""
 " indentLine
 """"""""""""""""""""""""""""""
 let g:indentLine_color_gui = '#65737E'
+
+
+""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""
