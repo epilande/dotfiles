@@ -544,3 +544,7 @@ call NERDTreeHighlightFile('jpg', 36, 'none', '#15A274')
 call NERDTreeHighlightFile('png', 36, 'none', '#15A274')
 
 
+" ALE gutter sign colors
+hi ALEErrorSign ctermfg=203 ctermbg=237 guifg=#ff0000 guibg=#343d46
+hi ALEWarningSign ctermfg=221 ctermbg=237 guifg=#fac863 guibg=#343d46
+
