@@ -496,6 +496,7 @@ let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 let g:ale_sign_error = 'E'
 let g:ale_sign_warning = 'W'
 let g:ale_open_list = 1
+let g:ale_echo_msg_format = '[%linter%] %s'
 
 
 """"""""""""""""""""""""""""""
