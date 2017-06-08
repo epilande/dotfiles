@@ -76,3 +76,6 @@
 
 [mergetool]
 	keepBackup = true
+[user]
+	name = John Yom
+	email = johnyom87@gmail.com

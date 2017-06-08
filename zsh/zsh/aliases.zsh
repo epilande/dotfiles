@@ -2,7 +2,8 @@
 alias reload!='source ~/.zshrc'
 
 # Switch vim to neovim
-alias vim="nvim"
+alias v="nvim"
+alias vim="vim"
 alias ":q"="exit"
 
 # Tower

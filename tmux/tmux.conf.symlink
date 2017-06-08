@@ -106,8 +106,10 @@ bind Escape copy-mode
 unbind p
 bind p paste-buffer
 # Setup 'v' to begin selection as in Vim
-bind-key -t vi-copy v begin-selection
-bind-key -t vi-copy y copy-pipe "pbcopy"
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
+# bind-key -t vi-copy v begin-selection
+# bind-key -t vi-copy y copy-pipe "pbcopy"
 
 # Smart pane switching with awareness of vim splits
 # vim-tmux-navigator

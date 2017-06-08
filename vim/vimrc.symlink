@@ -343,6 +343,7 @@ map <leader>s? z=
 
 " Exit insert mode with `jk`
 inoremap jk <ESC>
+nnoremap ; :
 
 " Fast saving
 nmap <leader>w :w!<cr>
