@@ -18,7 +18,8 @@ source ~/.vim/plugins.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => BASIC SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""
-
+" clipboard
+set clipboard=unnamed
 " Show current line number
 set number
 " Show relative line numbers

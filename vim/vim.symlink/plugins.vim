@@ -488,7 +488,7 @@ let g:javascript_plugin_jsdoc = 1 " Enables syntax highlighting for JSDocs.
 " vim-jsx
 """"""""""""""""""""""""""""""
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-let g:javascript_enable_domhtmlcss = 1
+let g:javascript_enable_domhtmlcss = 1 " html tags in js and jsx files?
 
 """"""""""""""""""""""""""""""
 " ALE
