@@ -3,8 +3,9 @@ export DOTFILES=$HOME/.dotfiles
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_CUSTOM=$HOME/.zsh_custom
-ZSH_THEME="erp"
-
+# ZSH_THEME="erp"
+ZSH_THEME="agnoster"
+DEFAULT_USER=yommy
 # Plugins
 plugins=(git osx npm z zsh-syntax-highlighting)
 

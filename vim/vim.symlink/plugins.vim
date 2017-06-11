@@ -149,7 +149,7 @@ Plug 'troydm/zoomwintab.vim'
 Plug 'mhartington/oceanic-next'
 
 " Solarized colorscheme
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " Vim Orgmode
 Plug 'jceb/vim-orgmode', { 'for': 'org' }
@@ -293,7 +293,7 @@ nnoremap <silent> <leader>b :BTags<CR>
 let g:NERDTreeWinPos = "left"
 let g:NERDTreeShowHidden=1
 let NERDTreeIgnore = ['\.js.map$', '\.DS_Store$']
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize=25
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 map <silent> <C-e> :NERDTreeToggle<CR>
@@ -388,8 +388,8 @@ endif
 """"""""""""""""""""""""""""""
 " Trigger configuration
 let g:UltiSnipsExpandTrigger="<C-l>"
-" let g:UltiSnipsJumpForwardTrigger="<Tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger="<Tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 
 """"""""""""""""""""""""""""""
@@ -488,7 +488,7 @@ let g:javascript_plugin_jsdoc = 1 " Enables syntax highlighting for JSDocs.
 " vim-jsx
 """"""""""""""""""""""""""""""
 let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
+let g:javascript_enable_domhtmlcss = 1
 
 """"""""""""""""""""""""""""""
 " ALE

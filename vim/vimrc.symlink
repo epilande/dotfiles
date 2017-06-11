@@ -342,7 +342,7 @@ map <leader>s? z=
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Exit insert mode with `jk`
-inoremap jk <ESC>
+inoremap jk <ESC>`^
 nnoremap ; :
 
 " Fast saving

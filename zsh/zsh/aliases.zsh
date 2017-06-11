@@ -1,6 +1,8 @@
 # reload zsh config
 alias reload!='source ~/.zshrc'
 
+# standard terminal commmands
+alias lh='ls -a'
 # Switch vim to neovim
 alias v="nvim"
 alias vim="vim"
@@ -14,7 +16,7 @@ alias ta='tmux attach'
 alias tls='tmux ls'
 alias tat='tmux attach -t'
 alias tns='tmux new-session -s'
-
+alias tks='tmux kill-session -t'
 # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
