@@ -129,7 +129,16 @@ bind b switchc -l
 # switch between windows
 bind C-a last-window
 
+##############################
+# => Status Bar
+##############################
+set -g status on
 
+set -g status-bg '#586e75'
+set -g status-fg '#eee8d5'
+set -g pane-border-style fg='#586e75'
+set -g pane-active-border-style fg='#586e75'
+set -g pane-active-border-style bg=default
 ##############################
 # => PLUGINS
 ##############################
