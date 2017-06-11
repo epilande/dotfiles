@@ -3,8 +3,8 @@
 # See manpage for a description of the config keys
 
 # User
-#user = your@user.name
-#password = password
+user = jsyom8712@gmail.com
+# password = Minpops1
 #event_command = /home/user/.config/pianobar/event_command.py
 
 # Keybindings
@@ -20,8 +20,8 @@
 #act_addshared = j
 #act_songmove = m
 #act_songnext = n
-#act_songpause = S
-#act_songpausetoggle = p
+act_songpause = S
+act_songpausetoggle = p
 #act_songpausetoggle2 =
 #act_songplay = P
 #act_quit = q

@@ -7,3 +7,6 @@ vim/vim.symlink/.init.vim-rplugin~
 config/ranger/bookmarks
 config/ranger/history
 config/ranger/tagged
+
+# PianoBar
+config/pianbar/config

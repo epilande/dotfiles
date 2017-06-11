@@ -59,7 +59,8 @@ if has("gui_running")
   set noantialias
 else
   try
-    colorscheme OceanicNext
+    let g:quantum_black=1
+    colorscheme quantum
   catch
   endtry
 endif
@@ -67,7 +68,8 @@ endif
 function! ReverseBackground()
   if &background=="light"
     set background=dark
-    colorscheme OceanicNext
+    let g:quantum_black=1
+    colorscheme quantum
   else
     set background=light
     colorscheme solarized
@@ -343,7 +345,7 @@ map <leader>s? z=
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Exit insert mode with `jk`
-inoremap jk <ESC>`^
+inoremap jk <ESC>
 nnoremap ; :
 
 " Fast saving

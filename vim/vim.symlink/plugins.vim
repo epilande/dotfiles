@@ -114,7 +114,7 @@ Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 
 " Javascript indentation and syntax support
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
-
+Plug 'jelera/vim-javascript-syntax', {'for':['javascript', 'javascript.jsx']}
 " React JSX syntax highlighting & indenting
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
@@ -175,6 +175,8 @@ Plug 'Konfekt/FastFold'
 " Metrics, insights, and time tracking
 " Plug 'wakatime/vim-wakatime'
 
+" Color scheme
+Plug 'tyrannicaltoucan/vim-quantum'
 
 call plug#end()
 
@@ -298,7 +300,7 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 map <silent> <C-e> :NERDTreeToggle<CR>
 
-
+let g:used_javascript_libs = 'angularjs,react,jquery,underscore,angularuirouter,flux,requirejs,jasmine,chai,d3'
 """"""""""""""""""""""""""""""
 " vim-multiple-cursors
 """"""""""""""""""""""""""""""
@@ -313,7 +315,7 @@ let g:airline_powerline_fonts = 1
 if has("gui_running")
   let g:airline_theme="luna"
 else
-  let g:airline_theme="oceanicnext"
+  let g:airline_theme="quantum"
 endif
 
 " Automatically truncate sections
