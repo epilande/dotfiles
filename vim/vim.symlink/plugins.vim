@@ -498,10 +498,39 @@ let g:javascript_enable_domhtmlcss = 1 " html tags in js and jsx files?
 """"""""""""""""""""""""""""""
 " ALE
 """"""""""""""""""""""""""""""
-let g:ale_sign_error = 'E'
-let g:ale_sign_warning = 'W'
-let g:ale_open_list = 1
+let g:ale_sign_error = '>>' " error sign
+let g:ale_sign_warning = '--' " warning sign
+" let g:ale_sign_error = 'E'
+" let g:ale_sign_warning = 'W'
+let g:ale_open_list = 0 " this keeps the loclist lint errors from showing up in a vim pane
+let g:ale_lint_on_enter = 1 " 0 disables linting on enter
+let g:ale_lint_on_save = 1 " lint on save instead
+let g:ale_lint_on_text_changed = 0
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'jsx': ['eslint'],
+\}
 
+augroup FiletypeGroup
+    autocmd!
+    au BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+augroup END
+
+" function to display ALE in airline
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
+
+set statusline=%{LinterStatus()}
 
 """"""""""""""""""""""""""""""
 " EditorConfig
