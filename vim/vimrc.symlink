@@ -106,10 +106,12 @@ set path+=**
 
 " Turn on the Wild menu
 set wildmenu
-set wildmode=full
+set wildmode=list:longest,full
+" set wildmode=full
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
+" set wildignore+=*.DS_STORE,*.db,node_modules/**,*.jpg,*.png,*.gif
 if has("win16") || has("win32")
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
@@ -252,8 +254,10 @@ vnoremap <silent> # :call VisualSelection('b', '')<CR>
 
 " Treat long lines as break lines (useful when moving around in them).
 " Store relative line number jumps in the jumplist.
-noremap <expr> j v:count > 1 ? 'm`' . v:count . 'j' : 'gj'
-noremap <expr> k v:count > 1 ? 'm`' . v:count . 'k' : 'gk'
+" noremap <expr> j v:count > 1 ? 'm`' . v:count . 'j' : 'gj'
+" noremap <expr> k v:count > 1 ? 'm`' . v:count . 'k' : 'gk'
+nnoremap j gj
+nnoremap k gk
 
 " Use gj gk to go quicker
 noremap gj 5gj
@@ -442,7 +446,9 @@ nnoremap <expr> N  'nN'[v:searchforward]
 nnoremap <silent> K :let stay_star_view = winsaveview()<cr>*:call winrestview(stay_star_view)<cr>
 
 " Easily jump between brackets
-map <S-Tab> %
+" map <S-Tab> %
+nnoremap <tab> %
+vnoremap <tab> %
 
 nnoremap <expr> <UP> len(getline(line('.')-1)) > 0 ? '{+' : '{-'
 nnoremap <expr> <DOWN> len(getline(line('.')+1)) > 0 ? '}-' : '}+'
@@ -524,6 +530,21 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 
+" Tab completion
+ " will insert tab at beginning of line,
+ " will use completion if not at beginning
+ " set wildmode=list:longest,list:full
+ " set wildmode=list:longest,list
+ function! InsertTabWrapper()
+     let col = col('.') - 1
+     if !col || getline('.')[col - 1] !~ '\k'
+         return "\<tab>"
+     else
+         return "\<c-p>"
+     endif
+ endfunction
+ inoremap <Tab> <c-r>=InsertTabWrapper()<cr>
+ inoremap <S-Tab> <c-n>
 
 
 " NERDTrees File highlighting

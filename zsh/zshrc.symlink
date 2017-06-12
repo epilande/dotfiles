@@ -20,3 +20,5 @@ for config ($DOTFILES/zsh/zsh/*.zsh) source $config
 if [[ -a ~/.localrc ]]; then
   source ~/.localrc
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

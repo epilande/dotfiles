@@ -30,6 +30,9 @@ else
   Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
 endif
 
+" Supertab
+Plug 'ervandew/supertab'
+
 " Emmet for vim
 Plug 'mattn/emmet-vim'
 
