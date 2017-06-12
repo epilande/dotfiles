@@ -1,3 +1,7 @@
+# installed packages (better: `npm install` / `bower install`)
+node_modules
+bower_components
+
 # Compiled source #
 ###################
 *.com
@@ -44,6 +48,9 @@ Thumbs.db
 # WebStorm #
 ############
 .idea
+
+#vim
+*.sw?
 
 # VSCODE #
 ##########
