@@ -145,6 +145,14 @@ set -g pane-active-border-style bg=default
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sessionist'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-
+set -g @plugin 'tmux-plugins/tmux-open' # Open highlighted selection directly from Tmux
+set -g @plugin 'tmux-plugins/tmux-continuum' # Restore previous sessions on reboot
+# tmux will auto-start on system boot
+set -g @continuum-boot 'on'
+set -g @continuum-boot-options 'iterm'
+set -g @continuum-restore 'on'
+set -g @continuum-save-interval '5'
+set -g @resurrect-strategy-vim 'session'
+set -g @resurrect-strategy-nvim 'session' #for Neo Vim
 # Initialize TMUX plugin manager
-run '~/.tmux/plugins/tpm/tpm'
+run-shell '~/.tmux/plugins/tpm/tpm'
