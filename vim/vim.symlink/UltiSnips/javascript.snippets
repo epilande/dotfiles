@@ -1,0 +1,36 @@
+# snippet sl "Const Function" bA
+# const ${1:name} = (${2:args}) => {
+# 	return $4;
+# }${3:;}
+# endsnippet
+
+snippet f "Anonymous function"
+(${1}) => {
+	${VISUAL}$0
+}
+endsnippet
+
+snippet fs "Simple Anonymous function"
+(${1}) => ${VISUAL}$0
+endsnippet
+
+snippet fl "Anonymous function returning an object literal"
+(${1}) => (
+	${VISUAL}$0
+)
+endsnippet
+
+
+snippet cf "Function assigned to const"
+${1:const }${2:function_name} = (${3}) => {
+	${VISUAL}$0
+};
+endsnippet
+
+snippet sl "Const Function"
+const ${1:name} = (${2:props}) => {
+	return (
+		${VISUAL}$0
+	);
+}
+endsnippet
