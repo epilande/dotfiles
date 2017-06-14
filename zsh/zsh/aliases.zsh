@@ -4,8 +4,8 @@ alias reload!='source ~/.zshrc'
 # standard terminal commmands
 alias lh='ls -a'
 # Switch vim to neovim
-alias v="nvim"
-alias vim="vim"
+alias v="vim"
+alias nv="nvim"
 alias ":q"="exit"
 
 # Tower
