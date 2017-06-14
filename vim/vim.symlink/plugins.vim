@@ -20,6 +20,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
+" Tern-based JavaScript editing support
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
+
 if has('nvim')
   " Asynchronous completion for neovim
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
@@ -97,6 +100,9 @@ Plug 'edkolev/tmuxline.vim'
 " Undo history visualizer
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
+" large colorscheme package
+Plug 'flazz/vim-colorschemes'
+
 " Preview colors in source code
 Plug 'ap/vim-css-color'
 
@@ -123,7 +129,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Yet Another JavaScript Syntax
 Plug 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
-
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 " ES.Next syntax
 Plug 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
@@ -146,7 +152,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'troydm/zoomwintab.vim'
 
 " Gotham colorscheme
-" Plug 'whatyouhide/vim-gotham'
+Plug 'whatyouhide/vim-gotham'
 
 " Oceanic Next colorscheme
 Plug 'mhartington/oceanic-next'
@@ -163,8 +169,6 @@ Plug 'tpope/vim-speeddating', { 'for': 'org' }
 " Insert or delete brackets, parens, quotes in pair
 Plug 'jiangmiao/auto-pairs'
 
-" Tern-based JavaScript editing support
-" Plug 'ternjs/tern_for_vim', { 'do': 'npm install' }
 
 " EditorConfig for consistent coding style
 Plug 'editorconfig/editorconfig-vim'
@@ -370,6 +374,7 @@ if has('nvim')
     let g:deoplete#omni#input_patterns = {}
   endif
 
+
   augroup omnifuncs
     autocmd!
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -383,6 +388,25 @@ if has('nvim')
   let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 0
 
+  set completeopt=longest,menuone,preview
+
+  let g:deoplete#omni#functions = {}
+  let g:deoplete#omni#functions.javascript = [
+    \ 'tern#Complete',
+    \ 'jspc#omni'
+  \]
+  let g:deoplete#sources = {}
+  let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+  let g:tern#command = ['tern']
+  let g:tern#arguments = ['--persistent']
+  autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+  " close the preview window when you're not using it
+  " let g:SuperTabClosePreviewOnPopupClose = 1
+  " or just disable the preview entirely
+  set completeopt-=preview
+
   " Automatically close preview window after autocompletion
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
 endif
@@ -393,8 +417,8 @@ endif
 """"""""""""""""""""""""""""""
 " Trigger configuration
 let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<Tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+" let g:UltiSnipsJumpForwardTrigger="<Tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
 
 
 """"""""""""""""""""""""""""""
@@ -434,11 +458,13 @@ nnoremap <silent> <leader>z :ZoomWinTabToggle<cr>
 " CtrlSF
 """"""""""""""""""""""""""""""
 " Prompt CtrlSF using ALT+f
-nmap <M-f> <Plug>CtrlSFPrompt
-vmap <M-f> <Plug>CtrlSFVwordPath
+" nmap <M-f> <Plug>CtrlSFPrompt
+" vmap <M-f> <Plug>CtrlSFVwordPath
 
+nmap <leader>i <Plug>CtrlSFPrompt
+vmap <leader>i <Plug>CtrlSFVwordPath
 " Toggle CtrlSF result display
-map <M-t> :CtrlSFToggle<CR>
+map <leader>ii :CtrlSFToggle<CR>
 
 let g:ctrlsf_indent = 2
 

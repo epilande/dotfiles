@@ -51,7 +51,33 @@ syntax enable
 
 set background=dark
 
-" Theme, Colorscheme, & Font
+"" Theme, Colorscheme, & Font
+" if has("gui_running")
+"   colorscheme Tomorrow-Night
+"   set guifont=Monaco:h14
+"   set linespace=2
+"   set noantialias
+" else
+"   try
+"     let g:quantum_black=1
+"     colorscheme quantum
+"   catch
+"   endtry
+" endif
+
+" function! ReverseBackground()
+"   if &background=="light"
+"     set background=dark
+"     let g:quantum_black=1
+"     colorscheme quantum
+"   else
+"     set background=light
+"     colorscheme solarized
+"     execute 'AirlineTheme solarized'
+"   endif
+" endfunction
+" command! Invbg call ReverseBackground() Theme, Colorscheme, & Font
+
 if has("gui_running")
   colorscheme Tomorrow-Night
   set guifont=Monaco:h14
@@ -59,8 +85,7 @@ if has("gui_running")
   set noantialias
 else
   try
-    let g:quantum_black=1
-    colorscheme quantum
+    colorscheme OceanicNext
   catch
   endtry
 endif
@@ -68,8 +93,7 @@ endif
 function! ReverseBackground()
   if &background=="light"
     set background=dark
-    let g:quantum_black=1
-    colorscheme quantum
+    colorscheme OceanicNext
   else
     set background=light
     colorscheme solarized
