@@ -306,7 +306,8 @@ let g:NERDTreeWinSize=25
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 map <silent> <C-e> :NERDTreeToggle<CR>
-
+" autocmd vimenter * if @% !~# '.vimrc' && @% !~# '.bash_profile' && @% !~# '.eslintrc.json'| NERDTree | endif  " Open NERDTREE when vim opens
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close vim if only NERDTree is open
 let g:used_javascript_libs = 'angularjs,react,jquery,underscore,angularuirouter,flux,requirejs,jasmine,chai,d3'
 """"""""""""""""""""""""""""""
 " vim-multiple-cursors
@@ -524,10 +525,10 @@ let g:javascript_enable_domhtmlcss = 1 " html tags in js and jsx files?
 """"""""""""""""""""""""""""""
 " ALE
 """"""""""""""""""""""""""""""
-let g:ale_sign_error = '>>' " error sign
-let g:ale_sign_warning = '--' " warning sign
-" let g:ale_sign_error = 'E'
-" let g:ale_sign_warning = 'W'
+" error sign
+let g:ale_sign_error = 'ㄨ'
+" warning sign
+let g:ale_sign_warning = '>>' " warning sign
 let g:ale_open_list = 0 " this keeps the loclist lint errors from showing up in a vim pane
 let g:ale_lint_on_enter = 1 " 0 disables linting on enter
 let g:ale_lint_on_save = 1 " lint on save instead

@@ -76,8 +76,9 @@ set background=dark
 "     execute 'AirlineTheme solarized'
 "   endif
 " endfunction
-" command! Invbg call ReverseBackground() Theme, Colorscheme, & Font
+" command! Invbg call ReverseBackground()
 
+" Theme, Colorscheme, & Font
 if has("gui_running")
   colorscheme Tomorrow-Night
   set guifont=Monaco:h14

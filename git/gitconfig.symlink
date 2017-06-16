@@ -56,7 +56,7 @@
 
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = nvim
+	editor = vim
 
 [diff]
 	# Detect copies as well as renames
