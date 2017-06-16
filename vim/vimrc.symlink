@@ -14,22 +14,19 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""
 source ~/.vim/plugins.vim
 
-
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => BASIC SETTINGS
 """"""""""""""""""""""""""""""""""""""""""""""""""
-" clipboard
-set clipboard=unnamed
-" Show current line number
-set number
-" Show relative line numbers
-set relativenumber
-
-" Highlight cursor current line
-set cursorline
-
-" Set how many lines of history VIM has to remember
-set history=700
+set clipboard=unnamed " clipboard
+set number " Show current line number
+set relativenumber " Show relative line numbers
+set cursorline " Highlight cursor current line
+set history=700 " Set how many lines of history VIM has to remember
+set backspace=2
+set showcmd " display incomplete commands
+set autowrite " Automatically :write before running commmands
+" Trigger autoread when changing buffers or coming back to vim in terminal.
+au FocusGained,BufEnter * :silent! !
 
 " Enable filetype plugins
 filetype plugin on
@@ -50,33 +47,6 @@ map <leader>e :e! ~/.vimrc<cr>
 syntax enable
 
 set background=dark
-
-"" Theme, Colorscheme, & Font
-" if has("gui_running")
-"   colorscheme Tomorrow-Night
-"   set guifont=Monaco:h14
-"   set linespace=2
-"   set noantialias
-" else
-"   try
-"     let g:quantum_black=1
-"     colorscheme quantum
-"   catch
-"   endtry
-" endif
-
-" function! ReverseBackground()
-"   if &background=="light"
-"     set background=dark
-"     let g:quantum_black=1
-"     colorscheme quantum
-"   else
-"     set background=light
-"     colorscheme solarized
-"     execute 'AirlineTheme solarized'
-"   endif
-" endfunction
-" command! Invbg call ReverseBackground()
 
 " Theme, Colorscheme, & Font
 if has("gui_running")
@@ -122,6 +92,15 @@ set ffs=unix,dos,mac
 " => USER INTERFACE
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
+"HTML Editing
+set matchpairs+=<:>
+
+" Treat <li> and <p> tags like the block tags they are
+let g:html_indent_tags = 'li\|p'
+
+" Display extra whitespace
+set list listchars=tab:»·,trail:·,nbsp:·
+
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
 
@@ -143,46 +122,28 @@ else
   set wildignore+=.git\*,.hg\*,.svn\*
 endif
 
-"Always show current position
-set ruler
-
-" Height of the command bar
-set cmdheight=2
-
-" A buffer becomes hidden when it is abandoned
-set hid
+set ruler "Always show current position
+set cmdheight=2 " Height of the command bar
+set hid " A buffer becomes hidden when it is abandoned
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 " In many terminal emulators the mouse works just fine, thus enable it.
+set ttyfast
 if has('mouse')
   set mouse=a
 endif
 
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch
-" How many tenths of a second to blink when matching brackets
-set mat=2
+set ignorecase " Ignore case when searching
+set smartcase " When searching try to be smart about cases
+set hlsearch " Highlight search results
+set incsearch " Makes search act like search in modern browsers
+set lazyredraw " Don't redraw while executing macros (good performance config)
+set magic " For regular expressions turn magic on
+set showmatch " Show matching brackets when text indicator is over them
+set mat=2 " How many tenths of a second to blink when matching brackets
 
 " No annoying sound on errors
 set noerrorbells
@@ -263,6 +224,11 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " Automatically recognize filetypes by extension
 autocmd BufRead,BufNewFile .{babel,eslint,stylelint}rc set filetype=json
 
+"Use enter to create new lines w/o entering insert mode
+nnoremap <CR> o<Esc>
+"Below is to fix issues with the ABOVE mappings in quickfix window
+autocmd CmdwinEnter * nnoremap <CR> <CR>
+autocmd BufReadPost quickfix nnoremap <CR> <CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " => VISUAL MODE RELATED
@@ -374,7 +340,7 @@ map <leader>s? z=
 """"""""""""""""""""""""""""""""""""""""""""""""""
 
 " Exit insert mode with `jk`
-inoremap jk <ESC>
+inoremap jk <ESC>`^
 nnoremap ; :
 
 " Fast saving
@@ -475,12 +441,23 @@ nnoremap <silent> K :let stay_star_view = winsaveview()<cr>*:call winrestview(st
 nnoremap <tab> %
 vnoremap <tab> %
 
+" cursor toggler
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" cursor toggle for tmux?
+let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+
+
 nnoremap <expr> <UP> len(getline(line('.')-1)) > 0 ? '{+' : '{-'
 nnoremap <expr> <DOWN> len(getline(line('.')+1)) > 0 ? '}-' : '}+'
 
 " Read selected text
 " TODO: escape single quote (') characters
-xnoremap <silent> <leader>s y:call jobstart('say -v Samantha -r 300 <C-r>"')<CR>
+" xnoremap <silent> <leader>s y:call jobstart('say -v Samantha -r 300 <C-r>"')<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""
@@ -554,6 +531,7 @@ function! <SID>StripTrailingWhitespaces()
   %s/\s\+$//e
   call cursor(l, c)
 endfun
+
 
 " Tab completion
  " will insert tab at beginning of line,

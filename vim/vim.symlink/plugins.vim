@@ -21,7 +21,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
 " Tern-based JavaScript editing support
-Plug 'ternjs/tern_for_vim', { 'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
+Plug 'ternjs/tern_for_vim', {'do': 'npm install', 'for': ['javascript', 'javascript.jsx'] }
 
 if has('nvim')
   " Asynchronous completion for neovim
@@ -307,8 +307,19 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 map <silent> <C-e> :NERDTreeToggle<CR>
 " autocmd vimenter * if @% !~# '.vimrc' && @% !~# '.bash_profile' && @% !~# '.eslintrc.json'| NERDTree | endif  " Open NERDTREE when vim opens
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close vim if only NERDTree is open
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close vim if only NERDTree is open
 let g:used_javascript_libs = 'angularjs,react,jquery,underscore,angularuirouter,flux,requirejs,jasmine,chai,d3'
+autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_react = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_flux = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_requirejs = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_jasmine = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_chai = 1
+autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
+autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 0
+
 """"""""""""""""""""""""""""""
 " vim-multiple-cursors
 """"""""""""""""""""""""""""""
@@ -375,7 +386,6 @@ if has('nvim')
     let g:deoplete#omni#input_patterns = {}
   endif
 
-
   augroup omnifuncs
     autocmd!
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -383,33 +393,37 @@ if has('nvim')
     autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
     autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
     autocmd FileType javascript setlocal omnifunc=tern#Complete
+    " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
   augroup end
-
+  "Add extra filetypes
+  " let g:tern#filetypes = [
+  "                 \ 'jsx',
+  "                 \ 'javascript.jsx',
+  "                 \ 'vue',
+  "                 \ '...'
+  "                 \ ]
   let g:tern_request_timeout = 1
   let g:tern_show_argument_hints = 'on_hold'
   let g:tern_show_signature_in_pum = 0
 
-  set completeopt=longest,menuone,preview
+"   let g:deoplete#omni#functions = {}
+"   let g:deoplete#omni#functions.javascript = [
+"     \ 'tern#Complete',
+"     \ 'jspc#omni'
+"   \]
+"   let g:deoplete#sources = {}
+"   let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+"   let g:tern#command = ['tern']
+"   let g:tern#arguments = ['--persistent']
+"   autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+  "inoremap <expr><TAB> pumvisible() ?
+  "\<C-n>" :
+  ""\<TAB>"
 
-  let g:deoplete#omni#functions = {}
-  let g:deoplete#omni#functions.javascript = [
-    \ 'tern#Complete',
-    \ 'jspc#omni'
-  \]
-  let g:deoplete#sources = {}
-  let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
-  let g:tern#command = ['tern']
-  let g:tern#arguments = ['--persistent']
-  autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-  inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-
-  " close the preview window when you're not using it
-  " let g:SuperTabClosePreviewOnPopupClose = 1
-  " or just disable the preview entirely
-  set completeopt-=preview
+  " set completeopt-=preview
 
   " Automatically close preview window after autocompletion
-  autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
+  autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 endif
 
 
@@ -418,9 +432,12 @@ endif
 """"""""""""""""""""""""""""""
 " Trigger configuration
 let g:UltiSnipsExpandTrigger="<C-l>"
-" let g:UltiSnipsJumpForwardTrigger="<Tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsEditSplit="vertical"
 
+
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
 """"""""""""""""""""""""""""""
 " vim-instant-markdown
@@ -527,7 +544,6 @@ let g:javascript_enable_domhtmlcss = 1 " html tags in js and jsx files?
 """"""""""""""""""""""""""""""
 " error sign
 let g:ale_sign_error = 'ㄨ'
-" warning sign
 let g:ale_sign_warning = '>>' " warning sign
 let g:ale_open_list = 0 " this keeps the loclist lint errors from showing up in a vim pane
 let g:ale_lint_on_enter = 1 " 0 disables linting on enter

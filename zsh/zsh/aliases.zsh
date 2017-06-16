@@ -4,9 +4,19 @@ alias reload!='source ~/.zshrc'
 # standard terminal commmands
 alias lh='ls -a'
 # Switch vim to neovim
-alias v="vim"
-alias nv="nvim"
+# alias v="nvim"
+# alias vim="vim"
 alias ":q"="exit"
+alias mkdir='mkdir -p'
+alias root='cd $(git rev-parse --show-cdup)'
+alias path="echo $PATH | tr -s ':' '\n'"
+alias finder='open -a Finder .'
+alias textedit='open -a TextEdit'
+
+# if there is neovim then use it and alias it
+if type nvim > /dev/null 2>&1; then
+  alias v='nvim'
+fi
 
 # Tower
 alias tower="gittower ."

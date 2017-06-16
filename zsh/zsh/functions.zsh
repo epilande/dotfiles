@@ -18,6 +18,10 @@ function 7unzip() {
   7za x -so "$@" | tar xf -;
 }
 
+function mcd() {
+  mkdir -p "$1" && cd "$1";
+}
+
 # Codi
 # Usage: codi [filetype]
 codi() {
