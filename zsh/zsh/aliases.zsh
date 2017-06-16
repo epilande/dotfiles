@@ -12,7 +12,7 @@ alias root='cd $(git rev-parse --show-cdup)'
 alias path="echo $PATH | tr -s ':' '\n'"
 alias finder='open -a Finder .'
 alias textedit='open -a TextEdit'
-
+alias hi='echo $(whoami)'
 # if there is neovim then use it and alias it
 if type nvim > /dev/null 2>&1; then
   alias v='nvim'
