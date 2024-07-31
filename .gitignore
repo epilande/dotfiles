@@ -1,9 +1,0 @@
-# Vim files
-.netrwhist
-vim/vim.symlink/spell/
-vim/vim.symlink/.init.vim-rplugin~
-
-# Ranger
-config/ranger/bookmarks
-config/ranger/history
-config/ranger/tagged
