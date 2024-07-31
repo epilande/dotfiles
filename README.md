@@ -6,7 +6,7 @@
   Configurations for my terminal, shell, and editor managed by git and <a href="https://www.gnu.org/software/stow/">GNU Stow</a>
 </p>
 
-![output_optimized](https://github.com/user-attachments/assets/4196d682-d653-4766-af77-ce31c5243f35)
+![output_optimized](https://github.com/user-attachments/assets/ec87df2c-9ebc-4f6e-990d-03f19e96d1c7)
 
 ## 🌟 Overview
 
@@ -102,7 +102,7 @@ My primary Neovim configuration uses LazyVim as a base, located in [`nvim/.confi
 
 In addition to LazyVim, I have several other Neovim configurations that I can easily switch between using the `nvims` function. This function provides a menu for selecting different configurations, allowing me to test and experiment with various Neovim setups.
 
-<img width="841" alt="image" src="https://github.com/user-attachments/assets/b61ebb47-5fa3-4416-b9af-a592d296c4c3">
+<img width="841" alt="image" src="https://github.com/user-attachments/assets/ae77dede-b81a-45b7-bcb2-bc378a667b96">
 
 ## 🔠 Nerd Fonts
 
