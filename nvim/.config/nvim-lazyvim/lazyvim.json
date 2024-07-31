@@ -1,0 +1,18 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.coding.copilot-chat",
+    "lazyvim.plugins.extras.coding.luasnip",
+    "lazyvim.plugins.extras.coding.mini-surround",
+    "lazyvim.plugins.extras.coding.yanky",
+    "lazyvim.plugins.extras.editor.fzf",
+    "lazyvim.plugins.extras.lang.scala",
+    "lazyvim.plugins.extras.lang.sql",
+    "lazyvim.plugins.extras.lang.toml",
+    "lazyvim.plugins.extras.ui.treesitter-context",
+    "lazyvim.plugins.extras.util.dot"
+  ],
+  "news": {
+    "NEWS.md": "6520"
+  },
+  "version": 6
+}

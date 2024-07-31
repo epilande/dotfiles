@@ -1,0 +1,226 @@
+| Mode | Keys | Command |
+|------|------|---------|
+| n | `<Esc>` | `<Cmd>noh<CR><Esc>` |
+| n | `<Leader>sq` | `<Cmd>FzfLua quickfix<CR>` |
+| n | `<Leader>sR` | `<Cmd>FzfLua resume<CR>` |
+| n | `<Leader>sm` | `<Cmd>FzfLua marks<CR>` |
+| n | `<Leader>sM` | `<Cmd>FzfLua man_pages<CR>` |
+| n | `<Leader>sl` | `<Cmd>FzfLua loclist<CR>` |
+| n | `<Leader>sk` | `<Cmd>FzfLua keymaps<CR>` |
+| n | `<Leader>sj` | `<Cmd>FzfLua jumps<CR>` |
+| n | `<Leader>sH` | `<Cmd>FzfLua highlights<CR>` |
+| n | `<Leader>sh` | `<Cmd>FzfLua help_tags<CR>` |
+| n | `<Leader>sD` | `<Cmd>FzfLua diagnostics_workspace<CR>` |
+| n | `<Leader>sd` | `<Cmd>FzfLua diagnostics_document<CR>` |
+| n | `<Leader>sC` | `<Cmd>FzfLua commands<CR>` |
+| n | `<Leader>sc` | `<Cmd>FzfLua command_history<CR>` |
+| n | `<Leader>sb` | `<Cmd>FzfLua grep_curbuf<CR>` |
+| n | `<Leader>sa` | `<Cmd>FzfLua autocmds<CR>` |
+| n | `<Leader>s"` | `<Cmd>FzfLua registers<CR>` |
+| n | `<Leader>gc` | `<Cmd>FzfLua git_commits<CR>` |
+| n | `<Leader>fr` | `<Cmd>FzfLua oldfiles<CR>` |
+| n | `<Leader>fg` | `<Cmd>FzfLua git_files<CR>` |
+| n | `<Leader>fb` | `<Cmd>FzfLua buffers sort_mru=true sort_lastused=true<CR>` |
+| n | `<Leader>:` | `<Cmd>FzfLua command_history<CR>` |
+| n | `<Leader>,` | `<Cmd>FzfLua buffers sort_mru=true sort_lastused=true<CR>` |
+| n | `<Leader>gs` | `<Cmd>FzfLua git_status<CR>` |
+| n | `<Leader>e` | `<Cmd>lua require('oil').toggle_float()<CR>` |
+| n | `<Leader>gy` | `<Cmd>lua require'gitlinker'.get_buf_range_url('n')<CR>` |
+| n | `<Leader>xT` | `<Cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<CR>` |
+| n | `<Leader>xt` | `<Cmd>Trouble todo toggle<CR>` |
+| n | `<Leader>oy` | `<Cmd>ObsidianYesterday<CR>` |
+| n | `<Leader>od` | `<Cmd>ObsidianToday<CR>` |
+| n | `<Leader>on` | `<Cmd>ObsidianNew<CR>` |
+| n | `<Leader><Tab>[` | `<Cmd>tabprevious<CR>` |
+| n | `<Leader><Tab>d` | `<Cmd>tabclose<CR>` |
+| n | `<Leader><Tab>]` | `<Cmd>tabnext<CR>` |
+| n | `<Leader><Tab><Tab>` | `<Cmd>tabnew<CR>` |
+| n | `<Leader><Tab>f` | `<Cmd>tabfirst<CR>` |
+| n | `<Leader><Tab>o` | `<Cmd>tabonly<CR>` |
+| n | `<Leader><Tab>l` | `<Cmd>tablast<CR>` |
+| n | `<Leader>wd` | `<C-W>c` |
+| n | `<Leader>\|` | `<C-W>v` |
+| n | `<Leader>-` | `<C-W>s` |
+| n | `<Leader>w` | `<Cmd>w<CR>` |
+| n | `<Leader>uI` | `<Cmd>InspectTree<CR>` |
+| n | `<Leader>qq` | `<Cmd>qa<CR>` |
+| n | `<Leader>gl` | `<Cmd>Gitsigns blame_line<CR>` |
+| n | `<Leader>xq` | `<Cmd>copen<CR>` |
+| n | `<Leader>xl` | `<Cmd>lopen<CR>` |
+| n | `<Leader>fn` | `<Cmd>enew<CR>` |
+| n | `<Leader>l` | `<Cmd>Lazy<CR>` |
+| n | `<Leader>K` | `<Cmd>norm! K<CR>` |
+| n | `<Leader>ur` | `<Cmd>nohlsearch\|diffupdate\|normal! <C-L><CR>` |
+| n | `<Leader>bD` | `<Cmd>:bd<CR>` |
+| n | `<Leader>\`` | `<Cmd>e #<CR>` |
+| n | `<Leader>bb` | `<Cmd>e #<CR>` |
+| n | `<Leader>xQ` | `<Cmd>Trouble qflist toggle<CR>` |
+| n | `<Leader>xL` | `<Cmd>Trouble loclist toggle<CR>` |
+| n | `<Leader>cS` | `<Cmd>Trouble lsp toggle<CR>` |
+| n | `<Leader>cs` | `<Cmd>Trouble symbols toggle<CR>` |
+| n | `<Leader>xX` | `<Cmd>Trouble diagnostics toggle filter.buf=0<CR>` |
+| n | `<Leader>xx` | `<Cmd>Trouble diagnostics toggle<CR>` |
+| n | `<Leader>cm` | `<Cmd>Mason<CR>` |
+| n | `%` | `<Plug>(MatchitNormalForward)` |
+| n | `&` | `:&&<CR>` |
+| n | `-` | `<Cmd>Oil<CR>` |
+| n | `<lt>p` | `<Plug>(YankyPutIndentAfterShiftLeft)` |
+| n | `<lt>P` | `<Plug>(YankyPutIndentBeforeShiftLeft)` |
+| n | `=p` | `<Plug>(YankyPutAfterFilter)` |
+| n | `=P` | `<Plug>(YankyPutBeforeFilter)` |
+| n | `>p` | `<Plug>(YankyPutIndentAfterShiftRight)` |
+| n | `>P` | `<Plug>(YankyPutIndentBeforeShiftRight)` |
+| n | `H` | `<Cmd>bprevious<CR>` |
+| n | `L` | `<Cmd>bnext<CR>` |
+| n | `N` | `'nN'[v:searchforward].'zv'` |
+| n | `P` | `<Plug>(YankyPutBefore)` |
+| n | `Y` | `y$` |
+| n | `[y` | `<Plug>(YankyCycleForward)` |
+| n | `[p` | `<Plug>(YankyPutIndentBeforeLinewise)` |
+| n | `[P` | `<Plug>(YankyPutIndentBeforeLinewise)` |
+| n | `[b` | `<Cmd>bprevious<CR>` |
+| n | `[%` | `<Plug>(MatchitNormalMultiBackward)` |
+| n | `]y` | `<Plug>(YankyCycleBackward)` |
+| n | `]p` | `<Plug>(YankyPutIndentAfterLinewise)` |
+| n | `]P` | `<Plug>(YankyPutIndentAfterLinewise)` |
+| n | `]b` | `<Cmd>bnext<CR>` |
+| n | `]%` | `<Plug>(MatchitNormalMultiForward)` |
+| n | `gP` | `<Plug>(YankyGPutBefore)` |
+| n | `gcO` | `O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>` |
+| n | `gco` | `o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>` |
+| n | `g%` | `<Plug>(MatchitNormalBackward)` |
+| n | `j` | `v:count == 0 ? 'gj' : 'j'` |
+| n | `k` | `v:count == 0 ? 'gk' : 'k'` |
+| n | `n` | `'Nn'[v:searchforward].'zv'` |
+| n | `p` | `<Plug>(YankyPutAfter)` |
+| n | `y` | `<Plug>(YankyYank)` |
+| n | `<C-F>` | `<Cmd>FzfLua files formatter={"path.filename_first",2}<CR>` |
+| n | `<M-l>` | `:vertical resize +2<CR>` |
+| n | `<M-h>` | `:vertical resize -2<CR>` |
+| n | `<C-S>` | `<Cmd>w<CR><Esc>` |
+| n | `<M-k>` | `:resize +2<CR>` |
+| n | `<M-j>` | `:resize -2<CR>` |
+| n | `<C-Right>` | `<Cmd>vertical resize +2<CR>` |
+| n | `<C-Left>` | `<Cmd>vertical resize -2<CR>` |
+| n | `<C-Down>` | `<Cmd>resize -2<CR>` |
+| n | `<C-Up>` | `<Cmd>resize +2<CR>` |
+| n | `<Up>` | `v:count == 0 ? 'gk' : 'k'` |
+| n | `<Down>` | `v:count == 0 ? 'gj' : 'j'` |
+| n | `<Plug>(MatchitNormalMultiForward)` | `:<C-U>call matchit#MultiMatch("W",  "n")<CR>` |
+| n | `<Plug>(MatchitNormalMultiBackward)` | `:<C-U>call matchit#MultiMatch("bW", "n")<CR>` |
+| n | `<Plug>(MatchitNormalBackward)` | `:<C-U>call matchit#Match_wrapper('',0,'n')<CR>` |
+| n | `<Plug>(MatchitNormalForward)` | `:<C-U>call matchit#Match_wrapper('',1,'n')<CR>` |
+| n | `<C-Bslash>` | `:<C-U>TmuxNavigatePrevious<CR>` |
+| n | `<C-K>` | `<Cmd>TmuxNavigateUp<CR>` |
+| n | `<C-J>` | `<Cmd>TmuxNavigateDown<CR>` |
+| n | `<C-H>` | `<Cmd>TmuxNavigateLeft<CR>` |
+| n | `<Plug>PlenaryTestFile` | `:lua require('plenary.test_harness').test_file(vim.fn.expand("%:p"))<CR>` |
+| n | `<C-W><C-D>` | `<C-W>d` |
+| n | `<C-L>` | `<Cmd>TmuxNavigateRight<CR>` |
+| i | `<M-BS>` | `<C-W>` |
+| i | `<C-S>` | `<Cmd>w<CR><Esc>` |
+| i | `<M-k>` | `<Esc><Cmd>m .-2<CR>==gi` |
+| i | `<M-j>` | `<Esc><Cmd>m .+1<CR>==gi` |
+| i | `<BS>` | `v:lua.MiniPairs.bs()` |
+| i | `<C-W>` | `<C-G>u<C-W>` |
+| i | `<C-U>` | `<C-G>u<C-U>` |
+| i | `<CR>` | `v:lua.MiniPairs.cr()` |
+| i | `<Esc>` | `<Cmd>noh<CR><Esc>` |
+| i | `"` | `v:lua.MiniPairs.closeopen('""', "[^\\].")` |
+| i | `'` | `v:lua.MiniPairs.closeopen("''", "[^%a\\].")` |
+| i | `(` | `v:lua.MiniPairs.open("()", "[^\\].")` |
+| i | `)` | `v:lua.MiniPairs.close("()", "[^\\].")` |
+| i | `,` | `,<C-G>u` |
+| i | `.` | `.<C-G>u` |
+| i | `;` | `;<C-G>u` |
+| i | `[` | `v:lua.MiniPairs.open("[]", "[^\\].")` |
+| i | `]` | `v:lua.MiniPairs.close("[]", "[^\\].")` |
+| i | `\`` | `v:lua.MiniPairs.closeopen("\`\`", "[^\\].")` |
+| i | `jk` | `<Esc>` |
+| i | `{` | `v:lua.MiniPairs.open("{}", "[^\\].")` |
+| i | `}` | `v:lua.MiniPairs.close("{}", "[^\\].")` |
+| v | `<Leader>gy` | `<Cmd>lua require'gitlinker'.get_buf_range_url('v')<CR>` |
+| v | `<Leader>y` | `"+y` |
+| v | `<Leader>p` | `"+p` |
+| v | `%` | `<Plug>(MatchitVisualForward)` |
+| v | `<lt>` | `<lt>gv` |
+| v | `>` | `>gv` |
+| v | `@` | `mode() == 'V' ? ':normal! @'.getcharstr().'<CR>' : '@'` |
+| v | `N` | `'nN'[v:searchforward]` |
+| v | `P` | `<Plug>(YankyPutBefore)` |
+| v | `Q` | `mode() == 'V' ? ':normal! @<C-R>=reg_recorded()<CR><CR>' : 'Q'` |
+| v | `[%` | `<Plug>(MatchitVisualMultiBackward)` |
+| v | `]%` | `<Plug>(MatchitVisualMultiForward)` |
+| v | `a%` | `<Plug>(MatchitVisualTextObject)` |
+| v | `gP` | `<Plug>(YankyGPutBefore)` |
+| v | `g%` | `<Plug>(MatchitVisualBackward)` |
+| v | `j` | `v:count == 0 ? 'gj' : 'j'` |
+| v | `k` | `v:count == 0 ? 'gk' : 'k'` |
+| v | `n` | `'Nn'[v:searchforward]` |
+| v | `p` | `"_dP` |
+| v | `y` | `<Plug>(YankyYank)` |
+| v | `<C-L>` | `<Cmd>TmuxNavigateRight<CR>` |
+| v | `<C-K>` | `<Cmd>TmuxNavigateUp<CR>` |
+| v | `<C-J>` | `<Cmd>TmuxNavigateDown<CR>` |
+| v | `<C-H>` | `<Cmd>TmuxNavigateLeft<CR>` |
+| v | `<C-S>` | `<Cmd>w<CR><Esc>` |
+| v | `<C-S>` | `<Cmd>w<CR><Esc>` |
+| v | `<M-k>` | `:m '<lt>-2<CR>gv=gv` |
+| v | `<M-j>` | `:m '>+1<CR>gv=gv` |
+| v | `<Up>` | `v:count == 0 ? 'gk' : 'k'` |
+| v | `<Down>` | `v:count == 0 ? 'gj' : 'j'` |
+| v | `<Plug>(MatchitVisualTextObject)` | `<Plug>(MatchitVisualMultiBackward)o<Plug>(MatchitVisualMultiForward)` |
+| v | `<Plug>(MatchitVisualMultiForward)` | `:<C-U>call matchit#MultiMatch("W",  "n")<CR>m'gv\`\`` |
+| v | `<Plug>(MatchitVisualMultiBackward)` | `:<C-U>call matchit#MultiMatch("bW", "n")<CR>m'gv\`\`` |
+| v | `<Plug>(MatchitVisualBackward)` | `:<C-U>call matchit#Match_wrapper('',0,'v')<CR>m'gv\`\`` |
+| v | `<Plug>(MatchitVisualForward)` | `:<C-U>call matchit#Match_wrapper('',1,'v')<CR>:if col("''") != col("$") \| exe ":normal! m'" \| endif<CR>gv\`\`` |
+| x | `<Leader>gy` | `<Cmd>lua require'gitlinker'.get_buf_range_url('v')<CR>` |
+| x | `<Leader>y` | `"+y` |
+| x | `%` | `<Plug>(MatchitVisualForward)` |
+| x | `<lt>` | `<lt>gv` |
+| x | `>` | `>gv` |
+| x | `@` | `mode() == 'V' ? ':normal! @'.getcharstr().'<CR>' : '@'` |
+| x | `N` | `'nN'[v:searchforward]` |
+| x | `P` | `<Plug>(YankyPutBefore)` |
+| x | `Q` | `mode() == 'V' ? ':normal! @<C-R>=reg_recorded()<CR><CR>' : 'Q'` |
+| x | `[%` | `<Plug>(MatchitVisualMultiBackward)` |
+| x | `]%` | `<Plug>(MatchitVisualMultiForward)` |
+| x | `a%` | `<Plug>(MatchitVisualTextObject)` |
+| x | `gP` | `<Plug>(YankyGPutBefore)` |
+| x | `g%` | `<Plug>(MatchitVisualBackward)` |
+| x | `j` | `v:count == 0 ? 'gj' : 'j'` |
+| x | `k` | `v:count == 0 ? 'gk' : 'k'` |
+| x | `n` | `'Nn'[v:searchforward]` |
+| x | `p` | `"_dP` |
+| x | `y` | `<Plug>(YankyYank)` |
+| x | `<C-L>` | `<Cmd>TmuxNavigateRight<CR>` |
+| x | `<C-K>` | `<Cmd>TmuxNavigateUp<CR>` |
+| x | `<C-J>` | `<Cmd>TmuxNavigateDown<CR>` |
+| x | `<C-H>` | `<Cmd>TmuxNavigateLeft<CR>` |
+| x | `<C-S>` | `<Cmd>w<CR><Esc>` |
+| x | `<M-k>` | `:m '<lt>-2<CR>gv=gv` |
+| x | `<M-j>` | `:m '>+1<CR>gv=gv` |
+| x | `<Up>` | `v:count == 0 ? 'gk' : 'k'` |
+| x | `<Down>` | `v:count == 0 ? 'gj' : 'j'` |
+| x | `<Plug>(MatchitVisualTextObject)` | `<Plug>(MatchitVisualMultiBackward)o<Plug>(MatchitVisualMultiForward)` |
+| x | `<Plug>(MatchitVisualMultiForward)` | `:<C-U>call matchit#MultiMatch("W",  "n")<CR>m'gv\`\`` |
+| x | `<Plug>(MatchitVisualMultiBackward)` | `:<C-U>call matchit#MultiMatch("bW", "n")<CR>m'gv\`\`` |
+| x | `<Plug>(MatchitVisualBackward)` | `:<C-U>call matchit#Match_wrapper('',0,'v')<CR>m'gv\`\`` |
+| x | `<Plug>(MatchitVisualForward)` | `:<C-U>call matchit#Match_wrapper('',1,'v')<CR>:if col("''") != col("$") \| exe ":normal! m'" \| endif<CR>gv\`\`` |
+| c | `<BS>` | `v:lua.MiniPairs.bs()` |
+| c | `"` | `v:lua.MiniPairs.closeopen('""', "[^\\].")` |
+| c | `'` | `v:lua.MiniPairs.closeopen("''", "[^%a\\].")` |
+| c | `(` | `v:lua.MiniPairs.open("()", "[^\\].")` |
+| c | `)` | `v:lua.MiniPairs.close("()", "[^\\].")` |
+| c | `[` | `v:lua.MiniPairs.open("[]", "[^\\].")` |
+| c | `]` | `v:lua.MiniPairs.close("[]", "[^\\].")` |
+| c | `\`` | `v:lua.MiniPairs.closeopen("\`\`", "[^\\].")` |
+| c | `{` | `v:lua.MiniPairs.open("{}", "[^\\].")` |
+| c | `}` | `v:lua.MiniPairs.close("{}", "[^\\].")` |
+| t | `<Esc><Esc>` | `<C-\><C-N>` |
+| t | `<C-_>` | `<Cmd>close<CR>` |
+| t | `<C-/>` | `<Cmd>close<CR>` |
+| t | `<C-L>` | `<Cmd>wincmd l<CR>` |
+| t | `<C-K>` | `<Cmd>wincmd k<CR>` |
+| t | `<C-J>` | `<Cmd>wincmd j<CR>` |
+| t | `<C-H>` | `<Cmd>wincmd h<CR>` |

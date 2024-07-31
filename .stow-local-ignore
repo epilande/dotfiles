@@ -1,0 +1,7 @@
+.git
+.gitignore
+.gitmodules
+.DS_Store
+LICENSE
+README.md
+Brewfile
