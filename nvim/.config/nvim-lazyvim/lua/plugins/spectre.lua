@@ -81,28 +81,28 @@ return {
       },
     })
   end,
-  keys = {
-    {
-      "<leader>sr",
-      function()
-        require("spectre").open({ is_insert_mode = true })
-      end,
-      desc = "Replace in files (Spectre)",
-    },
-    {
-      "<leader>sw",
-      function()
-        require("spectre").open_visual({ select_word = true })
-      end,
-      desc = "Replace Word (Spectre)",
-    },
-    {
-      "<leader>sr",
-      mode = "v",
-      function()
-        SpectreSelection()
-      end,
-      desc = "Search & Replace Selection (Spectre)",
-    },
-  },
+  -- keys = {
+  -- {
+  --   "<leader>sr",
+  --   function()
+  --     require("spectre").open({ is_insert_mode = true })
+  --   end,
+  --   desc = "Replace in files (Spectre)",
+  -- },
+  -- {
+  --   "<leader>sw",
+  --   function()
+  --     require("spectre").open_visual({ select_word = true })
+  --   end,
+  --   desc = "Replace Word (Spectre)",
+  -- },
+  -- {
+  --   "<leader>sr",
+  --   mode = "v",
+  --   function()
+  --     SpectreSelection()
+  --   end,
+  --   desc = "Search & Replace Selection (Spectre)",
+  -- },
+  -- },
 }
