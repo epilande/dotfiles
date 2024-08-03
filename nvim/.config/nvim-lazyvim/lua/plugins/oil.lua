@@ -26,7 +26,6 @@ return {
   end,
   keys = {
     { "-", "<cmd>Oil<cr>", desc = "Open Parent Directory ../" },
-    -- { "<leader>e", "<cmd>lua require('oil').toggle_float()<cr>", desc = "Explorer" },
     { "<leader>e", "<cmd>lua require('oil').toggle_float()<cr>", desc = "Oil " },
   },
 }

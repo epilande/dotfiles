@@ -1,7 +1,6 @@
 return {
   "ibhagwan/fzf-lua",
   keys = {
-    -- { "<C-f>", "<cmd>FzfLua files<cr>" },
     { "<C-f>", '<cmd>FzfLua files formatter={"path.filename_first",2}<cr>' },
   },
   opts = {

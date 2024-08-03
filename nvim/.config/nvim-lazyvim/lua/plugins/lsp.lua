@@ -98,7 +98,6 @@ return {
       })
     end,
     keys = {
-      -- { "gp", "", mode = { "n" }, desc = "+Preview" },
       {
         "gp",
         "<cmd>lua require('goto-preview').goto_preview_definition()<cr>",

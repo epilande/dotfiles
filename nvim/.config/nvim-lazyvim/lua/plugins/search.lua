@@ -33,20 +33,14 @@ vim.api.nvim_create_autocmd("FileType", {
 return {
   {
     "MagicDuck/grug-far.nvim",
-    opts = {
-      -- headerMaxWidth = 80 -- deprecated
-      -- debounceMs = 1000,
-    },
     keys = {
       {
         "<leader>sr",
         function()
           local grug = require("grug-far")
-          -- local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
           grug.grug_far({
             transient = true,
             prefills = {
-              -- filesFilter = ext and ext ~= "" and "*." .. ext or nil,
               flags = "--ignore-case --glob=!{" .. globExcludeList .. "}",
             },
           })
