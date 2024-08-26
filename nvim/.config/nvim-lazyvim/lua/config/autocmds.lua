@@ -9,3 +9,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = false
   end,
 })
+
+-- Auto reload aerospace config
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "aerospace.toml" },
+  command = "!aerospace reload-config",
+})
