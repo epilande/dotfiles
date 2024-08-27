@@ -46,13 +46,13 @@ map("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "New Note" })
 map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Daily Note" })
 map("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Yesterday's Note" })
 
--- DEBUG: reload snippets
-map("n", "<leader>S", function()
-  -- require("luasnip").cleanup()
-  require("luasnip.loaders.from_lua").load({
-    paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
-  })
-end, { desc = "Reload Snippets" })
+-- -- DEBUG: reload snippets
+-- map("n", "<leader>S", function()
+--   -- require("luasnip").cleanup()
+--   require("luasnip.loaders.from_lua").load({
+--     paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
+--   })
+-- end, { desc = "Reload Snippets" })
 
 -- Copy file path
 map("n", "<leader>fy", function()
@@ -61,3 +61,8 @@ map("n", "<leader>fy", function()
   vim.fn.system("pbcopy", relative_filename)
   print("Copied to clipboard: " .. relative_filename)
 end, { desc = "Copy file path" })
+
+-- Search & replace word under the cursor
+map("n", "<leader>S", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Replace word under cursor" })
+-- Search & replace selected text
+map("v", "<leader>S", "y:%s/<C-r>0//g<Left><Left>", { desc = "Replace selected text" })
