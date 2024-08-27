@@ -4,12 +4,6 @@
 
 local map = vim.keymap.set
 
--- Resize window using <A+hjkl>
-map("n", "<A-h>", ":vertical resize -2<cr>", { desc = "Decrease window width", silent = true })
-map("n", "<A-j>", ":resize -2<cr>", { desc = "Decrease window height", silent = true })
-map("n", "<A-k>", ":resize +2<cr>", { desc = "Increase window height", silent = true })
-map("n", "<A-l>", ":vertical resize +2<cr>", { desc = "Increase window width", silent = true })
-
 -- map("n", "<leader>k", "*Nzz", { desc = "Search Word", noremap = true })
 
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
