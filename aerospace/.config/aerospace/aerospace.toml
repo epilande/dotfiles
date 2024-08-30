@@ -52,12 +52,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical = 10
-outer.left = 10
-outer.bottom = 10
-outer.top = 10
-outer.right = 10
+inner.horizontal = [{ monitor."built-in" = 4 }, 10]
+inner.vertical = [{ monitor."built-in" = 4 }, 10]
+outer.left = [{ monitor."built-in" = 4 }, 10]
+outer.bottom = [{ monitor."built-in" = 4 }, 10]
+outer.top = [{ monitor."built-in" = 4 }, 10]
+outer.right = [{ monitor."built-in" = 4 }, 10]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -105,8 +105,10 @@ alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
+alt-minus = 'resize smart -50'
+alt-equal = 'resize smart +50'
+alt-shift-minus = 'resize smart -200'
+alt-shift-equal = 'resize smart +200'
 
 alt-f = 'fullscreen'
 
@@ -202,6 +204,7 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+equal = ['balance-sizes', 'mode main']
 
 [workspace-to-monitor-force-assignment]
 1 = ['secondary', 'main']
