@@ -159,3 +159,41 @@ shift-l = ['join-with right', 'mode main']
 2 = ['secondary', 'main']
 3 = ['secondary', 'main']
 4 = ['secondary', 'main']
+
+[[on-window-detected]]
+if.app-id = 'company.thebrowser.Browser'
+if.workspace = '💬'
+check-further-callbacks = false
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.github.wez.wezterm'
+run = 'move-node-to-workspace 1'
+
+# [[on-window-detected]]
+# if.app-id = 'company.thebrowser.Browser'
+# run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'
+run = 'move-node-to-workspace 🤖'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 💬'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace 💬'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace 📹'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.1password.1password'
+run = 'layout floating'
