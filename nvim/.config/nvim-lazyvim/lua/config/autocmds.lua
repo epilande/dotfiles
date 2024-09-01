@@ -10,6 +10,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- Auto reload tmux config
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "tmux/.config/tmux/*.conf" },
+  command = "!tmux source ~/.config/tmux/tmux.conf",
+})
+
 -- Auto reload aerospace config
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = { "aerospace.toml" },
