@@ -13,6 +13,7 @@
 - Terminal: [WezTerm](https://wezfurlong.org/wezterm/) + [Tmux](https://github.com/tmux/tmux)
 - Shell: [Zsh](https://www.zsh.org/) + [Starship](https://starship.rs/)
 - Editor: [Neovim](https://neovim.io/)
+- Theme: [Catppuccin](https://catppuccin.com/)
 
 ## 📦 Installation
 
@@ -96,7 +97,7 @@ Once TPM is installed, press `prefix + I` to install plugins listed in [`tmux/.c
 
 Similarly to Zsh, local Tmux configurations are sourced if `~/.config/tmux/local.conf` exists.
 
-## ⌨️ Neovim
+## 💻 Neovim
 
 My primary Neovim configuration uses LazyVim as a base, located in [`nvim/.config/nvim-lazyvim`](./nvim/.config/nvim-lazyvim), and for quick access I have aliased it as `lv`.
 
@@ -107,6 +108,18 @@ In addition to LazyVim, I have several other Neovim configurations that I can ea
 ## 🔠 Nerd Fonts
 
 If you see boxes `□`, this means your current font doesn't support Powerline and Nerd Fonts. Install a Nerd Font from https://www.nerdfonts.com/ for shell and Neovim icons. After installation, you will need to configure your GUI/Terminal to use the font.
+
+## ⌨️ Karabiner-Elements
+
+[Karabiner-Elements](https://karabiner-elements.pqrs.org/) is a powerful keyboard customizer for MacOS. I use it to modify my keyboard behavior and improve my workflow. My configuration file is located at [`karabiner/.config/karabiner/karabiner.json`](./karabiner/.config/karabiner/karabiner.json). This setup allows me to maintain a consistent typing experience across different keyboards and computers.
+
+### Key Modifications
+
+1. **Caps Lock Remap**: ⇪ Caps Lock is remapped to act as ⌃ Control when held, and ⎋ Escape when tapped.
+2. **Hyper Key**: Holding ⇥ Tab acts as a "Hyper" key (Command+Shift+Control+Option), while tapping Tab functions as normal.
+3. **Meh Key**: Holding \\ Backslash acts as a "Meh" key (Shift+Control+Option), while tapping \\ Backslash types \\ as normal.
+
+The Hyper and Meh  keys allow me to set up a large number of unique shortcuts for various applications and system functions.
 
 ## ⚙️ Local Configurations
 
