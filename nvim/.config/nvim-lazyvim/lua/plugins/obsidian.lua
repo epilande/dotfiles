@@ -161,39 +161,39 @@ return {
         opts = { noremap = false, expr = true, buffer = true },
       },
       -- Toggle check-boxes.
-      ["<cr>"] = {
-        action = function()
-          local util = require("obsidian.util")
-          if util.cursor_on_markdown_link(nil, nil, true) then
-            vim.cmd("ObsidianFollowLink")
-          else
-            return cycle_checkbox_state()
-          end
-        end,
-        opts = { buffer = true },
-      },
+      -- ["<cr>"] = {
+      --   action = function()
+      --     local util = require("obsidian.util")
+      --     if util.cursor_on_markdown_link(nil, nil, true) then
+      --       vim.cmd("ObsidianFollowLink")
+      --     else
+      --       return cycle_checkbox_state()
+      --     end
+      --   end,
+      --   opts = { buffer = true },
+      -- },
     },
     ui = {
-      enable = true,
-      checkboxes = {
-        [" "] = { char = "󰄱", hl_group = "Comment" }, -- Todo
-        ["/"] = { char = "󰿦", hl_group = "DiagnosticWarn" }, -- In-progress
-        ["x"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- Done
-        ["!"] = { char = "󰄱", hl_group = "DiagnosticError" }, -- Urgent
-        ["~"] = { char = "󰂭", hl_group = "ObsidianTilde" }, -- Canceled
-        ["-"] = { char = "", hl_group = "Comment" }, -- Skip
-        [">"] = { char = "󰒊", hl_group = "DiagnosticHint" }, -- Forwarded
-        ["<"] = { char = "󰃰", hl_group = "DiagnosticHint" }, -- Scheduled
-
-        ["i"] = { char = "󰋼", hl_group = "DiagnosticInfo" }, -- Info
-        ["?"] = { char = "", hl_group = "DiagnosticWarn" }, -- Question
-        ["I"] = { char = "󰛨", hl_group = "DiagnosticWarn" }, -- Idea
-        ["p"] = { char = "󰔓", hl_group = "DiagnosticOk" }, -- Pros
-        ["c"] = { char = "󰔑", hl_group = "DiagnosticError" }, -- Cons
-        ["s"] = { char = "󰓎", hl_group = "DiagnosticWarn" }, -- Star
-        ["f"] = { char = "󰈸", hl_group = "ObsidianRightArrow" }, -- Fire
-      },
-      external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
+      enable = false,
+      --   checkboxes = {
+      --     [" "] = { char = "󰄱", hl_group = "Comment" }, -- Todo
+      --     ["/"] = { char = "󰿦", hl_group = "DiagnosticWarn" }, -- In-progress
+      --     ["x"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- Done
+      --     ["!"] = { char = "󰄱", hl_group = "DiagnosticError" }, -- Urgent
+      --     ["~"] = { char = "󰂭", hl_group = "ObsidianTilde" }, -- Canceled
+      --     ["-"] = { char = "", hl_group = "Comment" }, -- Skip
+      --     [">"] = { char = "󰒊", hl_group = "DiagnosticHint" }, -- Forwarded
+      --     ["<"] = { char = "󰃰", hl_group = "DiagnosticHint" }, -- Scheduled
+      --
+      --     ["i"] = { char = "󰋼", hl_group = "DiagnosticInfo" }, -- Info
+      --     ["?"] = { char = "", hl_group = "DiagnosticWarn" }, -- Question
+      --     ["I"] = { char = "󰛨", hl_group = "DiagnosticWarn" }, -- Idea
+      --     ["p"] = { char = "󰔓", hl_group = "DiagnosticOk" }, -- Pros
+      --     ["c"] = { char = "󰔑", hl_group = "DiagnosticError" }, -- Cons
+      --     ["s"] = { char = "󰓎", hl_group = "DiagnosticWarn" }, -- Star
+      --     ["f"] = { char = "󰈸", hl_group = "ObsidianRightArrow" }, -- Fire
+      --   },
+      --   external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
     },
   },
 }
