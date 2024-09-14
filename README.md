@@ -12,7 +12,7 @@
 
 - Terminal: [WezTerm](https://wezfurlong.org/wezterm/) + [Tmux](https://github.com/tmux/tmux)
 - Shell: [Zsh](https://www.zsh.org/) + [Starship](https://starship.rs/)
-- Editor: [Neovim](https://neovim.io/)
+- Editor: [Neovim](https://neovim.io/) based on [LazyVim](https://www.lazyvim.org/)
 - Theme: [Catppuccin](https://catppuccin.com/)
 
 ## 📦 Installation
@@ -97,6 +97,18 @@ Once TPM is installed, press `prefix + I` to install plugins listed in [`tmux/.c
 
 Similarly to Zsh, local Tmux configurations are sourced if `~/.config/tmux/local.conf` exists.
 
+### Troubleshooting
+
+<details>
+<summary>If you're experiencing an issue where tmux repeats characters unexpectedly</summary>
+
+```sh
+infocmp -x tmux-256color >tmux-256color.src
+tic -x tmux-256color.src
+```
+
+</details>
+
 ## 💻 Neovim
 
 My primary Neovim configuration uses LazyVim as a base, located in [`nvim/.config/nvim-lazyvim`](./nvim/.config/nvim-lazyvim), and for quick access I have aliased it as `lv`.
@@ -119,13 +131,14 @@ If you see boxes `□`, this means your current font doesn't support Powerline a
 2. **Hyper Key**: Holding ⇥ Tab acts as a "Hyper" key (Command+Shift+Control+Option), while tapping Tab functions as normal.
 3. **Meh Key**: Holding \\ Backslash acts as a "Meh" key (Shift+Control+Option), while tapping \\ Backslash types \\ as normal.
 
-The Hyper and Meh  keys allow me to set up a large number of unique shortcuts for various applications and system functions.
+The Hyper and Meh keys allow me to set up a large number of unique shortcuts for various applications and system functions.
 
 ## ⚙️ Local Configurations
 
 Local configurations are managed separately, kept outside of source control. This is particularly useful for storing sensitive settings or configurations that are specific to individual computers and not needed on other systems.
 
-Here is the directory structure of my local configurations:
+<details>
+<summary>Directory structure of my local configurations</summary>
 
 ```
 ❯ tree -P '*local*' --prune -aC
@@ -146,3 +159,4 @@ Here is the directory structure of my local configurations:
             ├── local-aliases.zsh
             └── local.zsh
 ```
+</details>
