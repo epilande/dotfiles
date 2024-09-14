@@ -21,6 +21,11 @@ return {
       },
       keymaps = {
         ["q"] = "actions.close",
+        ["<C-r>"] = "actions.refresh",
+        ["<C-v>"] = "actions.select_vsplit",
+        ["<C-s>"] = "actions.select_split",
+        ["<C-h>"] = false,
+        ["<C-l>"] = false,
       },
     })
   end,
