@@ -1,19 +1,5 @@
 return {
   {
-    enabled = false,
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "sindrets/diffview.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
-    config = true,
-    cmd = "Neogit",
-    keys = {
-      { "<leader>gn", "<cmd>Neogit kind=vsplit<cr>", desc = "Neogit", silent = true, noremap = true },
-    },
-  },
-  {
     "sindrets/diffview.nvim",
     keys = {
       { "<leader>gd", "", desc = "+diffview", mode = { "n", "v" } },
