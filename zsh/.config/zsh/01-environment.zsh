@@ -5,9 +5,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export EDITOR='NVIM_APPNAME=nvim-lazyvim nvim'
 
 # Go development
-export GOPATH=$HOME/.asdf/installs/golang/1.20/packages
-# export PATH="$PATH:$(go env GOPATH)/bin"
-export PATH="$PATH:$GOPATH/bin"
+. ~/.asdf/plugins/golang/set-env.zsh
 
 # FZF
 export FZF_DEFAULT_COMMAND="fd --type f"
