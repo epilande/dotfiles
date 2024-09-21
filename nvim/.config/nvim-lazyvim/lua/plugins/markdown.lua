@@ -57,4 +57,32 @@ return {
       },
     },
   },
+  {
+    "epilande/checkbox-cycle.nvim",
+    ft = "markdown",
+    opts = {
+      states = {
+        { "[ ]", "[/]", "[x]", "[-]", "[~]" },
+        { "[!]", "[x]" },
+        { "[>]", "[<]" },
+        { "[i]", "[?]", "[I]", "[p]", "[c]", "[s]", "[f]" },
+      },
+    },
+    keys = {
+      {
+        "<CR>",
+        "<Cmd>CheckboxCycleNext<CR>",
+        desc = "Checkbox Next",
+        ft = { "markdown" },
+        mode = { "n", "v" },
+      },
+      {
+        "<S-CR>",
+        "<Cmd>CheckboxCyclePrev<CR>",
+        desc = "Checkbox Previous",
+        ft = { "markdown" },
+        mode = { "n", "v" },
+      },
+    },
+  },
 }
