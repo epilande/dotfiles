@@ -46,8 +46,11 @@
     "curtainChangeSize" : {
       "int" : 0
     },
+    "cycleSizesIsChanged" : {
+      "bool" : false
+    },
     "disabledApps" : {
-
+      "string" : "[\"com.raycast.macos\"]"
     },
     "doubleClickTitleBar" : {
       "int" : 0
@@ -83,7 +86,7 @@
 
     },
     "gapSize" : {
-      "float" : 0
+      "float" : 8
     },
     "hapticFeedbackOnSnap" : {
       "int" : 0
@@ -157,6 +160,9 @@
     "screenEdgeGapTopNotch" : {
       "float" : 0
     },
+    "selectedCycleSizes" : {
+      "int" : 0
+    },
     "shortEdgeSnapAreaSize" : {
       "float" : 145
     },
@@ -206,7 +212,7 @@
 
     },
     "todo" : {
-      "int" : 0
+      "int" : 2
     },
     "todoApplication" : {
 
@@ -251,7 +257,7 @@
       "keyCode" : 8,
       "modifierFlags" : 786432
     },
-    "centerThird" : {
+    "centerHalf" : {
       "keyCode" : 40,
       "modifierFlags" : 786432
     },
@@ -332,5 +338,5 @@
       "modifierFlags" : 786432
     }
   },
-  "version" : "86"
+  "version" : "89"
 }
