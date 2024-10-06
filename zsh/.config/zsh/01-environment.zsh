@@ -1,3 +1,6 @@
+# Load asdf
+source "$(brew --prefix)/opt/asdf/libexec/asdf.sh"
+
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -6,6 +9,10 @@ export EDITOR='NVIM_APPNAME=nvim-lazyvim nvim'
 
 # Go development
 . ~/.asdf/plugins/golang/set-env.zsh
+export ASDF_GOLANG_MOD_VERSION_ENABLED=true
+export GOROOT=$(go env GOROOT)
+export GOBIN=$(dirname ${GOROOT:A})/bin
+export PATH=$PATH:$GOBIN
 
 # FZF
 export FZF_DEFAULT_COMMAND="fd --type f"
