@@ -25,13 +25,35 @@ config.window_padding = {
 	bottom = 0,
 }
 
--- config.keys = {
--- 	{
--- 		key = "f",
--- 		mods = "CTRL",
--- 		action = wezterm.action.ToggleFullScreen,
--- 	},
--- }
+config.keys = {
+	{
+		key = "P",
+		mods = "CMD|SHIFT",
+		action = wezterm.action.ActivateCommandPalette,
+	},
+
+	-- Tmux
+	{
+		key = "t",
+		mods = "CMD",
+		action = wezterm.action.SendString("\x01c"),
+	},
+	{
+		key = "x",
+		mods = "CMD",
+		action = wezterm.action.SendString("\x01x"),
+	},
+	{ key = "1", mods = "CMD", action = wezterm.action({ SendString = "\x011" }) },
+	{ key = "2", mods = "CMD", action = wezterm.action({ SendString = "\x012" }) },
+	{ key = "3", mods = "CMD", action = wezterm.action({ SendString = "\x013" }) },
+	{ key = "4", mods = "CMD", action = wezterm.action({ SendString = "\x014" }) },
+	{ key = "5", mods = "CMD", action = wezterm.action({ SendString = "\x015" }) },
+	{ key = "6", mods = "CMD", action = wezterm.action({ SendString = "\x016" }) },
+	{ key = "7", mods = "CMD", action = wezterm.action({ SendString = "\x017" }) },
+	{ key = "8", mods = "CMD", action = wezterm.action({ SendString = "\x018" }) },
+	{ key = "9", mods = "CMD", action = wezterm.action({ SendString = "\x019" }) },
+	{ key = "0", mods = "CMD", action = wezterm.action({ SendString = "\x010" }) },
+}
 
 config.mouse_bindings = {
 	-- Cmd-click will open the link under the mouse cursor
