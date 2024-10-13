@@ -65,4 +65,4 @@ end, { desc = "Copy file path" })
 -- Search & replace word under the cursor
 map("n", "<leader>S", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "Replace word under cursor" })
 -- Search & replace selected text
-map("v", "<leader>S", "y:%s/<C-r>0//g<Left><Left>", { desc = "Replace selected text" })
+map("v", "<leader>S", "y:%s/\\<<C-r>0\\>//g<Left><Left>", { desc = "Replace selected text" })
