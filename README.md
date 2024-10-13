@@ -97,6 +97,35 @@ Once TPM is installed, press `prefix + I` to install plugins listed in [`tmux/.c
 
 Similarly to Zsh, local Tmux configurations are sourced if `~/.config/tmux/local.conf` exists.
 
+### Tmux Key Mappings
+
+Tmux is configured with several custom key bindings to enhance productivity and ease of use. Here are the most notable mappings:
+
+| Key Binding        | Description                                |
+| ------------------ | ------------------------------------------ |
+| `prefix + r`       | Reload tmux configuration                  |
+| `prefix + \|`      | Split window vertically                    |
+| `prefix + -`       | Split window horizontally                  |
+| `prefix + h/j/k/l` | Navigate panes                             |
+| `prefix + C-h/C-l` | Switch to previous/next window             |
+| `M-t` (⌥ + t)      | Open Tmux Toolbox menu                     |
+| `M-g` (⌥ + g)      | Toggle Lazygit in a popup window           |
+| `M-n` (⌥ + n)      | Toggle "notes" session in a popup window   |
+| `prefix + C-f`     | Fuzzy find and switch between tmux windows |
+| `prefix + b`       | Switch to the last active session          |
+
+#### Key Features
+
+1. **Tmux Toolbox** (`M-t`): A menu providing quick access to common tmux actions like creating new windows/sessions, changing layouts, and managing panes.
+
+2. **Lazygit Integration** (`M-g`): Instantly access git operations in a popup window from anywhere within tmux. This allows you to manage your git repositories without leaving your current session, whether you're in Neovim, browsing files, or running any other process. The popup can be easily toggled, maintaining your workflow continuity.
+
+3. **Notes Session** (`M-n`): Toggle a dedicated "notes" tmux session accessible from anywhere. If you're in another session, this will open your notes in a popup window, allowing quick access to your notes without disrupting your current work context.
+
+4. **Fuzzy Find Windows** (`prefix + C-f`): Open a fuzzy finder to quickly switch between tmux windows using a custom `tmw` script.
+
+For a complete list of key bindings, refer to [`tmux/.config/tmux/keymaps.conf`](./tmux/.config/tmux/keymaps.conf).
+
 ### Troubleshooting
 
 <details>
@@ -133,6 +162,21 @@ If you see boxes `□`, this means your current font doesn't support Powerline a
 
 The Hyper and Meh keys allow me to set up a large number of unique shortcuts for various applications and system functions.
 
+## 🖥️ WezTerm
+
+[WezTerm](https://wezfurlong.org/wezterm/) is a powerful, GPU-accelerated cross-platform terminal emulator and multiplexer. Its Lua-based configuration enables deep customization, allowing for a highly tailored and efficient terminal experience that adapts to your workflow.
+
+### WezTerm Key Mappings
+
+| Key Binding       | Action                     |
+| ----------------- | -------------------------- |
+| `CMD + t`         | Create new tmux window     |
+| `CMD + x`         | Close tmux pane            |
+| `CMD + [1-9,0]`   | Switch to tmux window 1-10 |
+| `CMD + SHIFT + P` | Activate command palette   |
+
+For a complete list of key bindings, refer to [`wezterm/.config/wezterm/wezterm.lua`](./wezterm/.config/wezterm/wezterm.lua).
+
 ## ⚙️ Local Configurations
 
 Local configurations are managed separately, kept outside of source control. This is particularly useful for storing sensitive settings or configurations that are specific to individual computers and not needed on other systems.
@@ -159,4 +203,5 @@ Local configurations are managed separately, kept outside of source control. Thi
             ├── local-aliases.zsh
             └── local.zsh
 ```
+
 </details>
