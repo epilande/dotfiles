@@ -52,7 +52,7 @@ config.keys = {
 	{ key = "7", mods = "CMD", action = wezterm.action({ SendString = "\x017" }) },
 	{ key = "8", mods = "CMD", action = wezterm.action({ SendString = "\x018" }) },
 	{ key = "9", mods = "CMD", action = wezterm.action({ SendString = "\x019" }) },
-	{ key = "0", mods = "CMD", action = wezterm.action({ SendString = "\x010" }) },
+	-- { key = "0", mods = "CMD", action = wezterm.action({ SendString = "\x010" }) },
 }
 
 config.mouse_bindings = {
