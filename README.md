@@ -23,6 +23,36 @@
 git clone https://github.com/epilande/dotfiles.git ~/.dotfiles
 ```
 
+## 🍺 Homebrew
+
+### Install Packages
+
+Install [Homebrew](https://brew.sh), then run the following to install specified packages, casks, and taps listed in the [Brewfile](./Brewfile):
+
+```bash
+brew bundle
+```
+
+<details>
+<summary><strong>Verify Dependencies</strong></summary>
+
+Check if all dependencies listed in the Brewfile are installed:
+
+```bash
+brew bundle check --verbose
+```
+</details>
+
+<details>
+<summary><strong>Generate Brewfile</strong></summary>
+
+Generate a Brewfile from the list of currently installed Homebrew pakcages, casks, and taps:
+
+```bash
+brew bundle dump
+```
+</details>
+
 ### Create Symlinks
 
 Create symlinks for all configurations:
@@ -31,36 +61,10 @@ Create symlinks for all configurations:
 stow --target=$HOME */
 ```
 
-Create a symlink for a specific individual package (e.g., Neovim):
+Or create a symlink for a specific individual package (e.g., Neovim):
 
 ```bash
 stow --target=$HOME nvim # ... and any other configuration you want
-```
-
-## 🍺 Homebrew
-
-### Install Packages
-
-Install specified packages, casks, and taps listed in the [Brewfile](./Brewfile) (requires [Homebrew](https://brew.sh/)):
-
-```bash
-brew bundle
-```
-
-### Verify Dependencies
-
-Check if all dependencies listed in the Brewfile are installed:
-
-```bash
-brew bundle check --verbose
-```
-
-### Generate Brewfile
-
-Generate a Brewfile from the list of currently installed Homebrew pakcages, casks, and taps:
-
-```bash
-brew bundle dump
 ```
 
 ## 🐚 Zsh
