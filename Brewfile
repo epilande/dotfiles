@@ -1,5 +1,4 @@
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "homebrew/services"
 
 brew "asdf"
@@ -43,7 +42,6 @@ cask "docker"
 cask "kap"
 cask "karabiner-elements"
 cask "raycast"
-cask "rectangle"
 cask "visual-studio-code"
 cask "wezterm"
 
