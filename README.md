@@ -21,6 +21,41 @@
 
 ```bash
 git clone https://github.com/epilande/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+```
+
+### Automated Setup
+
+Run the setup script to automatically install and configure everything:
+
+```bash
+./setup.sh
+```
+
+#### This script will:
+
+- Install Homebrew and packages from Brewfile
+- Create symlinks for all configurations using stow
+- Set up runtime environments (Node.js, Python, Go) via asdf
+- Install and configure Tmux with plugins
+- Set up package managers (yarn, pnpm) via corepack
+
+> [!NOTE]
+> If you run the automated setup you're pretty much done here.
+> If you prefer to install components individually, continue reading.
+
+## 🔗 Create Symlinks
+
+Create symlinks for all configurations:
+
+```bash
+stow --target=$HOME */
+```
+
+Or create a symlink for a specific individual package (e.g., Neovim):
+
+```bash
+stow --target=$HOME nvim # ... and any other configuration you want
 ```
 
 ## 🍺 Homebrew
@@ -33,38 +68,20 @@ Install [Homebrew](https://brew.sh), then run the following to install specified
 brew bundle
 ```
 
-<details>
-<summary><strong>Verify Dependencies</strong></summary>
+### Verify Dependencies
 
 Check if all dependencies listed in the Brewfile are installed:
 
 ```bash
 brew bundle check --verbose
 ```
-</details>
 
-<details>
-<summary><strong>Generate Brewfile</strong></summary>
+### Generate Brewfile
 
 Generate a Brewfile from the list of currently installed Homebrew pakcages, casks, and taps:
 
 ```bash
 brew bundle dump
-```
-</details>
-
-### Create Symlinks
-
-Create symlinks for all configurations:
-
-```bash
-stow --target=$HOME */
-```
-
-Or create a symlink for a specific individual package (e.g., Neovim):
-
-```bash
-stow --target=$HOME nvim # ... and any other configuration you want
 ```
 
 ## 🐚 Zsh
@@ -172,12 +189,12 @@ The Hyper and Meh keys allow me to set up a large number of unique shortcuts for
 
 ### WezTerm Key Mappings
 
-| Key Binding       | Action                     |
-| ----------------- | -------------------------- |
-| `CMD + t`         | Create new tmux window     |
-| `CMD + x`         | Close tmux pane            |
-| `CMD + [1-9,0]`   | Switch to tmux window 1-10 |
-| `CMD + SHIFT + P` | Activate command palette   |
+| Key Binding       | Action                    |
+| ----------------- | ------------------------- |
+| `CMD + t`         | Create new tmux window    |
+| `CMD + x`         | Close tmux pane           |
+| `CMD + 1-9`       | Switch to tmux window 1-9 |
+| `CMD + SHIFT + P` | Activate command palette  |
 
 For a complete list of key bindings, refer to [`wezterm/.config/wezterm/wezterm.lua`](./wezterm/.config/wezterm/wezterm.lua).
 
