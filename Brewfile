@@ -3,7 +3,8 @@ tap "homebrew/services"
 
 brew "asdf"
 brew "bat"
-brew 'coreutils'
+brew "coreutils"
+brew "cliclick"
 brew "cloc"
 brew "curl"
 brew "eza"
