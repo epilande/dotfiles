@@ -7,7 +7,7 @@ vim.opt.conceallevel = 1
 vim.opt.showtabline = 0
 vim.opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 
-vim.o.clipboard = "unnamedplus"
+vim.opt.clipboard = ""
 
 local function paste()
   return {
@@ -16,7 +16,7 @@ local function paste()
   }
 end
 
-vim.g.clipboard = {
+local osc52_clipboard = {
   name = "OSC 52",
   copy = {
     ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
@@ -27,3 +27,21 @@ vim.g.clipboard = {
     ["*"] = paste,
   },
 }
+
+local local_clipboard = {
+  name = "system",
+  copy = {
+    ["+"] = "pbcopy",
+    ["*"] = "pbcopy",
+  },
+  paste = {
+    ["+"] = "pbpaste",
+    ["*"] = "pbpaste",
+  },
+}
+
+if vim.env.SSH_CONNECTION then
+  vim.g.clipboard = osc52_clipboard
+else
+  vim.g.clipboard = local_clipboard
+end
