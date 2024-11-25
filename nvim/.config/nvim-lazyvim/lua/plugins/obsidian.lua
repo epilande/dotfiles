@@ -1,57 +1,3 @@
-local checkbox_states = {
-  "- [ ] ",
-  "- [/] ",
-  "- [x] ",
-  "- [!] ",
-  "- [~] ",
-  "- [-] ",
-  "- [>] ",
-  "- [<] ",
-  "",
-}
-
-local function get_next_state(current_state)
-  for i, state in ipairs(checkbox_states) do
-    if state == current_state then
-      return checkbox_states[(i % #checkbox_states) + 1]
-    end
-  end
-  return checkbox_states[1]
-end
-
-local function find_current_state(line)
-  for _, state in ipairs(checkbox_states) do
-    local start_idx, end_idx = string.find(line, vim.pesc(state))
-    if start_idx then
-      return start_idx, end_idx, state
-    end
-  end
-  return nil, nil, ""
-end
-
-local function cycle_checkbox_state()
-  local current_line = vim.api.nvim_get_current_line()
-  local start_idx, end_idx, current_state = find_current_state(current_line)
-
-  if not start_idx then
-    -- Default to empty state if no checklist item is found
-    start_idx, end_idx, current_state = 0, 0, ""
-  end
-
-  local new_state = get_next_state(current_state)
-  local indent = string.match(current_line, "^%s*") or ""
-  -- Strip leading spaces after the checkbox
-  local line_after_checkbox = string.sub(current_line, end_idx + 1):match("^%s*(.*)$")
-  local new_line
-  if new_state == "" then
-    new_line = indent .. line_after_checkbox
-  else
-    new_line = indent .. new_state .. line_after_checkbox
-  end
-
-  vim.api.nvim_set_current_line(new_line)
-end
-
 return {
   "epwalsh/obsidian.nvim",
   version = "*",
@@ -160,40 +106,9 @@ return {
         end,
         opts = { noremap = false, expr = true, buffer = true },
       },
-      -- Toggle check-boxes.
-      -- ["<cr>"] = {
-      --   action = function()
-      --     local util = require("obsidian.util")
-      --     if util.cursor_on_markdown_link(nil, nil, true) then
-      --       vim.cmd("ObsidianFollowLink")
-      --     else
-      --       return cycle_checkbox_state()
-      --     end
-      --   end,
-      --   opts = { buffer = true },
-      -- },
     },
     ui = {
       enable = false,
-      --   checkboxes = {
-      --     [" "] = { char = "󰄱", hl_group = "Comment" }, -- Todo
-      --     ["/"] = { char = "󰿦", hl_group = "DiagnosticWarn" }, -- In-progress
-      --     ["x"] = { char = "󰄲", hl_group = "DiagnosticOk" }, -- Done
-      --     ["!"] = { char = "󰄱", hl_group = "DiagnosticError" }, -- Urgent
-      --     ["~"] = { char = "󰂭", hl_group = "ObsidianTilde" }, -- Canceled
-      --     ["-"] = { char = "", hl_group = "Comment" }, -- Skip
-      --     [">"] = { char = "󰒊", hl_group = "DiagnosticHint" }, -- Forwarded
-      --     ["<"] = { char = "󰃰", hl_group = "DiagnosticHint" }, -- Scheduled
-      --
-      --     ["i"] = { char = "󰋼", hl_group = "DiagnosticInfo" }, -- Info
-      --     ["?"] = { char = "", hl_group = "DiagnosticWarn" }, -- Question
-      --     ["I"] = { char = "󰛨", hl_group = "DiagnosticWarn" }, -- Idea
-      --     ["p"] = { char = "󰔓", hl_group = "DiagnosticOk" }, -- Pros
-      --     ["c"] = { char = "󰔑", hl_group = "DiagnosticError" }, -- Cons
-      --     ["s"] = { char = "󰓎", hl_group = "DiagnosticWarn" }, -- Star
-      --     ["f"] = { char = "󰈸", hl_group = "ObsidianRightArrow" }, -- Fire
-      --   },
-      --   external_link_icon = { char = "", hl_group = "ObsidianExtLinkIcon" },
     },
   },
 }
