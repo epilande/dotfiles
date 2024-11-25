@@ -66,8 +66,8 @@ return {
     "ObsidianSearch",
   },
   event = {
-    "BufReadPre " .. vim.fn.resolve(vim.fn.expand("~/Documents/Obsidian")) .. "/*",
-    "BufNewFile " .. vim.fn.resolve(vim.fn.expand("~/Documents/Obsidian")) .. "/*",
+    "BufReadPre " .. vim.fn.resolve(vim.fn.expand("~/Documents/notes")) .. "/*",
+    "BufNewFile " .. vim.fn.resolve(vim.fn.expand("~/Documents/notes")) .. "/*",
   },
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -129,7 +129,7 @@ return {
     workspaces = {
       {
         name = "Dev",
-        path = "~/Documents/Obsidian/Dev",
+        path = "~/Documents/notes/dev",
       },
     },
     daily_notes = {
