@@ -10,7 +10,7 @@ alias gpush="git branch --show-current | xargs -I {} sh -c 'echo \"\nRunning git
 alias greset="git fetch origin && git branch --show-current | xargs -I {} sh -c 'echo \"\nRunning git reset --hard origin/{}...\n\" && git reset --hard origin/{}'"
 alias gresetm="git fetch origin && git reset --hard origin/master"
 
-alias fvim="fzf-tmux -p | xargs lvim"
+alias fvim="fzf-tmux -p --preview 'bat -n --color=always {}' | xargs -r env NVIM_APPNAME=nvim-lazyvim nvim"
 
 alias ls="eza --icons --group-directories-first"
 alias ll="ls -lah"
@@ -20,3 +20,5 @@ alias lv="LazyVim"
 alias Kickstart="NVIM_APPNAME=nvim-kickstart nvim"
 alias NvChad="NVIM_APPNAME=nvim-nvchad nvim"
 alias LunarVim="lvim"
+
+alias pt="SKIP_JEST_RETRY=1 pnpm test"
