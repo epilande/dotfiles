@@ -15,10 +15,8 @@ export GOBIN=$(dirname ${GOROOT:A})/bin
 export PATH=$PATH:$GOBIN
 
 # FZF
-export FZF_DEFAULT_COMMAND="fd --type f"
-# export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --vimgrep --pretty --glob '!{.git,node_modules}'"
-# export FZF_DEFAULT_COMMAND="rg --files --hidden --follow --vimgrep --no-ignore-vcs --pretty --glob '!{.git,node_modules}'"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND="fd --type f --hidden"
+source <(fzf --zsh)
 
 export FZF_DEFAULT_OPTS="--reverse"
 
