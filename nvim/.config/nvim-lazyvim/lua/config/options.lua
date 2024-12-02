@@ -40,7 +40,12 @@ local local_clipboard = {
   },
 }
 
-if vim.env.SSH_CONNECTION then
+local function is_remote_tmux()
+  local output = vim.fn.system("tmux show-environment SSH_CONNECTION 2>/dev/null")
+  return vim.v.shell_error == 0 and output:match("SSH_CONNECTION") ~= nil
+end
+
+if vim.env.SSH_CONNECTION or is_remote_tmux() then
   vim.g.clipboard = osc52_clipboard
 else
   vim.g.clipboard = local_clipboard
