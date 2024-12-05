@@ -5,7 +5,7 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
-export EDITOR='NVIM_APPNAME=nvim-lazyvim nvim'
+export EDITOR='env NVIM_APPNAME=nvim-lazyvim nvim'
 
 # Go development
 . ~/.asdf/plugins/golang/set-env.zsh
@@ -35,3 +35,5 @@ export FZF_CTRL_R_OPTS="
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {} | head -50'"
+
+export FZF_TMUX_OPTS="-p90%,70%"
