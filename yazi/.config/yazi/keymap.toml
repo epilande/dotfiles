@@ -1,0 +1,40 @@
+[manager]
+prepend_keymap = [
+  # Seeking
+  { on = "<C-u>", run = "seek -5", desc = "Seek up 5 units in the preview" },
+  { on = "<C-d>", run = "seek 5", desc = "Seek down 5 units in the preview" },
+
+  # Goto
+  { on = [
+    "g",
+    "j",
+  ], run = "cd ~/Desktop", desc = "Go to the Desktop directory" },
+  { on = [
+    "g",
+    "p",
+  ], run = "cd ~/Code", desc = "Go to the Code directory" },
+  { on = [
+    "g",
+    "m",
+  ], run = "cd ~/Movies", desc = "Go to the Movies directory" },
+  { on = [
+    "g",
+    ".",
+  ], run = "cd ~/.dotfiles", desc = "Go to dotfiles" },
+  { on = [
+    "g",
+    "r",
+  ], run = ''' shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm ''', desc = "Go to root of Git repo" },
+
+  # Copy
+  { on = [
+    "c",
+    "t",
+  ], desc = "Copy contents of file", run = ''' shell 'cat "$0" | pbcopy' --confirm''' },
+
+  { on = "!", run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
+
+  { on = [
+    "<Enter>",
+  ], run = "enter" },
+]

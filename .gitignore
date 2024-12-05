@@ -4,4 +4,4 @@ karabiner/.config/karabiner/automatic_backups/*
 zsh/.config/zsh/*local*.zsh
 tmux/.config/tmux/*local*.conf
 nvim/.config/nvim-lazyvim/lua/plugins/*local*.lua
-
+yazi/.config/yazi/flavors
