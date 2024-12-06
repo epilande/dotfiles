@@ -32,3 +32,5 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+os:
+  edit: "$EDITOR {{filename}}"
