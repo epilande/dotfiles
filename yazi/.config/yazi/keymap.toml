@@ -11,7 +11,7 @@ prepend_keymap = [
   ], run = "cd ~/Desktop", desc = "Go to the Desktop directory" },
   { on = [
     "g",
-    "p",
+    "c",
   ], run = "cd ~/Code", desc = "Go to the Code directory" },
   { on = [
     "g",
@@ -23,7 +23,7 @@ prepend_keymap = [
   ], run = "cd ~/.dotfiles", desc = "Go to dotfiles" },
   { on = [
     "g",
-    "r",
+    "R",
   ], run = ''' shell 'ya pub dds-cd --str "$(git rev-parse --show-toplevel)"' --confirm ''', desc = "Go to root of Git repo" },
 
   # Copy
