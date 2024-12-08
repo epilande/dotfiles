@@ -37,20 +37,32 @@ for plugin in "${plugins[@]}"; do
 done
 
 # Install latest versions and set global
-echo "🐹 Installing latest golang..."
-asdf install golang latest
-asdf reshim golang
-asdf global golang latest
+if current_golang=$(asdf current golang 2>/dev/null); then
+  echo "✅ golang already installed: ${current_golang}"
+else
+  echo "🐹 Installing latest golang..."
+  asdf install golang latest
+  asdf reshim golang
+  asdf global golang latest
+fi
 
-echo "🟢 Installing latest nodejs..."
-asdf install nodejs latest
-asdf reshim nodejs
-asdf global nodejs latest
+if current_nodejs=$(asdf current nodejs 2>/dev/null); then
+  echo "✅ nodejs already installed: ${current_nodejs}"
+else
+  echo "🟢 Installing latest nodejs..."
+  asdf install nodejs latest
+  asdf reshim nodejs
+  asdf global nodejs latest
+fi
 
-echo "🐍 Installing latest python..."
-asdf install python latest
-asdf reshim python
-asdf global python latest
+if current_python=$(asdf current python 2>/dev/null); then
+  echo "✅ python already installed: ${current_python}"
+else
+  echo "🐍 Installing latest python..."
+  asdf install python latest
+  asdf reshim python
+  asdf global python latest
+fi
 
 # Enable corepack for yarn and pnpm
 echo "📦 Enabling corepack..."
