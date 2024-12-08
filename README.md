@@ -13,6 +13,8 @@
 - Terminal: [WezTerm](https://wezfurlong.org/wezterm/) + [Tmux](https://github.com/tmux/tmux)
 - Shell: [Zsh](https://www.zsh.org/) + [Starship](https://starship.rs/)
 - Editor: [Neovim](https://neovim.io/) based on [LazyVim](https://www.lazyvim.org/)
+- Version Manager: [asdf](https://asdf-vm.com/)
+- File Manager: [Yazi](https://github.com/sxyazi/yazi)
 - Theme: [Catppuccin](https://catppuccin.com/)
 
 ## 📦 Installation
@@ -26,10 +28,10 @@ cd ~/.dotfiles
 
 ### Automated Setup
 
-Run the setup script to automatically install and configure everything:
+Run the automated setup script to install and configure everything:
 
 ```bash
-./setup.sh
+chmod +x ./setup.sh && ./setup.sh
 ```
 
 #### This script will:
@@ -43,6 +45,14 @@ Run the setup script to automatically install and configure everything:
 > [!NOTE]
 > If you run the automated setup you're pretty much done here.
 > If you prefer to install components individually, continue reading.
+
+### MacOS System Preferences
+
+Configure sensible MacOS defaults:
+
+```bash
+chmod +x ./macos.sh && ./macos.sh
+```
 
 ## 🔗 Create Symlinks
 
@@ -132,6 +142,7 @@ Tmux is configured with several custom key bindings to enhance productivity and 
 | `M-t` (⌥ + t)      | Open Tmux Toolbox menu                     |
 | `M-g` (⌥ + g)      | Toggle Lazygit in a popup window           |
 | `M-n` (⌥ + n)      | Toggle "notes" session in a popup window   |
+| `M-f` (⌥ + f)      | Toggle Yazi in a popup window              |
 | `prefix + C-f`     | Fuzzy find and switch between tmux windows |
 | `prefix + b`       | Switch to the last active session          |
 
