@@ -13,16 +13,28 @@ else
   echo "✅ Homebrew already installed"
 fi
 
+# Create .zprofile if it doesn't exist
+if [ ! -f "$HOME/.zprofile" ]; then
+  echo "📝 Creating .zprofile..."
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >"$HOME/.zprofile"
+fi
+
+# Source Homebrew for the current session
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Install packages from Brewfile
 echo "📦 Installing packages from Brewfile..."
 brew bundle
 
 # Create symlinks using stow
 echo "🔗 Creating symlinks..."
-stow --target=$HOME --restow */
+stow --adopt --target=$HOME --restow */
 
 # Install asdf plugins and runtimes
 echo "🔧 Setting up asdf plugins and runtimes..."
+
+# Source asdf for current session
+. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
 
 # Install asdf plugins if not already installed
 declare -a plugins=("golang" "nodejs" "python")
@@ -66,7 +78,7 @@ fi
 
 # Enable corepack for yarn and pnpm
 echo "📦 Enabling corepack..."
-corepack enable
+"$(dirname "$(asdf which node)")/corepack" enable
 
 # Setup tmux plugin manager
 echo "🖥️ Setting up tmux plugin manager..."
