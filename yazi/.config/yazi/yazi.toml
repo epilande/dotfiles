@@ -1,5 +1,6 @@
 [manager]
 ratio = [1, 3, 4]
+linemode = "size_and_mtime"
 show_hidden = true
 show_symlink = true
 sort_by = "natural"
