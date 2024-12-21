@@ -17,7 +17,7 @@ end
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "canary",
+    branch = "main",
     cmd = "CopilotChat",
     opts = function()
       local user = vim.env.USER or "User"
@@ -61,7 +61,7 @@ return {
         function()
           local input = vim.fn.input("Quick Chat: ")
           if input ~= "" then
-            require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
+            require("CopilotChat").ask(input)
           end
         end,
         desc = "Quick Chat (CopilotChat)",
