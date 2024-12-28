@@ -94,24 +94,24 @@ return {
           {
             function() return require("noice").api.status.command.get() end,
             cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-            color = LazyVim.ui.fg("Statement"),
+            color = { fg = Snacks.util.color("Statement") },
           },
           -- stylua: ignore
           {
             function() return require("noice").api.status.mode.get() end,
             cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-            color = LazyVim.ui.fg("Constant"),
+            color = { fg = Snacks.util.color("Constant") },
           },
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
             cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-            color = LazyVim.ui.fg("Debug"),
+            color = { fg = Snacks.util.color("Debug") },
           },
           {
             require("lazy.status").updates,
             cond = require("lazy.status").has_updates,
-            color = LazyVim.ui.fg("Special"),
+            color = { fg = Snacks.util.color("Special") },
           },
           {
             "diff",
