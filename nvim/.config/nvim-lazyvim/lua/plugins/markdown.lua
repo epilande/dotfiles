@@ -4,7 +4,7 @@ return {
     lazy = true,
     event = "VeryLazy",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "cd app && npm install",
+    build = "cd app && npx --yes yarn install",
     init = function()
       vim.g.mkdp_filetypes = { "markdown" }
     end,
