@@ -46,4 +46,5 @@ cask "karabiner-elements"
 cask "raycast"
 cask "visual-studio-code"
 cask "wezterm"
+cask "ghostty"
 

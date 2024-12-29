@@ -1,0 +1,14 @@
+theme = catppuccin-mocha
+macos-titlebar-style = hidden
+# background-opacity = 0.95
+# background-blur-radius = 20
+window-padding-x = 5,0
+window-padding-y = 5,0
+
+font-family = DankMono Nerd Font Mono
+font-family-bold = DankMono Nerd Font Mono Bold
+font-family-italic = DankMono Nerd Font Mono Italic
+font-size = 16
+adjust-cell-height = 3
+
+mouse-hide-while-typing = true
