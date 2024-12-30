@@ -1,14 +1,40 @@
+# Theme
 theme = catppuccin-mocha
+
+# Window Settings
 macos-titlebar-style = hidden
 # background-opacity = 0.95
 # background-blur-radius = 20
-window-padding-x = 5,0
-window-padding-y = 5,0
+window-padding-x = 5
+window-padding-y = 5
+window-padding-balance = true
+window-colorspace = display-p3
 
+# Fonts 
 font-family = DankMono Nerd Font Mono
 font-family-bold = DankMono Nerd Font Mono Bold
 font-family-italic = DankMono Nerd Font Mono Italic
 font-size = 16
-adjust-cell-height = 3
+adjust-cell-height = 10%
 
+# Mouse
 mouse-hide-while-typing = true
+
+# Keybindings
+keybind = cmd+shift+r=reload_config
+keybind = cmd+shift+s=write_screen_file:open
+
+# Tmux Keybindings
+# \x01 is ctrl+a (tmux prefix)
+keybind = cmd+t=text:\x01c
+keybind = cmd+x=text:\x01x
+keybind = cmd+one=text:\x011
+keybind = cmd+two=text:\x012
+keybind = cmd+three=text:\x013
+keybind = cmd+four=text:\x014
+keybind = cmd+five=text:\x015
+keybind = cmd+six=text:\x016
+keybind = cmd+seven=text:\x017
+keybind = cmd+eight=text:\x018
+keybind = cmd+nine=text:\x019
+
