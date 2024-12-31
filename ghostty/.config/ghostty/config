@@ -28,6 +28,8 @@ keybind = cmd+shift+s=write_screen_file:open
 # \x01 is ctrl+a (tmux prefix)
 keybind = cmd+t=text:\x01c
 keybind = cmd+x=text:\x01x
+keybind = cmd+k=text:\x01\x06
+# Switch to tmux window 1-9
 keybind = cmd+one=text:\x011
 keybind = cmd+two=text:\x012
 keybind = cmd+three=text:\x013
