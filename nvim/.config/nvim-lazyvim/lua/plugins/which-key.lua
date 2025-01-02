@@ -23,7 +23,6 @@ return {
       { "gs", group = "Surround" },
       { "z", group = "Fold" },
       { "<leader>w", desc = "Save", icon = "󰈔" },
-      { "<leader>S", desc = "Reload Snippets", icon = "" },
       { "<leader><tab>", hidden = true },
       { "<leader>-", hidden = true },
       { "<leader>|", hidden = true },

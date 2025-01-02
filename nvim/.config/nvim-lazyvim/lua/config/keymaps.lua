@@ -4,6 +4,12 @@
 
 local map = vim.keymap.set
 
+-- Resize window using <A+hjkl>
+map("n", "<A-h>", ":vertical resize -2<cr>", { desc = "Decrease window width", silent = true })
+map("n", "<A-j>", ":resize -2<cr>", { desc = "Decrease window height", silent = true })
+map("n", "<A-k>", ":resize +2<cr>", { desc = "Increase window height", silent = true })
+map("n", "<A-l>", ":vertical resize +2<cr>", { desc = "Increase window width", silent = true })
+
 -- map("n", "<leader>k", "*Nzz", { desc = "Search Word", noremap = true })
 
 map("n", "<leader>w", "<cmd>w<cr>", { desc = "Save" })
@@ -46,13 +52,13 @@ map("n", "<leader>on", "<cmd>ObsidianNew<cr>", { desc = "New Note" })
 map("n", "<leader>od", "<cmd>ObsidianToday<cr>", { desc = "Daily Note" })
 map("n", "<leader>oy", "<cmd>ObsidianYesterday<cr>", { desc = "Yesterday's Note" })
 
--- -- DEBUG: reload snippets
--- map("n", "<leader>S", function()
---   -- require("luasnip").cleanup()
---   require("luasnip.loaders.from_lua").load({
---     paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
---   })
--- end, { desc = "Reload Snippets" })
+-- DEBUG: reload snippets
+map("n", "<leader>rs", function()
+  -- require("luasnip").cleanup()
+  require("luasnip.loaders.from_lua").load({
+    paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
+  })
+end, { desc = "Reload Snippets" })
 
 -- Copy file path
 map("n", "<leader>fy", function()
