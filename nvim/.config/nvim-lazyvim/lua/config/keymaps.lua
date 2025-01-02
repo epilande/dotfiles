@@ -18,20 +18,46 @@ map("v", "p", '"_dP')
 map("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
 map({ "n", "v" }, "<leader>p", '"+p', { desc = "Paste from clipboard" })
 
+-- Define logging templates for different languages
+local log_templates = {
+  javascript = "console.log('🚀 %s:', %s);",
+  python = "print(f'🚀 %s: {%s}')",
+  lua = "dd('🚀 ' .. '%s' .. ':', %s)",
+  go = 'fmt.Printf("🚀 %s: %%v\\n", %s)',
+  rust = 'println!("🚀 {}: {:?}", "%s", %s);',
+  sh = 'echo "🚀 %s: ${%s}"',
+}
+
 map("n", "<leader>ck", function()
   -- Get current cursor position
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
   -- Get current word under cursor
   local word = vim.fn.expand("<cword>")
-  -- Set register to the console.log snippet
-  vim.fn.setreg("+", "console.log('🚀 " .. word .. ":', " .. word .. ");")
-  -- Paste the snippet
-  vim.cmd("put +")
-  -- Reindent the pasted snippet
-  vim.cmd("normal! `[=`]")
+  -- Get current filetype
+  local filetype = vim.bo.filetype
+  -- Get the appropriate template or fallback to javascript
+  local template = log_templates[filetype] or log_templates.javascript
+  -- Construct log string based on template
+  local log_string = string.format(template, word, word)
+  -- Find next empty line
+  local current_line = cursor_pos[1]
+  local lines = vim.api.nvim_buf_get_lines(0, current_line - 1, -1, false)
+  local empty_line_offset = 0
+  for i, line in ipairs(lines) do
+    if line:match("^%s*$") then
+      empty_line_offset = i - 1
+      break
+    end
+  end
+  -- If no empty line found, insert at next line
+  local target_line = current_line + empty_line_offset - 1
+  -- Insert the log at the target line
+  vim.api.nvim_buf_set_lines(0, target_line, target_line, false, { log_string })
+  -- Reindent the newly inserted line
+  vim.cmd(tostring(target_line + 1) .. "normal! ==")
   -- Move cursor back to original position
   vim.api.nvim_win_set_cursor(0, { cursor_pos[1], cursor_pos[2] })
-end, { desc = "console.log 🚀" })
+end, { desc = "Insert debug log 🚀" })
 
 map("i", "jk", "<Esc>")
 
