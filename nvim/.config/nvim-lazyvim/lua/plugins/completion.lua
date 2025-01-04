@@ -35,12 +35,18 @@ return {
             winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
           },
         },
+        ghost_text = { enabled = false },
       },
 
       signature = { window = { border = "single" } },
 
       sources = {
-        default = { "lsp", "path", "luasnip", "snippets", "buffer" },
+        default = { "lsp", "path", "luasnip", "buffer" },
+      },
+
+      fuzzy = {
+        -- Disabling this matches the behavior of fzf
+        use_typo_resistance = false,
       },
 
       keymap = {
@@ -50,6 +56,11 @@ return {
         ["<S-Tab>"] = { "snippet_backward", "fallback" },
         ["<C-u>"] = { "scroll_documentation_up", "fallback" },
         ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+        ["<C-s>"] = {
+          function(cmp)
+            cmp.show({ providers = { "luasnip" } })
+          end,
+        },
       },
     },
   },
