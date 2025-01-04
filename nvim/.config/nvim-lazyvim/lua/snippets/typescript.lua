@@ -73,11 +73,11 @@ ls.add_snippets("typescript", {
     "cll",
     fmta(
       [[
-      console.log('🚀 <filename>:<line_number> → <func_name> → <var_label>: ', <var>) <finish>
+      console.log('🚀 <filename>:<line_number> → <func_name> → <var_label>: ', <var>)<finish>
       ]],
       {
-        var_label = rep(1),
         var = i(1, "var"),
+        var_label = rep(1),
         func_name = f(function()
           return get_nearest_function_name()
         end, {}),
@@ -95,7 +95,7 @@ ls.add_snippets("typescript", {
     "cl",
     fmta(
       [[
-      console.log('🚀 <filename>:<line_number> → <func_name>: <string>') <finish>
+      console.log('🚀 <filename>:<line_number> → <func_name>: <string>')<finish>
       ]],
       {
         string = i(1),
