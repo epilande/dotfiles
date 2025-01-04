@@ -2,14 +2,6 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  desc = "Disable autoformat for markdown files",
-  pattern = { "markdown" },
-  callback = function()
-    vim.b.autoformat = false
-  end,
-})
-
 vim.api.nvim_create_autocmd("BufRead", {
   desc = "Disable diagnostics in node_modules",
   pattern = "*/node_modules/*",
