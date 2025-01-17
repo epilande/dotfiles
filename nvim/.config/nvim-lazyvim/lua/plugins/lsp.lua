@@ -1,73 +1,37 @@
 return {
+  { import = "plugins.langs" },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "dockerfile", "graphql" })
+      vim.list_extend(opts.ensure_installed, { "dockerfile" })
     end,
   },
   {
     "neovim/nvim-lspconfig",
     enabled = true,
-    -- other settings removed for brevity
     opts = {
-      ---@type lspconfig.options
+      ---@type vim.diagnostic.Opts
+      diagnostics = {
+        underline = true,
+        update_in_insert = false,
+        virtual_text = {
+          spacing = 4,
+          source = "if_many",
+          prefix = "●",
+        },
+        severity_sort = true,
+        signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = LazyVim.config.icons.diagnostics.Error,
+            [vim.diagnostic.severity.WARN] = LazyVim.config.icons.diagnostics.Warn,
+            [vim.diagnostic.severity.HINT] = LazyVim.config.icons.diagnostics.Hint,
+            [vim.diagnostic.severity.INFO] = LazyVim.config.icons.diagnostics.Info,
+          },
+        },
+      },
       inlay_hints = {
         enabled = false,
-      },
-      servers = {
-        eslint = {
-          settings = {
-            workingDirectory = { mode = "location" },
-          },
-          root_dir = require("lspconfig").util.find_git_ancestor,
-        },
-        cucumber_language_server = {
-          settings = {
-            cucumber = {
-              features = { "playwright/features/**/*.feature" },
-              glue = { "playwright/src/steps/**/*.ts" },
-            },
-          },
-        },
-        bashls = {
-          filetypes = { "sh", "zsh" },
-        },
-      },
-      setup = {
-        eslint = function()
-          local function get_client(buf)
-            return LazyVim.lsp.get_clients({ name = "eslint", bufnr = buf })[1]
-          end
-
-          local formatter = LazyVim.lsp.formatter({
-            name = "eslint: lsp",
-            primary = false,
-            priority = 200,
-            filter = "eslint",
-          })
-
-          -- Use EslintFixAll on Neovim < 0.10.0
-          if not pcall(require, "vim.lsp._dynamic") then
-            formatter.name = "eslint: EslintFixAll"
-            formatter.sources = function(buf)
-              local client = get_client(buf)
-              return client and { "eslint" } or {}
-            end
-            formatter.format = function(buf)
-              local client = get_client(buf)
-              if client then
-                local diag = vim.diagnostic.get(buf, { namespace = vim.lsp.diagnostic.get_namespace(client.id) })
-                if #diag > 0 then
-                  vim.cmd("EslintFixAll")
-                end
-              end
-            end
-          end
-
-          -- register the formatter with LazyVim
-          LazyVim.format.register(formatter)
-        end,
       },
     },
   },
@@ -103,26 +67,6 @@ return {
         "<cmd>lua require('goto-preview').goto_preview_definition()<cr>",
         desc = "Goto Preview Definition",
       },
-      -- {
-      --   "gpt",
-      --   "<cmd>lua require('goto-preview').goto_preview_type_definition()<cr>",
-      --   desc = "Goto Preview Type Definition",
-      -- },
-      -- {
-      --   "gpi",
-      --   "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>",
-      --   desc = "Goto Preview Implementation",
-      -- },
-      -- {
-      --   "gpD",
-      --   "<cmd>lua require('goto-preview').goto_preview_declaration()<cr>",
-      --   desc = "Goto Preview Declaration",
-      -- },
-      -- {
-      --   "gpr",
-      --   "<cmd>lua require('goto-preview').goto_preview_references()<cr>",
-      --   desc = "Goto Preview References",
-      -- },
     },
   },
 }
