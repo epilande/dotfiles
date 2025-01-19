@@ -1,4 +1,7 @@
 return {
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.tailwind" },
+  { import = "lazyvim.plugins.extras.formatting.prettier" },
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -48,5 +51,24 @@ return {
         end,
       },
     },
+  },
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/neotest-jest",
+    },
+    opts = function(_, opts)
+      table.insert(
+        opts.adapters,
+        require("neotest-jest")({
+          jestCommand = "npm test --",
+          jestConfigFile = "jest.config.js",
+          env = { CI = true },
+          cwd = function()
+            return vim.fn.getcwd()
+          end,
+        })
+      )
+    end,
   },
 }
