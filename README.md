@@ -10,7 +10,7 @@
 
 ## 🌟 Overview
 
-- Terminal: [WezTerm](https://wezfurlong.org/wezterm/) + [Tmux](https://github.com/tmux/tmux)
+- Terminal: [Ghostty](https://ghostty.org/) + [Tmux](https://github.com/tmux/tmux)
 - Shell: [Zsh](https://www.zsh.org/) + [Starship](https://starship.rs/)
 - Editor: [Neovim](https://neovim.io/) based on [LazyVim](https://www.lazyvim.org/)
 - Version Manager: [asdf](https://asdf-vm.com/)
@@ -194,20 +194,20 @@ If you see boxes `□`, this means your current font doesn't support Powerline a
 
 The Hyper and Meh keys allow me to set up a large number of unique shortcuts for various applications and system functions.
 
-## 🖥️ WezTerm
+## 🖥️ Ghostty
 
-[WezTerm](https://wezfurlong.org/wezterm/) is a powerful, GPU-accelerated cross-platform terminal emulator and multiplexer. Its Lua-based configuration enables deep customization, allowing for a highly tailored and efficient terminal experience that adapts to your workflow.
+[Ghostty](https://ghostty.org/) is a fast, feature-rich, and cross-platform terminal emulator that uses platform-native UI and GPU acceleration.
 
-### WezTerm Key Mappings
+### Ghostty Key Mappings
 
 | Key Binding       | Action                    |
 | ----------------- | ------------------------- |
 | `CMD + t`         | Create new tmux window    |
 | `CMD + x`         | Close tmux pane           |
 | `CMD + 1-9`       | Switch to tmux window 1-9 |
-| `CMD + SHIFT + P` | Activate command palette  |
+| `CMD + SHIFT + R` | Reload Ghostty config     |
 
-For a complete list of key bindings, refer to [`wezterm/.config/wezterm/wezterm.lua`](./wezterm/.config/wezterm/wezterm.lua).
+For a complete list of key bindings, refer to [`ghostty/.config/ghostty/config`](./ghostty/.config/ghostty/config).
 
 ## ⚙️ Local Configurations
 
