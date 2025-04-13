@@ -21,6 +21,6 @@ alias Kickstart="NVIM_APPNAME=nvim-kickstart nvim"
 alias NvChad="NVIM_APPNAME=nvim-nvchad nvim"
 alias LunarVim="lvim"
 
-alias pt="SKIP_JEST_RETRY=1 pnpm test"
+alias pt="DEBUG_PRINT_LIMIT=50000 SKIP_JEST_RETRY=1 pnpm test"
 
 alias y="yazi"
