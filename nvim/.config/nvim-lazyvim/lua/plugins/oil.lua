@@ -24,6 +24,8 @@ return {
         ["<C-r>"] = "actions.refresh",
         ["<C-v>"] = "actions.select_vsplit",
         ["<C-s>"] = "actions.select_split",
+        ["<C-d>"] = "actions.preview_scroll_down",
+        ["<C-u>"] = "actions.preview_scroll_up",
         ["<C-h>"] = false,
         ["<C-l>"] = false,
       },
