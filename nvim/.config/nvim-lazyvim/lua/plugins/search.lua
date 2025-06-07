@@ -1,4 +1,4 @@
-local globExcludeList = "*.spec.*,*_test.*,*.json,*.yaml,mocks,patches,.git"
+local globExcludeList = "*.spec.*,*_test.*,*.proto,*.pb.go,*.json,*.yaml,mocks,patches,.git"
 
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("grug-far-custom-keybinds", { clear = true }),
