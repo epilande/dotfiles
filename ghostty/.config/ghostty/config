@@ -1,5 +1,5 @@
 # Theme
-theme = catppuccin-mocha
+theme = Catppuccin Mocha
 
 # Window Settings
 macos-titlebar-style = hidden
@@ -28,15 +28,20 @@ keybind = cmd+shift+s=write_screen_file:open
 # \x01 is ctrl+a (tmux prefix)
 keybind = cmd+t=text:\x01c
 keybind = cmd+x=text:\x01x
-keybind = cmd+k=text:\x01\x06
-# Switch to tmux window 1-9
-keybind = cmd+one=text:\x011
-keybind = cmd+two=text:\x012
-keybind = cmd+three=text:\x013
-keybind = cmd+four=text:\x014
-keybind = cmd+five=text:\x015
-keybind = cmd+six=text:\x016
-keybind = cmd+seven=text:\x017
-keybind = cmd+eight=text:\x018
-keybind = cmd+nine=text:\x019
 
+keybind = cmd+k=text:\x01\x06
+keybind = cmd+j=text:\x01\x10
+
+# Switch to tmux window 1-9
+keybind = cmd+digit1=text:\x011
+keybind = cmd+digit2=text:\x012
+keybind = cmd+digit3=text:\x013
+keybind = cmd+digit4=text:\x014
+keybind = cmd+digit5=text:\x015
+keybind = cmd+digit6=text:\x016
+keybind = cmd+digit7=text:\x017
+keybind = cmd+digit8=text:\x018
+keybind = cmd+digit9=text:\x019
+
+
+keybind = shift+enter=text:\n
