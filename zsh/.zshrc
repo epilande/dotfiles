@@ -3,7 +3,13 @@ for config in ~/.config/zsh/*; do
   source "$config"
 done
 
-autoload -Uz compinit && compinit
+# Cache compinit - only regenerate once per day
+autoload -Uz compinit
+if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
+  compinit
+else
+  compinit -C
+fi
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _files _correct _approximate
 zstyle ':completion:*' format '%F{blue}Completing %d%f'
