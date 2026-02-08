@@ -1,3 +1,7 @@
+if [[ -n "$SSH_CONNECTION" ]]; then
+  [[ "$TERM" == "xterm-ghostty" ]] && export TERM=xterm-256color
+fi
+
 # Cache brew prefix (only compute once per session)
 export HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
 
