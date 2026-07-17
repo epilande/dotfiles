@@ -1,4 +1,4 @@
-brew "asdf"
+brew "mise"
 brew "bat"
 brew "coreutils"
 brew "cliclick"

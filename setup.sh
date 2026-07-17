@@ -30,55 +30,14 @@ brew bundle
 echo "🔗 Creating symlinks..."
 stow --adopt --target=$HOME --restow */
 
-# Install asdf plugins and runtimes
-echo "🔧 Setting up asdf plugins and runtimes..."
-
-# Source asdf for current session
-. "/opt/homebrew/opt/asdf/libexec/asdf.sh"
-
-# Install asdf plugins if not already installed
-declare -a plugins=("golang" "nodejs" "python")
-
-for plugin in "${plugins[@]}"; do
-  if ! asdf plugin list | grep -q "^$plugin$"; then
-    echo "🔌 Installing asdf plugin: $plugin"
-    asdf plugin add "$plugin"
-  else
-    echo "✅ asdf plugin $plugin already installed"
-  fi
-done
-
-# Install latest versions and set global
-if current_golang=$(asdf current golang 2>/dev/null); then
-  echo "✅ golang already installed: ${current_golang}"
-else
-  echo "🐹 Installing latest golang..."
-  asdf install golang latest
-  asdf reshim golang
-  asdf global golang latest
-fi
-
-if current_nodejs=$(asdf current nodejs 2>/dev/null); then
-  echo "✅ nodejs already installed: ${current_nodejs}"
-else
-  echo "🟢 Installing latest nodejs..."
-  asdf install nodejs latest
-  asdf reshim nodejs
-  asdf global nodejs latest
-fi
-
-if current_python=$(asdf current python 2>/dev/null); then
-  echo "✅ python already installed: ${current_python}"
-else
-  echo "🐍 Installing latest python..."
-  asdf install python latest
-  asdf reshim python
-  asdf global python latest
-fi
+# Install runtimes from the global mise config (symlinked by stow above)
+echo "🔧 Installing runtimes via mise..."
+mise install
 
 # Enable corepack for yarn and pnpm
+# `mise activate` only works in interactive shells, so run through `mise exec`
 echo "📦 Enabling corepack..."
-"$(dirname "$(asdf which node)")/corepack" enable
+mise exec -- corepack enable
 
 # Setup tmux plugin manager
 echo "🖥️ Setting up tmux plugin manager..."

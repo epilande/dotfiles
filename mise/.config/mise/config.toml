@@ -1,0 +1,9 @@
+[tools]
+go = "latest"
+node = "26"
+python = "latest"
+rust = "latest"
+
+[settings]
+go_set_goroot = true
+go_set_gopath = true
