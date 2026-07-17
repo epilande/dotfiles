@@ -34,3 +34,14 @@ git:
       pager: delta --dark --paging=never
 os:
   edit: "$EDITOR {{filename}}"
+customCommands:
+  - key: "H"
+    context: "files"
+    description: "Review working tree in hunk"
+    command: "hunk diff"
+    output: terminal
+  - key: "H"
+    context: "commits"
+    description: "Review commit in hunk"
+    command: "hunk show {{.SelectedLocalCommit.Hash}}"
+    output: terminal
