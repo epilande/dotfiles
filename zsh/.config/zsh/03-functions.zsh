@@ -77,3 +77,153 @@ function gcbm {
     fi
     git checkout -b "$1" master
 }
+
+# Create a git worktree for a feature branch, carrying over local-only files
+function wt() {
+  if [ -z "$1" ]; then
+    echo "❌ Usage: wt <feature-name>"
+    return 1
+  fi
+
+  local feature_name="$1"
+  local current_dir=$(pwd)
+  local project_name=$(basename "$current_dir")
+  local parent_dir=$(dirname "$current_dir")
+  local worktrees_dir="$parent_dir/$project_name-worktrees"
+
+  mkdir -p "$worktrees_dir"
+
+  local worktree_path="$worktrees_dir/$feature_name"
+
+  echo "🌿 Creating worktree and branch: $feature_name"
+  if ! git worktree add -b "$feature_name" "$worktree_path"; then
+    echo "❌ Failed to create git worktree"
+    return 1
+  fi
+
+  # Copy untracked files to the new worktree
+  git ls-files --others --exclude-standard | while read -r file; do
+    mkdir -p "$worktree_path/$(dirname "$file")"
+    cp "$file" "$worktree_path/$file"
+  done
+
+  # Copy modified files (staged and unstaged) to the new worktree
+  git diff HEAD --name-only | while read -r file; do
+    mkdir -p "$worktree_path/$(dirname "$file")"
+    cp "$file" "$worktree_path/$file"
+  done
+
+  # Local files the loops above miss because they are gitignored (.env,
+  # .claude/settings.local.json, ...); copying tracked ones is a no-op
+  local files_to_copy=(
+    ".claude/"
+    "AGENTS.md"
+    "CLAUDE.md"
+    ".env"
+    "Configurations"
+  )
+
+  for item in "${files_to_copy[@]}"; do
+    if [ -d "$item" ]; then
+      cp -r "${item%/}" "$worktree_path/"
+      echo "📁 Copied directory: $item"
+    elif [ -f "$item" ]; then
+      cp "$item" "$worktree_path/"
+      echo "📄 Copied file: $item"
+    fi
+  done
+
+  if [ -n "$TMUX" ]; then
+    tmux new-window -n "$feature_name"
+    tmux send-keys -t "$feature_name" "cd '$worktree_path'" Enter
+    echo "🪟 Opened new tmux window: $feature_name"
+  else
+    echo "✅ Worktree created at: $worktree_path"
+    echo "💡 To switch to the new worktree, run: cd '$worktree_path'"
+  fi
+}
+
+# Remove the current worktree and its branch once the work is merged
+function wtr() {
+  local current_dir=$(pwd)
+
+  if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    echo "❌ Error: Not in a git repository"
+    return 1
+  fi
+
+  local current_branch=$(git branch --show-current)
+
+  if [ "$current_branch" = "main" ] || [ "$current_branch" = "master" ]; then
+    echo "🚫 Error: Cannot remove main/master branch worktree"
+    return 1
+  fi
+
+  if ! git diff --quiet || ! git diff --cached --quiet; then
+    echo "⚠️  Error: There are uncommitted changes. Please commit or stash them first."
+    echo "📝 Uncommitted files:"
+    git status --porcelain
+    return 1
+  fi
+
+  if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+    echo "⚠️  Error: There are untracked files. Please handle them first."
+    echo "📄 Untracked files:"
+    git ls-files --others --exclude-standard
+    return 1
+  fi
+
+  # In a worktree .git is a file pointing at the main repo, not a directory
+  if [ -d ".git" ]; then
+    echo "❌ Error: Current directory appears to be the main repository, not a worktree"
+    return 1
+  fi
+
+  local tmux_window=""
+  if [ -n "$TMUX" ]; then
+    tmux_window=$(tmux display-message -p '#W')
+  fi
+
+  # Main repo path per the wt() layout: <parent>/<project>-worktrees/<branch>
+  local main_repo="${current_dir%-worktrees/*}"
+
+  if ! cd "$main_repo"; then
+    echo "❌ Error: Failed to change to main repository: $main_repo"
+    return 1
+  fi
+
+  echo "🗑️ Removing worktree and branch: $current_branch"
+  if git worktree remove "$current_dir"; then
+    echo "✅ Successfully removed worktree: $current_dir"
+
+    local main_branch=""
+    if git show-ref --verify --quiet refs/heads/main; then
+      main_branch="main"
+    elif git show-ref --verify --quiet refs/heads/master; then
+      main_branch="master"
+    fi
+
+    # Only delete the branch once it is merged into main/master
+    if [ -n "$main_branch" ]; then
+      if git merge-base --is-ancestor "$current_branch" "$main_branch"; then
+        echo "🔀 Branch '$current_branch' is merged into '$main_branch', deleting branch"
+        git branch -d "$current_branch"
+      else
+        echo "⚠️ Branch '$current_branch' is NOT merged into '$main_branch', keeping branch"
+        echo "💡 To manually delete: git branch -D '$current_branch'"
+      fi
+    else
+      echo "⚠️  No main/master branch found, keeping branch '$current_branch'"
+      echo "💡 To manually delete: git branch -D '$current_branch'"
+    fi
+
+    if [ -n "$TMUX" ]; then
+      echo "🪟 Closing tmux window: $tmux_window"
+      tmux kill-window
+    fi
+  else
+    echo "❌ Failed to remove worktree"
+    cd "$current_dir"
+    return 1
+  fi
+}
