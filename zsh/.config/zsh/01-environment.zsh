@@ -12,7 +12,8 @@ export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
 export XDG_CONFIG_HOME="$HOME/.config"
 
-export EDITOR='env NVIM_APPNAME=nvim-lazyvim nvim'
+export NVIM_APPNAME="nvim-lazyvim"
+export EDITOR="nvim"
 
 # FZF
 export FZF_DEFAULT_COMMAND="fd --type f --hidden"
