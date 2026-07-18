@@ -43,6 +43,19 @@ config.keys = {
 		mods = "CMD",
 		action = wezterm.action.SendString("\x01x"),
 	},
+	{
+		key = "w",
+		mods = "CMD",
+		action = wezterm.action_callback(function(window, pane)
+			local is_tmux = pane:get_user_vars().WEZTERM_IN_TMUX == "1"
+
+			if is_tmux then
+				window:perform_action(wezterm.action.SendString("\x01x"), pane)
+			else
+				window:perform_action(wezterm.action.CloseCurrentPane({ confirm = true }), pane)
+			end
+		end),
+	},
 	{ key = "1", mods = "CMD", action = wezterm.action({ SendString = "\x011" }) },
 	{ key = "2", mods = "CMD", action = wezterm.action({ SendString = "\x012" }) },
 	{ key = "3", mods = "CMD", action = wezterm.action({ SendString = "\x013" }) },
