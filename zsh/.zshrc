@@ -25,4 +25,13 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command "ps -u $USER -o pidcpu,tty,cputime,cmd"
 
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Mason LSP servers (Neovim)
+export PATH="$HOME/.local/share/nvim-lazyvim/mason/bin:$PATH"
+
 set -o ignoreeof
+
+# bun completions
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
