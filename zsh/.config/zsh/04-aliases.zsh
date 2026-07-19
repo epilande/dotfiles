@@ -1,3 +1,7 @@
+# Agent shells (Claude Code etc.) assume coreutils semantics; aliases like
+# ls->eza silently break their scripts. Humans only beyond this point.
+[[ -n "$CLAUDECODE" || -n "$AI_AGENT" ]] && return 0
+
 alias aliases='bat ~/.config/zsh/04-aliases.zsh --pager never 2>/dev/null'
 alias all-functions='functions | bat --language zsh'
 
