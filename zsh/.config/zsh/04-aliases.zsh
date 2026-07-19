@@ -28,3 +28,5 @@ alias LunarVim="lvim"
 alias pt="DEBUG_PRINT_LIMIT=50000 SKIP_JEST_RETRY=1 pnpm test"
 
 alias y="yazi"
+
+alias cc="claude --dangerously-skip-permissions --teammate-mode in-process"
