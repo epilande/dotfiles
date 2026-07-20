@@ -10,6 +10,12 @@ eval "$(mise activate zsh)"
 
 export PATH=$HOME/bin:/usr/local/bin:$HOME/.local/bin:$PATH
 
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
+
+# Mason LSP servers (Neovim)
+export PATH="$HOME/.local/share/nvim-lazyvim/mason/bin:$PATH"
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export NVIM_APPNAME="nvim-lazyvim"
