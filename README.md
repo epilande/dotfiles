@@ -13,7 +13,7 @@
 - Terminal: [Ghostty](https://ghostty.org/) + [Tmux](https://github.com/tmux/tmux)
 - Shell: [Zsh](https://www.zsh.org/) + [Starship](https://starship.rs/)
 - Editor: [Neovim](https://neovim.io/) based on [LazyVim](https://www.lazyvim.org/)
-- Version Manager: [asdf](https://asdf-vm.com/)
+- Version Manager: [mise](https://mise.jdx.dev/)
 - File Manager: [Yazi](https://github.com/sxyazi/yazi)
 - Theme: [Catppuccin](https://catppuccin.com/)
 
@@ -38,7 +38,7 @@ chmod +x ./setup.sh && ./setup.sh
 
 - Install Homebrew and packages from Brewfile
 - Create symlinks for all configurations using stow
-- Set up runtime environments (Node.js, Python, Go) via asdf
+- Set up runtime environments (Node.js, Python, Go, Rust) via mise
 - Install and configure Tmux with plugins
 - Set up package managers (yarn, pnpm) via corepack
 
@@ -88,7 +88,7 @@ brew bundle check --verbose
 
 ### Generate Brewfile
 
-Generate a Brewfile from the list of currently installed Homebrew pakcages, casks, and taps:
+Generate a Brewfile from the list of currently installed Homebrew packages, casks, and taps:
 
 ```bash
 brew bundle dump
@@ -139,10 +139,13 @@ Tmux is configured with several custom key bindings to enhance productivity and 
 | `prefix + -`       | Split window horizontally                  |
 | `prefix + h/j/k/l` | Navigate panes                             |
 | `prefix + C-h/C-l` | Switch to previous/next window             |
+| `prefix + T`       | Set the current pane title                 |
+| `prefix + t`       | Toggle pane titles on/off (all windows)    |
 | `M-t` (⌥ + t)      | Open Tmux Toolbox menu                     |
 | `M-g` (⌥ + g)      | Toggle Lazygit in a popup window           |
+| `M-h` (⌥ + h)      | Toggle Hunk diff viewer in a popup window  |
 | `M-n` (⌥ + n)      | Toggle "notes" session in a popup window   |
-| `M-f` (⌥ + f)      | Toggle Yazi in a popup window              |
+| `M-c` (⌥ + c)      | Open ccmux in a popup window               |
 | `prefix + C-f`     | Fuzzy find and switch between tmux windows |
 | `prefix + b`       | Switch to the last active session          |
 
@@ -152,9 +155,13 @@ Tmux is configured with several custom key bindings to enhance productivity and 
 
 2. **Lazygit Integration** (`M-g`): Instantly access git operations in a popup window from anywhere within tmux. This allows you to manage your git repositories without leaving your current session, whether you're in Neovim, browsing files, or running any other process. The popup can be easily toggled, maintaining your workflow continuity.
 
-3. **Notes Session** (`M-n`): Toggle a dedicated "notes" tmux session accessible from anywhere. If you're in another session, this will open your notes in a popup window, allowing quick access to your notes without disrupting your current work context.
+3. **Hunk Diff Viewer** (`M-h`): Review the working tree diff in [Hunk](https://hunk.dev/) from a popup window. Lazygit is also configured with an `H` custom command to open the working tree or a selected commit in Hunk.
 
-4. **Fuzzy Find Windows** (`prefix + C-f`): Open a fuzzy finder to quickly switch between tmux windows using a custom `tmw` script.
+4. **Notes Session** (`M-n`): Toggle a dedicated "notes" tmux session accessible from anywhere. If you're in another session, this will open your notes in a popup window, allowing quick access to your notes without disrupting your current work context.
+
+5. **ccmux** (`M-c` or `prefix + C-p`): Open [ccmux](https://github.com/epilande/ccmux) in a popup to monitor and switch between AI coding agent sessions.
+
+6. **Fuzzy Find Windows** (`prefix + C-f`): Open a fuzzy finder to quickly switch between tmux windows using a custom `tmw` script.
 
 For a complete list of key bindings, refer to [`tmux/.config/tmux/keymaps.conf`](./tmux/.config/tmux/keymaps.conf).
 
