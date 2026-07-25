@@ -33,6 +33,13 @@ return {
       inlay_hints = {
         enabled = false,
       },
+      -- LazyVim merges these into every server's capabilities. Disabling
+      -- dynamic file-watcher registration cuts LSP churn on large trees.
+      capabilities = {
+        workspace = {
+          didChangeWatchedFiles = { dynamicRegistration = false },
+        },
+      },
     },
   },
   {

@@ -1,41 +1,73 @@
+-- PERF: cache the LSP/formatter/linter status string per buffer so the
+-- lualine component does no work on statusline redraw. Entries are recomputed
+-- only when the attached clients or filetype change (see autocmds below).
+local lsp_status_cache = {}
+
+local function compute_lsp_status(bufnr)
+  local buf_clients = vim.lsp.get_clients({ bufnr = bufnr })
+  if #buf_clients == 0 then
+    return "LSP Inactive"
+  end
+
+  local filetype = vim.bo[bufnr].filetype
+  local formatters = require("conform").list_formatters(bufnr)
+  local linters = require("lint").linters_by_ft[filetype] or {}
+
+  local buf_client_names = {}
+  local buf_formatters = {}
+  local buf_linters = {}
+
+  -- add client
+  for _, client in pairs(buf_clients) do
+    if client.name ~= "null-ls" and client.name ~= "copilot" then
+      table.insert(buf_client_names, client.name)
+    end
+  end
+
+  -- add formatter
+  for _, formatter in pairs(formatters) do
+    table.insert(buf_formatters, formatter.name)
+  end
+
+  -- add linter
+  for _, linter in pairs(linters) do
+    table.insert(buf_linters, linter)
+  end
+
+  vim.list_extend(buf_client_names, buf_formatters)
+  vim.list_extend(buf_client_names, buf_linters)
+
+  local unique_client_names = table.concat(buf_client_names, ", ")
+  local language_servers = string.format("[%s]", unique_client_names)
+
+  return language_servers
+end
+
+-- Recompute the cached status only when clients or the filetype change...
+vim.api.nvim_create_autocmd({ "LspAttach", "LspDetach", "BufEnter", "FileType" }, {
+  group = vim.api.nvim_create_augroup("lualine_lsp_status", { clear = true }),
+  callback = function(args)
+    lsp_status_cache[args.buf] = compute_lsp_status(args.buf)
+  end,
+})
+
+-- ...and drop the entry on buffer delete to avoid leaking cache keys.
+vim.api.nvim_create_autocmd("BufDelete", {
+  group = "lualine_lsp_status",
+  callback = function(args)
+    lsp_status_cache[args.buf] = nil
+  end,
+})
+
 local lsp = {
   function()
-    local buf_clients = vim.lsp.get_active_clients({ bufnr = 0 })
-    if #buf_clients == 0 then
-      return "LSP Inactive"
+    local bufnr = vim.api.nvim_get_current_buf()
+    local status = lsp_status_cache[bufnr]
+    if status == nil then
+      status = compute_lsp_status(bufnr)
+      lsp_status_cache[bufnr] = status
     end
-
-    local formatters = require("conform").list_formatters(0)
-    local linters = require("lint").linters_by_ft[vim.bo.filetype] or {}
-
-    local buf_client_names = {}
-    local buf_formatters = {}
-    local buf_linters = {}
-
-    -- add client
-    for _, client in pairs(buf_clients) do
-      if client.name ~= "null-ls" and client.name ~= "copilot" then
-        table.insert(buf_client_names, client.name)
-      end
-    end
-
-    -- add formatter
-    for _, formatter in pairs(formatters) do
-      table.insert(buf_formatters, formatter.name)
-    end
-
-    -- add linter
-    for _, linter in pairs(linters) do
-      table.insert(buf_linters, linter)
-    end
-
-    vim.list_extend(buf_client_names, buf_formatters)
-    vim.list_extend(buf_client_names, buf_linters)
-
-    local unique_client_names = table.concat(buf_client_names, ", ")
-    local language_servers = string.format("[%s]", unique_client_names)
-
-    return language_servers
+    return status
   end,
   color = { gui = "bold" },
 }

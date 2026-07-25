@@ -59,6 +59,8 @@ map("n", "<leader>ck", function()
   vim.api.nvim_win_set_cursor(0, { cursor_pos[1], cursor_pos[2] })
 end, { desc = "Insert debug log 🚀" })
 
+map("n", "<leader>cL", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
+
 map("i", "jk", "<Esc>")
 
 -- Remap alt backspace to ctrl-w to delete word

@@ -6,9 +6,40 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       servers = {
+        vtsls = {
+          settings = {
+            -- disable auto-inserting parens/args on completion (perf)
+            complete_function_calls = false,
+            typescript = {
+              tsserver = {
+                -- give tsserver more headroom on large projects
+                maxTsServerMemory = 8192,
+              },
+              preferences = {
+                -- stop scanning package.json for auto-import candidates (perf)
+                includePackageJsonAutoImports = "off",
+              },
+              suggest = {
+                completeFunctionCalls = false,
+              },
+            },
+            -- LazyVim's typescript extra copies typescript settings to javascript
+            -- in its opts function, but merge order with this table is not
+            -- guaranteed, so set the javascript variants explicitly too.
+            javascript = {
+              preferences = {
+                includePackageJsonAutoImports = "off",
+              },
+              suggest = {
+                completeFunctionCalls = false,
+              },
+            },
+          },
+        },
         eslint = {
           settings = {
             workingDirectory = { mode = "location" },
+            run = "onSave",
           },
           root_dir = function(startpath)
             return vim.fs.dirname(vim.fs.find(".git", { path = startpath, upward = true })[1])
