@@ -45,8 +45,8 @@ return {
       },
 
       fuzzy = {
-        -- Disabling this matches the behavior of fzf
-        use_typo_resistance = false,
+        -- No typo tolerance, matches the behavior of fzf
+        max_typos = 0,
       },
 
       keymap = {
