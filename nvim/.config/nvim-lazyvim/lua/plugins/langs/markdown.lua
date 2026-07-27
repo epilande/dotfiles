@@ -25,7 +25,6 @@ return {
       latex = { enabled = false },
       render_modes = { "n", "c", "i", "v" },
       checkbox = {
-        position = "inline",
         unchecked = {
           icon = "󰄱",
         },

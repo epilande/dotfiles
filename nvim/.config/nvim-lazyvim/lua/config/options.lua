@@ -50,3 +50,9 @@ if vim.env.SSH_CONNECTION or is_remote_tmux() then
 else
   vim.g.clipboard = local_clipboard
 end
+
+-- Disable unused language providers (no remote plugins use them)
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0

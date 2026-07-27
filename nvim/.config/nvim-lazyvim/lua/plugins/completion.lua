@@ -4,20 +4,7 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      snippets = {
-        expand = function(snippet)
-          require("luasnip").lsp_expand(snippet)
-        end,
-        active = function(filter)
-          if filter and filter.direction then
-            return require("luasnip").jumpable(filter.direction)
-          end
-          return require("luasnip").in_snippet()
-        end,
-        jump = function(direction)
-          require("luasnip").jump(direction)
-        end,
-      },
+      snippets = { preset = "luasnip" },
       completion = {
         menu = {
           draw = {
@@ -40,10 +27,6 @@ return {
 
       signature = { window = { border = "single" } },
 
-      sources = {
-        default = { "lsp", "path", "luasnip", "buffer" },
-      },
-
       fuzzy = {
         -- No typo tolerance, matches the behavior of fzf
         max_typos = 0,
@@ -58,7 +41,7 @@ return {
         ["<C-d>"] = { "scroll_documentation_down", "fallback" },
         ["<C-s>"] = {
           function(cmp)
-            cmp.show({ providers = { "luasnip" } })
+            cmp.show({ providers = { "snippets" } })
           end,
         },
       },
