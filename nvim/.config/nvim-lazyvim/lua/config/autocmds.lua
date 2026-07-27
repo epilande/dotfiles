@@ -5,13 +5,13 @@
 vim.api.nvim_create_autocmd("BufRead", {
   desc = "Disable diagnostics in node_modules",
   pattern = "*/node_modules/*",
-  command = "lua vim.diagnostic.disable(0)",
+  command = "lua vim.diagnostic.enable(false, { bufnr = 0 })",
 })
 
 vim.api.nvim_create_autocmd("BufRead", {
   desc = "Disable diagnostic for .env files",
   pattern = "*.env",
-  command = "lua vim.diagnostic.disable(0)",
+  command = "lua vim.diagnostic.enable(false, { bufnr = 0 })",
 })
 
 vim.api.nvim_create_autocmd("BufWritePost", {

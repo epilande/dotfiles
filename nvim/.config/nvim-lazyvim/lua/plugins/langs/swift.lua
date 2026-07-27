@@ -14,12 +14,19 @@ return {
       servers = {
         sourcekit = {
           filetypes = { "swift", "objective-c", "objective-cpp" },
-          root_dir = function(filepath)
-            local util = require("lspconfig.util")
-            return util.root_pattern("buildServer.json")(filepath)
-              or util.root_pattern("*.xcodeproj", "*.xcworkspace")(filepath)
-              or util.root_pattern("Package.swift")(filepath)
-              or vim.fs.dirname(vim.fs.find(".git", { path = filepath, upward = true })[1])
+          -- Native vim.lsp.config signature: (bufnr, on_dir callback)
+          root_dir = function(bufnr, on_dir)
+            local filepath = vim.api.nvim_buf_get_name(bufnr)
+            local found = vim.fs.find(function(name)
+              return name == "buildServer.json"
+                or name == "Package.swift"
+                or name == ".git"
+                or name:match("%.xcodeproj$")
+                or name:match("%.xcworkspace$")
+            end, { path = filepath, upward = true })[1]
+            if found then
+              on_dir(vim.fs.dirname(found))
+            end
           end,
         },
       },
