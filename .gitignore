@@ -5,3 +5,6 @@ zsh/.config/zsh/*local*.zsh
 tmux/.config/tmux/*local*.conf
 nvim/.config/nvim-lazyvim/lua/plugins/*local*.lua
 yazi/.config/yazi/flavors
+
+# yazi keymap is machine-local (work bookmarks); see keymap.toml.example
+yazi/.config/yazi/keymap.toml

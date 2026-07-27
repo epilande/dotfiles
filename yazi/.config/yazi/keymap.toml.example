@@ -20,7 +20,7 @@ prepend_keymap = [
   { on = [
     "g",
     ".",
-  ], run = "cd ~/.dotfiles", desc = "Go to dotfiles" },
+  ], run = "cd ~/Code/epilande/dotfiles", desc = "Go to dotfiles" },
   { on = [
     "g",
     "R",
