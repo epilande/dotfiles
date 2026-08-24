@@ -2,6 +2,7 @@
 lazygit/.config/lazygit/state.yml
 karabiner/.config/karabiner/automatic_backups/*
 zsh/.config/zsh/*local*.zsh
+mise/.config/mise/conf.d/
 tmux/.config/tmux/*local*.conf
 nvim/.config/nvim-lazyvim/lua/plugins/*local*.lua
 yazi/.config/yazi/flavors

@@ -47,9 +47,10 @@ end
 
 if vim.env.SSH_CONNECTION or is_remote_tmux() then
   vim.g.clipboard = osc52_clipboard
-else
+elseif vim.fn.has("mac") == 1 then
   vim.g.clipboard = local_clipboard
 end
+-- On Linux, leave vim.g.clipboard unset so Neovim auto-detects wl-copy/xclip
 
 -- Disable unused language providers (no remote plugins use them)
 vim.g.loaded_node_provider = 0

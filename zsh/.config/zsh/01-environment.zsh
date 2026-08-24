@@ -2,9 +2,6 @@ if [[ -n "$SSH_CONNECTION" ]]; then
   [[ "$TERM" == "xterm-ghostty" ]] && export TERM=xterm-256color
 fi
 
-# Cache brew prefix (only compute once per session)
-export HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
-
 # Load mise
 eval "$(mise activate zsh)"
 
@@ -35,7 +32,7 @@ export FZF_CTRL_T_OPTS="
 export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
   --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | $CLIP_COPY)+abort'
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
 

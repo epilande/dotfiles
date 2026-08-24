@@ -31,10 +31,12 @@ cd ~/.dotfiles
 Run the automated setup script to install and configure everything:
 
 ```bash
-chmod +x ./setup.sh && ./setup.sh
+chmod +x ./setup*.sh && ./setup.sh
 ```
 
-#### This script will:
+`setup.sh` detects the OS and dispatches to `setup-macos.sh` or `setup-linux.sh`.
+
+#### On macOS this will:
 
 - Install Homebrew and packages from Brewfile
 - Create symlinks for all configurations using stow
@@ -42,11 +44,31 @@ chmod +x ./setup.sh && ./setup.sh
 - Install and configure Tmux with plugins
 - Set up package managers (yarn, pnpm) via corepack
 
+#### On Linux (Arch-based, e.g. Omarchy) this will:
+
+- Install packages via pacman (plus `zsh-vi-mode` and `forgit` from the AUR via yay)
+- Back up any pre-existing configs (e.g. distro defaults) to `~/.config/dotfiles-backup-<timestamp>/`
+- Create symlinks using stow, skipping the macOS-only `aerospace` and `karabiner` packages
+- Set up mise runtimes, corepack, and Tmux plugins
+
+Machine-specific mise tools (e.g. Omarchy's `claude`/`codex`/`gh`) can live in
+`~/.config/mise/conf.d/*.toml`, which is gitignored and merged by mise alongside
+the main config.
+
+#### Platform notes
+
+- `zsh/.config/zsh/00-platform.zsh` detects the OS and exports `$CLIP_COPY` /
+  `$CLIP_PASTE` (pbcopy/pbpaste on macOS, wl-copy/wl-paste or xclip on Linux),
+  which the fzf, tmux, and yazi configs use for clipboard integration.
+- Ghostty keybindings use `cmd`, which maps to ⌘ on macOS and Super on Linux.
+- On Omarchy, Ghostty follows the system theme via an optional `config-file`
+  include; on macOS it falls back to Catppuccin Mocha.
+
 > [!NOTE]
 > If you run the automated setup you're pretty much done here.
 > If you prefer to install components individually, continue reading.
 
-### MacOS System Preferences
+### macOS System Preferences
 
 Configure sensible MacOS defaults:
 
