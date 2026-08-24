@@ -36,6 +36,11 @@ mise install
 
 # Enable corepack for yarn and pnpm
 # `mise activate` only works in interactive shells, so run through `mise exec`
+# Node 25+ no longer bundles corepack, so install it if missing
+if ! mise exec -- sh -c 'command -v corepack' &>/dev/null; then
+  echo "📦 Installing corepack (not bundled with Node 25+)..."
+  mise exec -- npm install -g corepack
+fi
 echo "📦 Enabling corepack..."
 mise exec -- corepack enable
 
