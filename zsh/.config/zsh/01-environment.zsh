@@ -46,3 +46,8 @@ export FZF_TMUX_OPTS="-p90%,70%"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+
+# SSH agent (systemd user unit: ssh-agent.socket)
+if [[ -z "$SSH_AUTH_SOCK" && -S "${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket" ]]; then
+  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
+fi
