@@ -30,6 +30,18 @@ brew bundle
 echo "🔗 Creating symlinks..."
 stow --adopt --target=$HOME --restow */
 
+# Cursor CLI rewrites this file with per-machine state, so merge the status
+# line setting instead of symlinking the whole config.
+echo "🎨 Configuring Cursor CLI status line..."
+cursor_cfg_dir="${CURSOR_CONFIG_DIR:-${XDG_CONFIG_HOME:+$XDG_CONFIG_HOME/cursor}}"
+cursor_cfg_dir="${cursor_cfg_dir:-$HOME/.cursor}"
+cursor_cfg="$cursor_cfg_dir/cli-config.json"
+mkdir -p "$cursor_cfg_dir"
+[ -f "$cursor_cfg" ] || echo '{}' >"$cursor_cfg"
+cursor_cfg_tmp=$(mktemp)
+jq '.statusLine = {type: "command", command: "~/.cursor/statusline.sh", padding: 0, timeoutMs: 2000}' \
+  "$cursor_cfg" >"$cursor_cfg_tmp" && mv "$cursor_cfg_tmp" "$cursor_cfg"
+
 # Install runtimes from the global mise config (symlinked by stow above)
 echo "🔧 Installing runtimes via mise..."
 mise install
