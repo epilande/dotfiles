@@ -85,8 +85,8 @@ the main config.
   `$CLIP_PASTE` (pbcopy/pbpaste on macOS, wl-copy/wl-paste or xclip on Linux),
   which the fzf, tmux, and yazi configs use for clipboard integration.
 - Ghostty keybindings use `cmd`, which maps to ⌘ on macOS and Super on Linux.
-- On Omarchy, Ghostty follows the system theme via an optional `config-file`
-  include; on macOS it falls back to Catppuccin Mocha.
+- The tracked Ghostty config uses macOS defaults. Linux setup writes font and
+  Omarchy theme overrides to a gitignored `~/.config/ghostty/local.conf`.
 
 > [!NOTE]
 > If you run the automated setup you're pretty much done here.

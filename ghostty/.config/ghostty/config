@@ -1,8 +1,5 @@
 # Theme
 theme = Catppuccin Mocha
-# On Omarchy/Linux, follow the system theme when present (the "?" makes it
-# optional, so this line is a no-op on macOS)
-config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
 
 # Window Settings
 macos-titlebar-style = hidden
@@ -15,10 +12,9 @@ window-colorspace = display-p3
 
 # Fonts 
 font-family = DankMono Nerd Font Mono
-font-family = JetBrainsMono Nerd Font Mono
 font-family-bold = DankMono Nerd Font Mono Bold
 font-family-italic = DankMono Nerd Font Mono Italic
-font-size = 10
+font-size = 16
 adjust-cell-height = 10%
 
 # Mouse
@@ -49,3 +45,6 @@ keybind = cmd+digit9=text:\x019
 
 
 keybind = shift+enter=text:\n
+
+# Optional machine-specific overrides (gitignored)
+config-file = ?local.conf

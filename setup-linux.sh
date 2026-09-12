@@ -70,6 +70,20 @@ done
 echo "🔗 Creating symlinks..."
 stow --restow --target="$HOME" "${STOW_PACKAGES[@]}"
 
+# Keep Linux-specific Ghostty settings out of the macOS-first tracked config.
+ghostty_local="$HOME/.config/ghostty/local.conf"
+if [[ ! -f "$ghostty_local" ]]; then
+  cat >"$ghostty_local" <<'EOF'
+# Omarchy/Linux overrides
+config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
+font-family = ""
+font-family = JetBrainsMono Nerd Font Mono
+font-family-bold = ""
+font-family-italic = ""
+font-size = 10
+EOF
+fi
+
 # Cursor CLI rewrites this file with per-machine state, so merge the status
 # line setting instead of symlinking the whole config.
 echo "🎨 Configuring Cursor CLI status line..."
