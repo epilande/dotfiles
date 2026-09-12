@@ -44,10 +44,19 @@ else
   install_from_url https://claude.ai/install.sh
 fi
 
-# Codex: npm is OpenAI's documented install and what `codex update` drives.
-# It lands in mise's node prefix, so a node version bump loses it -- the check
-# below reinstalls on the next setup run (same as the corepack handling).
-if mise exec -- npm ls -g --depth=0 @openai/codex &>/dev/null; then
+# Codex: on macOS the Brewfile installs the codex cask, which survives node
+# version bumps and updates with brew. On Linux npm is OpenAI's documented
+# install and what `codex update` drives; it lands in mise's node prefix, so a
+# node version bump loses it -- the npm check below reinstalls on the next setup
+# run (same as the corepack handling).
+#
+# Gate the macOS path on Homebrew rather than `command -v codex`: on Omarchy a
+# stale mise shim can still resolve after the wrapper above is moved aside, so a
+# `command -v` gate would skip the install and leave codex broken -- the exact
+# failure this script exists to fix.
+if command -v brew &>/dev/null && brew list --cask codex &>/dev/null; then
+  echo "✅ Codex already installed (Homebrew)"
+elif mise exec -- npm ls -g --depth=0 @openai/codex &>/dev/null; then
   echo "✅ Codex already installed"
 else
   echo "📦 Installing Codex..."

@@ -76,8 +76,10 @@ symlinks in from this repo, so merely running `claude` dirties the working tree
 `~/.local/bin/dotfiles-wrapper-backup.*` directories and removes their mise entries,
 and is idempotent if an Omarchy update ever puts them back.
 
-`codex` installs into mise's node prefix, so a node version bump loses it;
-re-running setup reinstalls it, the same way corepack is handled.
+On macOS `codex` comes from the Homebrew cask in the `Brewfile`, and setup skips
+the npm install whenever that cask is present. On Linux it still installs into
+mise's node prefix, so a node version bump loses it; re-running setup reinstalls
+it, the same way corepack is handled.
 
 Cursor Agent has no mise backend, so it was never wrapped; its installer
 symlinks both `agent` (primary) and `cursor-agent` (legacy) into `~/.local/bin`.
@@ -96,8 +98,9 @@ CLI setup only replaces the three wrappers named above.
 #### Platform notes
 
 Run `bash setup-tests.sh` for isolated setup regression checks (requires Bash,
-Git, jq, and GNU Stow). These use temporary homes and stub installers; a real
-macOS setup and repeat-run smoke test is still required before release.
+Git, jq, and GNU Stow; runs on macOS and Linux, and Bash 3.2 is enough). These
+use temporary homes and stub installers; a real macOS setup and repeat-run
+smoke test is still required before release.
 
 - `zsh/.config/zsh/00-platform.zsh` detects the OS and exports `$CLIP_COPY`
   (pbcopy on macOS, wl-copy or xclip on Linux), which the fzf and yazi configs

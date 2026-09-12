@@ -57,13 +57,16 @@ BACKUP_DIR="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 package_targets() {
   (
     cd "$1" || exit 1
-    find . -mindepth 1 -maxdepth 1 ! -name .config ! -name .cursor -printf '%P\n'
+    # BSD find (macOS, where the test suite also runs) has no -printf, so strip
+    # the leading './' with sed instead.
+    find . -mindepth 1 -maxdepth 1 ! -name .config ! -name .cursor | sed 's#^\./##'
     # Only the managed status line may be moved; preserve Cursor auth/state.
     if [[ -f .cursor/statusline.sh ]]; then
       printf '%s\n' '.cursor/statusline.sh'
     fi
     if [[ -d .config ]]; then
-      find .config -mindepth 1 -maxdepth 1 -printf '.config/%P\n'
+      # Already prints '.config/<name>'.
+      find .config -mindepth 1 -maxdepth 1
     fi
   )
 }
