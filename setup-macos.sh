@@ -56,6 +56,9 @@ fi
 echo "📦 Enabling corepack..."
 mise exec -- corepack enable
 
+# Install the AI coding CLIs with their vendor installers
+"$(dirname "$0")/setup-ai-clis.sh"
+
 # Setup tmux plugin manager
 echo "🖥️ Setting up tmux plugin manager..."
 if [ ! -d ~/.tmux/plugins/tpm ]; then

@@ -43,6 +43,7 @@ chmod +x ./setup*.sh && ./setup.sh
 - Set up runtime environments (Node.js, Python, Go, Rust) via mise
 - Install and configure Tmux with plugins
 - Set up package managers (yarn, pnpm) via corepack
+- Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
 
 #### On Linux (Arch-based, e.g. Omarchy) this will:
 
@@ -50,8 +51,31 @@ chmod +x ./setup*.sh && ./setup.sh
 - Back up any pre-existing configs (e.g. distro defaults) to `~/.config/dotfiles-backup-<timestamp>/`
 - Create symlinks using stow, skipping the macOS-only `aerospace` and `karabiner` packages
 - Set up mise runtimes, corepack, and Tmux plugins
+- Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
 
-Machine-specific mise tools (e.g. Omarchy's `claude`/`codex`/`gh`) can live in
+#### AI coding CLIs
+
+`setup-ai-clis.sh`, run by both setup scripts, installs `claude`, `codex`,
+`opencode`, and Cursor Agent with their **vendor** installers rather than
+through mise, so each CLI's own updater works: `claude update`, `codex update`,
+`opencode upgrade`, `agent update`.
+
+On Omarchy this deliberately replaces the preinstalled mise wrappers in
+`~/.local/bin`. Those wrappers run `mise use -g <tool>` on every invocation,
+which writes the tool into `~/.config/mise/config.toml` -- the file stow
+symlinks in from this repo, so merely running `claude` dirties the working tree
+-- and leaves each CLI's updater with nothing to drive (`codex doctor` reports
+`install method: other`). The script strips the wrappers and the mise entries,
+and is idempotent if an Omarchy update ever puts them back.
+
+`codex` installs into mise's node prefix, so a node version bump loses it;
+re-running setup reinstalls it, the same way corepack is handled.
+
+Cursor Agent has no mise backend, so it was never wrapped; its installer
+symlinks both `agent` (primary) and `cursor-agent` (legacy) into `~/.local/bin`.
+Headless use (the `cursor` skills) needs `CURSOR_API_KEY` set.
+
+Other machine-specific mise tools (e.g. Omarchy's `gh`) can live in
 `~/.config/mise/conf.d/*.toml`, which is gitignored and merged by mise alongside
 the main config.
 
