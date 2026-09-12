@@ -41,7 +41,8 @@ if [[ ${#aur_missing[@]} -gt 0 ]]; then
     echo "📦 Installing AUR packages: ${aur_missing[*]}"
     yay -S --needed --noconfirm "${aur_missing[@]}"
   else
-    echo "⚠️ yay not found; install AUR packages manually: ${aur_missing[*]}"
+    echo "❌ Install yay or install these AUR packages before rerunning setup: ${aur_missing[*]}" >&2
+    exit 1
   fi
 else
   echo "✅ All AUR packages already installed"
@@ -56,7 +57,11 @@ BACKUP_DIR="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 package_targets() {
   (
     cd "$1" || exit 1
-    find . -mindepth 1 -maxdepth 1 ! -name .config -printf '%P\n'
+    find . -mindepth 1 -maxdepth 1 ! -name .config ! -name .cursor -printf '%P\n'
+    # Only the managed status line may be moved; preserve Cursor auth/state.
+    if [[ -f .cursor/statusline.sh ]]; then
+      printf '%s\n' '.cursor/statusline.sh'
+    fi
     if [[ -d .config ]]; then
       find .config -mindepth 1 -maxdepth 1 -printf '.config/%P\n'
     fi
@@ -64,8 +69,6 @@ package_targets() {
 }
 for pkg in "${STOW_PACKAGES[@]}"; do
   while IFS= read -r rel; do
-    # Cursor CLI and other tools keep live auth/state in ~/.cursor
-    [[ "$rel" == ".cursor" ]] && continue
     target="$HOME/$rel"
     if [[ -e "$target" && ! -L "$target" ]]; then
       echo "🗃️ Backing up $target -> $BACKUP_DIR/$rel"

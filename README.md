@@ -44,7 +44,7 @@ Run the automated setup script to install and configure everything:
 - Install and configure Tmux with plugins
 - Set up package managers (yarn, pnpm) via corepack
 - Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
-- Configure the Cursor CLI status line in `~/.cursor/cli-config.json`
+- Configure the Cursor CLI status line in `~/.config/cursor/cli-config.json` (honoring `CURSOR_CONFIG_DIR` and `XDG_CONFIG_HOME` overrides)
 
 #### On Linux (Arch-based, e.g. Omarchy) this will:
 
@@ -54,7 +54,11 @@ Run the automated setup script to install and configure everything:
 - Write Linux/Omarchy Ghostty overrides to `~/.config/ghostty/local.conf`
 - Set up mise runtimes, corepack, and Tmux plugins
 - Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
-- Configure the Cursor CLI status line in `~/.cursor/cli-config.json`
+- Configure the Cursor CLI status line in `~/.config/cursor/cli-config.json` (honoring `CURSOR_CONFIG_DIR` and `XDG_CONFIG_HOME` overrides)
+
+Linux setup requires `yay` unless `zsh-vi-mode` and `forgit` are already
+installed. If either plugin is missing and `yay` is unavailable, setup stops
+before moving configs; install the plugins manually or install `yay`, then rerun.
 
 #### AI coding CLIs
 
@@ -68,7 +72,8 @@ On Omarchy this deliberately replaces the preinstalled mise wrappers in
 which writes the tool into `~/.config/mise/config.toml` -- the file stow
 symlinks in from this repo, so merely running `claude` dirties the working tree
 -- and leaves each CLI's updater with nothing to drive (`codex doctor` reports
-`install method: other`). The script strips the wrappers and the mise entries,
+`install method: other`). The script backs up recognized wrappers to unique
+`~/.local/bin/dotfiles-wrapper-backup.*` directories and removes their mise entries,
 and is idempotent if an Omarchy update ever puts them back.
 
 `codex` installs into mise's node prefix, so a node version bump loses it;
@@ -82,7 +87,17 @@ Other machine-specific mise tools (e.g. Omarchy's `gh`) can live in
 `~/.config/mise/conf.d/*.toml`, which is gitignored and merged by mise alongside
 the main config.
 
+This does not disable Omarchy's wrappers: its `gh` launcher still runs
+`mise use -g gh` on every invocation and writes to the tracked main config even
+when `gh` is defined in `conf.d`. To keep the checkout clean, invoke an installed
+`gh` binary directly or replace that launcher with a non-mutating one. The AI
+CLI setup only replaces the three wrappers named above.
+
 #### Platform notes
+
+Run `bash setup-tests.sh` for isolated setup regression checks (requires Bash,
+Git, jq, and GNU Stow). These use temporary homes and stub installers; a real
+macOS setup and repeat-run smoke test is still required before release.
 
 - `zsh/.config/zsh/00-platform.zsh` detects the OS and exports `$CLIP_COPY`
   (pbcopy on macOS, wl-copy or xclip on Linux), which the fzf and yazi configs

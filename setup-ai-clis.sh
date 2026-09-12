@@ -11,18 +11,27 @@
 # Install them the vendor way instead, so `claude update`, `codex update`, and
 # `opencode upgrade` all work.
 
-set -e
+set -eo pipefail
+
+installer_tmp=$(mktemp)
+trap 'rm -f "$installer_tmp"' EXIT
+install_from_url() {
+  curl -fsSL "$1" -o "$installer_tmp"
+  bash "$installer_tmp"
+}
 
 echo "🤖 Installing AI coding CLIs..."
 
 # Drop Omarchy's mise wrappers and any mise entries they left behind
 for cmd in claude codex opencode; do
   wrapper="$HOME/.local/bin/$cmd"
-  # -I so the installed native CLIs (binaries that happen to contain "mise",
-  # e.g. inside "promise") are never mistaken for a wrapper script
-  if [[ -f "$wrapper" ]] && grep -qI 'mise' "$wrapper"; then
-    echo "🧹 Removing Omarchy mise wrapper: $cmd"
-    rm -f "$wrapper"
+  # Require both commands from Omarchy's wrapper, not just the word "mise".
+  if [[ -f "$wrapper" && ! -L "$wrapper" ]] &&
+    grep -qIxF "mise use -g \"$cmd\" || exit 1" "$wrapper" &&
+    grep -qIxF "exec mise x \"$cmd\" -- \"$cmd\" \"\$@\"" "$wrapper"; then
+    wrapper_backup=$(mktemp -d "$HOME/.local/bin/dotfiles-wrapper-backup.XXXXXX")
+    echo "🗃️ Backing up Omarchy mise wrapper: $wrapper_backup/$cmd"
+    mv "$wrapper" "$wrapper_backup/$cmd"
     mise unuse -g "$cmd" &>/dev/null || true
   fi
 done
@@ -32,7 +41,7 @@ if [[ -x "$HOME/.local/bin/claude" ]]; then
   echo "✅ Claude Code already installed"
 else
   echo "📦 Installing Claude Code..."
-  curl -fsSL https://claude.ai/install.sh | bash
+  install_from_url https://claude.ai/install.sh
 fi
 
 # Codex: npm is OpenAI's documented install and what `codex update` drives.
@@ -51,7 +60,7 @@ if [[ -x "$HOME/.opencode/bin/opencode" ]]; then
   echo "✅ opencode already installed"
 else
   echo "📦 Installing opencode..."
-  curl -fsSL https://opencode.ai/install | bash
+  install_from_url https://opencode.ai/install
 fi
 
 # Cursor Agent: no mise backend exists for it, so there was never an Omarchy
@@ -62,5 +71,5 @@ if [[ -x "$HOME/.local/bin/agent" ]]; then
   echo "✅ Cursor Agent already installed"
 else
   echo "📦 Installing Cursor Agent..."
-  curl -fsSL https://cursor.com/install | bash
+  install_from_url https://cursor.com/install
 fi

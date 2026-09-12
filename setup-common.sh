@@ -11,13 +11,19 @@ cd "$(dirname "$0")"
 # line setting instead of symlinking the whole config.
 echo "🎨 Configuring Cursor CLI status line..."
 cursor_cfg_dir="${CURSOR_CONFIG_DIR:-${XDG_CONFIG_HOME:+$XDG_CONFIG_HOME/cursor}}"
-cursor_cfg_dir="${cursor_cfg_dir:-$HOME/.cursor}"
+cursor_cfg_dir="${cursor_cfg_dir:-$HOME/.config/cursor}"
 cursor_cfg="$cursor_cfg_dir/cli-config.json"
 mkdir -p "$cursor_cfg_dir"
 [ -f "$cursor_cfg" ] || echo '{}' >"$cursor_cfg"
-cursor_cfg_tmp=$(mktemp)
-jq '.statusLine = {type: "command", command: "~/.cursor/statusline.sh", padding: 0, timeoutMs: 2000}' \
-  "$cursor_cfg" >"$cursor_cfg_tmp" && mv "$cursor_cfg_tmp" "$cursor_cfg"
+cursor_cfg_tmp=$(mktemp "$cursor_cfg_dir/.cli-config.XXXXXX")
+trap 'rm -f "$cursor_cfg_tmp"' EXIT
+if ! jq -e 'if type != "object" then error("Cursor config must be an object") else . end |
+  .statusLine = {type: "command", command: "~/.cursor/statusline.sh", padding: 0, timeoutMs: 2000}' \
+  "$cursor_cfg" >"$cursor_cfg_tmp"; then
+  echo "❌ Invalid Cursor config: $cursor_cfg" >&2
+  exit 1
+fi
+mv "$cursor_cfg_tmp" "$cursor_cfg"
 
 # Install runtimes from the global mise config (symlinked by stow in the platform script)
 echo "🔧 Installing runtimes via mise..."
