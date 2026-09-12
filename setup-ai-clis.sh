@@ -18,11 +18,13 @@ echo "🤖 Installing AI coding CLIs..."
 # Drop Omarchy's mise wrappers and any mise entries they left behind
 for cmd in claude codex opencode; do
   wrapper="$HOME/.local/bin/$cmd"
-  if [[ -f "$wrapper" ]] && grep -q 'mise use -g' "$wrapper"; then
+  # -I so the installed native CLIs (binaries that happen to contain "mise",
+  # e.g. inside "promise") are never mistaken for a wrapper script
+  if [[ -f "$wrapper" ]] && grep -qI 'mise' "$wrapper"; then
     echo "🧹 Removing Omarchy mise wrapper: $cmd"
     rm -f "$wrapper"
+    mise unuse -g "$cmd" &>/dev/null || true
   fi
-  mise unuse "$cmd" &>/dev/null || true
 done
 
 # Claude Code: native build, self-updates via `claude update`
@@ -60,5 +62,5 @@ if [[ -x "$HOME/.local/bin/agent" ]]; then
   echo "✅ Cursor Agent already installed"
 else
   echo "📦 Installing Cursor Agent..."
-  curl -fsS https://cursor.com/install | bash
+  curl -fsSL https://cursor.com/install | bash
 fi

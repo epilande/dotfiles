@@ -1,6 +1,7 @@
 .DS_Store
 lazygit/.config/lazygit/state.yml
 ghostty/.config/ghostty/local.conf
+cursor/.cursor/cli-config.json
 karabiner/.config/karabiner/automatic_backups/*
 zsh/.config/zsh/*local*.zsh
 mise/.config/mise/conf.d/

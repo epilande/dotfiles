@@ -29,12 +29,16 @@ export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
-export FZF_CTRL_R_OPTS="
+FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-/:toggle-preview'"
+if [[ -n "$CLIP_COPY" ]]; then
+  FZF_CTRL_R_OPTS+="
   --bind 'ctrl-y:execute-silent(echo -n {2..} | $CLIP_COPY)+abort'
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
+fi
+export FZF_CTRL_R_OPTS
 
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
@@ -46,8 +50,3 @@ export FZF_TMUX_OPTS="-p90%,70%"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# SSH agent (systemd user unit: ssh-agent.socket)
-if [[ -z "$SSH_AUTH_SOCK" && -S "${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket" ]]; then
-  export SSH_AUTH_SOCK="${XDG_RUNTIME_DIR:-/run/user/$UID}/ssh-agent.socket"
-fi

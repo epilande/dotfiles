@@ -6,12 +6,17 @@
 set -e
 cd "$(dirname "$0")"
 
+if ! command -v pacman &>/dev/null; then
+  echo "❌ pacman not found; this setup requires an Arch-based distro"
+  exit 1
+fi
+
 echo "🚀 Starting Linux setup..."
 
 PACMAN_PACKAGES=(
   stow zsh zsh-autosuggestions zsh-syntax-highlighting
   bat cloc eza fd ffmpeg fzf git-delta gnupg imagemagick jq luarocks
-  ripgrep tldr tree viu wl-clipboard
+  ripgrep tldr tree viu wl-clipboard xclip
   ghostty gitui lazygit mise neovim starship tmux yazi zoxide
 )
 AUR_PACKAGES=(zsh-vi-mode forgit)
@@ -49,14 +54,18 @@ STOW_PACKAGES=(bat cursor ghostty gitui hunk lazygit lvim mise nvim starship tmu
 # (e.g. distro defaults from Omarchy), instead of clobbering them
 BACKUP_DIR="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
 package_targets() {
-  (cd "$1" &&
+  (
+    cd "$1" || exit 1
     find . -mindepth 1 -maxdepth 1 ! -name .config -printf '%P\n'
     if [[ -d .config ]]; then
       find .config -mindepth 1 -maxdepth 1 -printf '.config/%P\n'
-    fi)
+    fi
+  )
 }
 for pkg in "${STOW_PACKAGES[@]}"; do
   while IFS= read -r rel; do
+    # Cursor CLI and other tools keep live auth/state in ~/.cursor
+    [[ "$rel" == ".cursor" ]] && continue
     target="$HOME/$rel"
     if [[ -e "$target" && ! -L "$target" ]]; then
       echo "🗃️ Backing up $target -> $BACKUP_DIR/$rel"
@@ -68,7 +77,14 @@ done
 
 # Create symlinks using stow
 echo "🔗 Creating symlinks..."
-stow --restow --target="$HOME" "${STOW_PACKAGES[@]}"
+# Pre-create ~/.cursor so stow links per-file instead of folding the whole
+# directory, which other tools keep live state in
+mkdir -p "$HOME/.cursor"
+if ! stow --restow --target="$HOME" "${STOW_PACKAGES[@]}"; then
+  echo "❌ stow failed"
+  [[ -d "$BACKUP_DIR" ]] && echo "💡 Pre-existing configs were moved to $BACKUP_DIR"
+  exit 1
+fi
 
 # Keep Linux-specific Ghostty settings out of the macOS-first tracked config.
 ghostty_local="$HOME/.config/ghostty/local.conf"
@@ -84,45 +100,7 @@ font-size = 10
 EOF
 fi
 
-# Cursor CLI rewrites this file with per-machine state, so merge the status
-# line setting instead of symlinking the whole config.
-echo "🎨 Configuring Cursor CLI status line..."
-cursor_cfg_dir="${CURSOR_CONFIG_DIR:-${XDG_CONFIG_HOME:+$XDG_CONFIG_HOME/cursor}}"
-cursor_cfg_dir="${cursor_cfg_dir:-$HOME/.cursor}"
-cursor_cfg="$cursor_cfg_dir/cli-config.json"
-mkdir -p "$cursor_cfg_dir"
-[ -f "$cursor_cfg" ] || echo '{}' >"$cursor_cfg"
-cursor_cfg_tmp=$(mktemp)
-jq '.statusLine = {type: "command", command: "~/.cursor/statusline.sh", padding: 0, timeoutMs: 2000}' \
-  "$cursor_cfg" >"$cursor_cfg_tmp" && mv "$cursor_cfg_tmp" "$cursor_cfg"
-
-# Install runtimes from the global mise config (symlinked by stow above)
-echo "🔧 Installing runtimes via mise..."
-mise install
-
-# Enable corepack for yarn and pnpm
-# `mise activate` only works in interactive shells, so run through `mise exec`
-# Node 25+ no longer bundles corepack, so install it if missing
-if ! mise exec -- sh -c 'command -v corepack' &>/dev/null; then
-  echo "📦 Installing corepack (not bundled with Node 25+)..."
-  mise exec -- npm install -g corepack
-fi
-echo "📦 Enabling corepack..."
-mise exec -- corepack enable
-
-# Install the AI coding CLIs with their vendor installers
-"$(dirname "$0")/setup-ai-clis.sh"
-
-# Setup tmux plugin manager
-echo "🖥️ Setting up tmux plugin manager..."
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-else
-  echo "✅ tmux plugin manager already installed"
-fi
-
-echo "🔌 Installing tmux plugins..."
-~/.tmux/plugins/tpm/bin/install_plugins
+./setup-common.sh
 
 if [[ "$(getent passwd "$USER" | cut -d: -f7)" != *zsh ]]; then
   echo "💡 To make zsh your login shell: chsh -s /usr/bin/zsh"
