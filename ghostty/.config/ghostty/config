@@ -20,7 +20,7 @@ adjust-cell-height = 10%
 # Mouse
 mouse-hide-while-typing = true
 
-# Keybindings
+# Keybindings ("cmd" maps to Cmd on macOS and Super on Linux)
 keybind = cmd+shift+r=reload_config
 keybind = cmd+shift+s=write_screen_file:open
 
@@ -45,3 +45,6 @@ keybind = cmd+digit9=text:\x019
 
 
 keybind = shift+enter=text:\n
+
+# Optional machine-specific overrides (gitignored)
+config-file = ?local.conf

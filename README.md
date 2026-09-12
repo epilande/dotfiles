@@ -31,22 +31,90 @@ cd ~/.dotfiles
 Run the automated setup script to install and configure everything:
 
 ```bash
-chmod +x ./setup.sh && ./setup.sh
+./setup.sh
 ```
 
-#### This script will:
+`setup.sh` detects the OS and dispatches to `setup-macos.sh` or `setup-linux.sh`.
+
+#### On macOS this will:
 
 - Install Homebrew and packages from Brewfile
 - Create symlinks for all configurations using stow
 - Set up runtime environments (Node.js, Python, Go, Rust) via mise
 - Install and configure Tmux with plugins
 - Set up package managers (yarn, pnpm) via corepack
+- Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
+- Configure the Cursor CLI status line in `~/.config/cursor/cli-config.json` (honoring `CURSOR_CONFIG_DIR` and `XDG_CONFIG_HOME` overrides)
+
+#### On Linux (Arch-based, e.g. Omarchy) this will:
+
+- Install packages via pacman (plus `zsh-vi-mode` and `forgit` from the AUR via yay)
+- Back up any pre-existing configs (e.g. distro defaults) to `~/.config/dotfiles-backup-<timestamp>/`
+- Create symlinks using stow, skipping the macOS-only `aerospace` and `karabiner` packages
+- Write Linux/Omarchy Ghostty overrides to `~/.config/ghostty/local.conf`
+- Set up mise runtimes, corepack, and Tmux plugins
+- Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
+- Configure the Cursor CLI status line in `~/.config/cursor/cli-config.json` (honoring `CURSOR_CONFIG_DIR` and `XDG_CONFIG_HOME` overrides)
+
+Linux setup requires `yay` unless `zsh-vi-mode` and `forgit` are already
+installed. If either plugin is missing and `yay` is unavailable, setup stops
+before moving configs; install the plugins manually or install `yay`, then rerun.
+
+#### AI coding CLIs
+
+`setup-ai-clis.sh`, run by both setup scripts, installs `claude`, `codex`,
+`opencode`, and Cursor Agent with their **vendor** installers rather than
+through mise, so each CLI's own updater works: `claude update`, `codex update`,
+`opencode upgrade`, `agent update`.
+
+On Omarchy this deliberately replaces the preinstalled mise wrappers in
+`~/.local/bin`. Those wrappers run `mise use -g <tool>` on every invocation,
+which writes the tool into `~/.config/mise/config.toml` -- the file stow
+symlinks in from this repo, so merely running `claude` dirties the working tree
+-- and leaves each CLI's updater with nothing to drive (`codex doctor` reports
+`install method: other`). The script backs up recognized wrappers to unique
+`~/.local/bin/dotfiles-wrapper-backup.*` directories and removes their mise entries,
+and is idempotent if an Omarchy update ever puts them back.
+
+On macOS `codex` comes from the Homebrew cask in the `Brewfile`, and setup skips
+the npm install whenever that cask is present. On Linux it still installs into
+mise's node prefix, so a node version bump loses it; re-running setup reinstalls
+it, the same way corepack is handled.
+
+Cursor Agent has no mise backend, so it was never wrapped; its installer
+symlinks both `agent` (primary) and `cursor-agent` (legacy) into `~/.local/bin`.
+Headless use (the `cursor` skills) needs `CURSOR_API_KEY` set.
+
+Other machine-specific mise tools (e.g. Omarchy's `gh`) can live in
+`~/.config/mise/conf.d/*.toml`, which is gitignored and merged by mise alongside
+the main config.
+
+This does not disable Omarchy's wrappers: its `gh` launcher still runs
+`mise use -g gh` on every invocation and writes to the tracked main config even
+when `gh` is defined in `conf.d`. To keep the checkout clean, invoke an installed
+`gh` binary directly or replace that launcher with a non-mutating one. The AI
+CLI setup only replaces the three wrappers named above.
+
+#### Platform notes
+
+Run `bash setup-tests.sh` for isolated setup regression checks (requires Bash,
+Git, jq, and GNU Stow; runs on macOS and Linux, and Bash 3.2 is enough). These
+use temporary homes and stub installers; a real macOS setup and repeat-run
+smoke test is still required before release.
+
+- `zsh/.config/zsh/00-platform.zsh` detects the OS and exports `$CLIP_COPY`
+  (pbcopy on macOS, wl-copy or xclip on Linux), which the fzf and yazi configs
+  use for clipboard integration. The tmux config probes for pbcopy, wl-copy,
+  then xclip itself.
+- Ghostty keybindings use `cmd`, which maps to ⌘ on macOS and Super on Linux.
+- The tracked Ghostty config uses macOS defaults. Linux setup writes font and
+  Omarchy theme overrides to a gitignored `~/.config/ghostty/local.conf`.
 
 > [!NOTE]
 > If you run the automated setup you're pretty much done here.
 > If you prefer to install components individually, continue reading.
 
-### MacOS System Preferences
+### macOS System Preferences
 
 Configure sensible MacOS defaults:
 
