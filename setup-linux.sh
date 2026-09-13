@@ -51,6 +51,9 @@ fi
 # Stow packages (aerospace & karabiner are macOS-only)
 STOW_PACKAGES=(bat cursor ghostty gitui hunk lazygit lvim mise nvim starship tmux wezterm yazi zsh)
 
+# Unfold legacy Cursor links before the backup pass can follow them into the repo.
+bash ./setup-cursor.sh
+
 # Back up pre-existing real configs that stow would conflict with
 # (e.g. distro defaults from Omarchy), instead of clobbering them
 BACKUP_DIR="$HOME/.config/dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
@@ -83,9 +86,6 @@ done
 
 # Create symlinks using stow
 echo "🔗 Creating symlinks..."
-# Pre-create ~/.cursor so stow links per-file instead of folding the whole
-# directory, which other tools keep live state in
-mkdir -p "$HOME/.cursor"
 if ! stow --restow --target="$HOME" "${STOW_PACKAGES[@]}"; then
   echo "❌ stow failed"
   [[ -d "$BACKUP_DIR" ]] && echo "💡 Pre-existing configs were moved to $BACKUP_DIR"

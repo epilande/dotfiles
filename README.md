@@ -97,15 +97,22 @@ dirtying the checkout.
 
 #### Platform notes
 
+Both setup scripts keep `~/.cursor` as a real directory. Older links into this
+checkout are migrated before stow: auth/state moves out of the repo, and only
+`statusline.sh` is linked back. Links pointing elsewhere stop setup for manual
+resolution. OpenCode installation leaves the shared shell configuration alone.
+
 Run `bash setup-tests.sh` for isolated setup regression checks (requires Bash,
 Git, jq, and GNU Stow; runs on macOS and Linux, and Bash 3.2 is enough). These
 use temporary homes and stub installers; a real macOS setup and repeat-run
 smoke test is still required before release.
+Run `bash clipboard-tests.sh` to check backend selection with zsh, tmux, and
+stub clipboard commands in an isolated tmux server.
 
 - `zsh/.config/zsh/00-platform.zsh` detects the OS and exports `$CLIP_COPY`
-  (pbcopy on macOS, wl-copy or xclip on Linux), which the fzf and yazi configs
-  use for clipboard integration. The tmux config probes for pbcopy, wl-copy,
-  then xclip itself.
+  (pbcopy on macOS, wl-copy in Wayland sessions, otherwise xclip on Linux),
+  which the fzf and yazi configs use for clipboard integration. The tmux
+  config applies the same Wayland session check when choosing wl-copy.
 - Ghostty keybindings use `cmd`, which maps to ⌘ on macOS and Super on Linux.
 - The tracked Ghostty config uses macOS defaults. Linux setup writes font and
   Omarchy theme overrides to a gitignored `~/.config/ghostty/local.conf`.

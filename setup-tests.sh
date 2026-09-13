@@ -95,10 +95,33 @@ expect_status 22 env HOME="$test_home" TMPDIR="$test_root/tmp" bash "$repo/setup
   fail "opencode wrapper run executed the partial download script"
 echo 'PASS: failed downloads stop setup, partial scripts never execute, wrappers are preserved'
 
+# Model the vendor's shell-rc side effect; setup must opt out of it.
+curl() {
+  cat >"$4" <<'EOF'
+if [[ "$1" != --no-modify-path ]]; then
+  echo 'export PATH=unexpected:$PATH' >>"$HOME/.zshrc"
+fi
+printf '%s\n' "$@" >"$HOME/installer-args"
+EOF
+}
+export -f curl
+mkdir -p "$test_root/opencode-home/.local/bin" "$test_root/opencode-repo"
+cp "$test_root/custom-launcher" "$test_root/opencode-home/.local/bin/claude"
+cp "$test_root/custom-launcher" "$test_root/opencode-home/.local/bin/agent"
+printf '# tracked shell config\n' >"$test_root/opencode-repo/.zshrc"
+cp "$test_root/opencode-repo/.zshrc" "$test_root/original.zshrc"
+ln -s "$test_root/opencode-repo/.zshrc" "$test_root/opencode-home/.zshrc"
+expect_status 0 env HOME="$test_root/opencode-home" bash "$repo/setup-ai-clis.sh"
+cmp "$test_root/original.zshrc" "$test_root/opencode-repo/.zshrc"
+[[ "$(cat "$test_root/opencode-home/installer-args")" == --no-modify-path ]] ||
+  fail "OpenCode installer did not receive --no-modify-path"
+echo 'PASS: OpenCode installer leaves the stowed shell config unchanged'
+
 # Use real stow in a copied checkout, stopping before Ghostty/runtime setup.
 mkdir -p "$test_root/repo" "$test_root/linux-home/.cursor"
 git archive HEAD | tar -x -C "$test_root/repo"
 cp setup-linux.sh "$test_root/repo/setup-linux.sh"
+cp setup-cursor.sh "$test_root/repo/setup-cursor.sh"
 printf 'old status line\n' >"$test_root/linux-home/.cursor/statusline.sh"
 printf 'auth fixture\n' >"$test_root/linux-home/.cursor/auth.json"
 pacman() { [[ "$1" == '-T' ]]; }
@@ -131,3 +154,51 @@ expect_status 1 env HOME="$test_root/linux-home" bash "$test_root/repo/setup-lin
 [[ "$(cat "$test_root/linux-home"/.config/dotfiles-backup-*/.cursor/statusline.sh)" == 'old status line' ]] ||
   fail "old Cursor status line was not backed up"
 echo 'PASS: real stow backs up Cursor status line and preserves auth'
+
+# Reproduce a legacy directory fold, including private and nested state.
+mkdir -p "$test_root/legacy-home"
+cp -R "$test_root/repo" "$test_root/legacy-repo"
+legacy_package="$test_root/legacy-repo/cursor/.cursor"
+cp "$legacy_package/statusline.sh" "$test_root/original-statusline"
+command stow --dir="$test_root/legacy-repo" --target="$test_root/legacy-home" cursor
+[[ -L "$test_root/legacy-home/.cursor" ]] || fail "legacy fixture did not fold"
+printf 'private auth fixture\n' >"$test_root/legacy-home/.cursor/auth.json"
+chmod 600 "$test_root/legacy-home/.cursor/auth.json"
+mkdir "$test_root/legacy-home/.cursor/state"
+printf 'session fixture\n' >"$test_root/legacy-home/.cursor/state/session"
+# A failed directory move must restore the original link and preserve state.
+mv() {
+  if [[ "$2" == "$HOME/.cursor" && "$1" != */link ]]; then return 72; fi
+  command mv "$@"
+}
+export -f mv
+expect_status 1 env HOME="$test_root/legacy-home" bash "$test_root/legacy-repo/setup-cursor.sh"
+[[ -L "$test_root/legacy-home/.cursor" ]] || fail "failed migration lost original link"
+cmp "$test_root/original-statusline" "$legacy_package/statusline.sh"
+[[ "$(cat "$test_root/legacy-home/.cursor/auth.json")" == 'private auth fixture' ]] ||
+  fail "failed migration lost auth"
+unset -f mv
+# Exercise Linux's real backup order as well as the shared migration helper.
+expect_status 1 env HOME="$test_root/legacy-home" bash "$test_root/legacy-repo/setup-linux.sh"
+env HOME="$test_root/legacy-home" bash "$test_root/legacy-repo/setup-cursor.sh"
+command stow --restow --dir="$test_root/legacy-repo" --target="$test_root/legacy-home" cursor
+[[ ! -L "$test_root/legacy-home/.cursor" ]] || fail "Cursor directory remains folded"
+[[ -L "$test_root/legacy-home/.cursor/statusline.sh" ]] || fail "statusline is not linked"
+cmp "$test_root/original-statusline" "$legacy_package/statusline.sh"
+[[ "$(cat "$test_root/legacy-home/.cursor/auth.json")" == 'private auth fixture' ]] ||
+  fail "migration lost auth"
+[[ "$(cat "$test_root/legacy-home/.cursor/state/session")" == 'session fixture' ]] ||
+  fail "migration lost nested state"
+[[ ! -e "$legacy_package/auth.json" && ! -e "$legacy_package/state" ]] ||
+  fail "migration left private state in the repo"
+[[ "$(find "$test_root/legacy-home/.cursor/auth.json" -perm 600 -print)" != '' ]] ||
+  fail "migration changed auth permissions"
+printf 'new state\n' >"$test_root/legacy-home/.cursor/new-state"
+[[ ! -e "$legacy_package/new-state" ]] || fail "new state still lands in repo"
+echo 'PASS: legacy Cursor fold migrates state out of repo and survives restow/repeat run'
+
+mkdir -p "$test_root/external-home" "$test_root/external-cursor"
+ln -s "$test_root/external-cursor" "$test_root/external-home/.cursor"
+expect_status 1 env HOME="$test_root/external-home" bash "$test_root/legacy-repo/setup-cursor.sh"
+[[ -L "$test_root/external-home/.cursor" ]] || fail "unrelated Cursor link was changed"
+echo 'PASS: unrelated Cursor symlink is rejected without modification'

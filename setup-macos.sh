@@ -29,11 +29,10 @@ brew bundle --no-upgrade
 
 # Create symlinks using stow
 echo "🔗 Creating symlinks..."
-# Pre-create ~/.cursor so stow links per-file instead of folding the whole
-# directory, which other tools keep live state in.
+# Prepare a real Cursor directory, including migration from older folded links.
+bash ./setup-cursor.sh
 # Finder drops .DS_Store files into the package dirs and stow would otherwise
 # try to adopt ~/.config/.DS_Store into several packages and abort on the conflict.
-mkdir -p "$HOME/.cursor"
 stow --adopt --ignore='\.DS_Store' --target="$HOME" --restow */
 
 ./setup-common.sh

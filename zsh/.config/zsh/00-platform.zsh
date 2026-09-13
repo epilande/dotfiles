@@ -6,7 +6,7 @@ darwin*)
   export CLIP_COPY="pbcopy"
   ;;
 *)
-  if command -v wl-copy &>/dev/null; then
+  if [[ -n "$WAYLAND_DISPLAY" ]] && command -v wl-copy &>/dev/null; then
     export CLIP_COPY="wl-copy"
   elif command -v xclip &>/dev/null; then
     export CLIP_COPY="xclip -selection clipboard"

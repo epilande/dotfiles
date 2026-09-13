@@ -17,7 +17,8 @@ installer_tmp=$(mktemp)
 trap 'rm -f "$installer_tmp"' EXIT
 install_from_url() {
   curl -fsSL "$1" -o "$installer_tmp"
-  bash "$installer_tmp"
+  shift
+  bash "$installer_tmp" "$@"
 }
 
 echo "🤖 Installing AI coding CLIs..."
@@ -73,7 +74,7 @@ if [[ -x "$HOME/.opencode/bin/opencode" ]]; then
   echo "✅ opencode already installed"
 else
   echo "📦 Installing opencode..."
-  install_from_url https://opencode.ai/install
+  install_from_url https://opencode.ai/install --no-modify-path
 fi
 
 # Cursor Agent: no mise backend exists for it, so there was never an Omarchy
