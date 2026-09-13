@@ -85,15 +85,14 @@ Cursor Agent has no mise backend, so it was never wrapped; its installer
 symlinks both `agent` (primary) and `cursor-agent` (legacy) into `~/.local/bin`.
 Headless use (the `cursor` skills) needs `CURSOR_API_KEY` set.
 
-Other machine-specific mise tools (e.g. Omarchy's `gh`) can live in
-`~/.config/mise/conf.d/*.toml`, which is gitignored and merged by mise alongside
-the main config.
-
-This does not disable Omarchy's wrappers: its `gh` launcher still runs
-`mise use -g gh` on every invocation and writes to the tracked main config even
-when `gh` is defined in `conf.d`. To keep the checkout clean, invoke an installed
-`gh` binary directly or replace that launcher with a non-mutating one. The AI
-CLI setup only replaces the three wrappers named above.
+Omarchy ships the same kind of wrapper for other tools (`gh`, `hunk`, `pi`,
+`gemini`, ...). Setup also removes the `gh` and `hunk` wrappers and seeds
+`~/.config/mise/conf.d/omarchy.toml` with those two tools if it does not exist
+yet. That file is gitignored and merged by mise alongside the main config, so
+machine-local tools stay out of the tracked file. Any wrapper not named in
+`setup-ai-clis.sh` is left alone and will still write to the main config on
+first use; add it to that list (and to `conf.d/omarchy.toml`) if it starts
+dirtying the checkout.
 
 #### Platform notes
 

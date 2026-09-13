@@ -23,16 +23,19 @@ install_from_url() {
 echo "🤖 Installing AI coding CLIs..."
 
 # Drop Omarchy's mise wrappers and any mise entries they left behind
-for cmd in claude codex opencode; do
+for cmd in claude codex opencode gh hunk; do
   wrapper="$HOME/.local/bin/$cmd"
-  # Require both commands from Omarchy's wrapper, not just the word "mise".
-  if [[ -f "$wrapper" && ! -L "$wrapper" ]] &&
-    grep -qIxF "mise use -g \"$cmd\" || exit 1" "$wrapper" &&
-    grep -qIxF "exec mise x \"$cmd\" -- \"$cmd\" \"\$@\"" "$wrapper"; then
+  [[ -f "$wrapper" && ! -L "$wrapper" ]] || continue
+  # The wrapper names the tool by its mise ID, which can differ from the
+  # command (e.g. "aqua:modem-dev/hunk" for hunk). Require both commands from
+  # Omarchy's wrapper, not just the word "mise".
+  tool=$(sed -n 's/^mise use -g "\([^"]*\)" || exit 1$/\1/p' "$wrapper" | head -n 1)
+  if [[ -n "$tool" ]] &&
+    grep -qIxF "exec mise x \"$tool\" -- \"$cmd\" \"\$@\"" "$wrapper"; then
     wrapper_backup=$(mktemp -d "$HOME/.local/bin/dotfiles-wrapper-backup.XXXXXX")
     echo "🗃️ Backing up Omarchy mise wrapper: $wrapper_backup/$cmd"
     mv "$wrapper" "$wrapper_backup/$cmd"
-    mise unuse -g "$cmd" &>/dev/null || true
+    mise unuse -g "$tool" &>/dev/null || true
   fi
 done
 

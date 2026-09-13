@@ -106,6 +106,19 @@ font-size = 10
 EOF
 fi
 
+# Machine-local mise tools; Omarchy's wrappers for these are removed by
+# setup-ai-clis.sh, so seed the gitignored conf.d entry that replaces them.
+mise_local="$HOME/.config/mise/conf.d/omarchy.toml"
+if [[ ! -f "$mise_local" ]]; then
+  mkdir -p "$(dirname "$mise_local")"
+  cat >"$mise_local" <<'EOF'
+# Machine-local tools (gitignored); merged by mise alongside config.toml.
+[tools]
+gh = "latest"
+hunk = "latest"
+EOF
+fi
+
 ./setup-common.sh
 
 if [[ "$(getent passwd "$USER" | cut -d: -f7)" != *zsh ]]; then

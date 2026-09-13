@@ -71,10 +71,16 @@ mkdir -p "$test_home/.local/bin"
 printf '%s\n' '#!/bin/bash' 'mise use -g "claude" || exit 1' \
   'exec mise x "claude" -- "claude" "$@"' >"$test_home/.local/bin/claude"
 cp "$test_home/.local/bin/claude" "$test_root/wrapper"
+# Omarchy names some tools by their full mise ID rather than the command.
+printf '%s\n' '#!/bin/bash' 'mise use -g "aqua:modem-dev/hunk" || exit 1' \
+  'exec mise x "aqua:modem-dev/hunk" -- "hunk" "$@"' >"$test_home/.local/bin/hunk"
+cp "$test_home/.local/bin/hunk" "$test_root/hunk-wrapper"
 expect_status 22 env HOME="$test_home" TMPDIR="$test_root/tmp" bash "$repo/setup-ai-clis.sh"
 [[ ! -e "$TEST_DOWNLOAD_MARKER" ]] || fail "partial download script was executed"
 [[ -z "$(find "$test_root/tmp" -type f -print)" ]] || fail "failed download left files in TMPDIR"
 cmp "$test_root/wrapper" "$test_home"/.local/bin/dotfiles-wrapper-backup.*/claude
+cmp "$test_root/hunk-wrapper" "$test_home"/.local/bin/dotfiles-wrapper-backup.*/hunk
+[[ ! -e "$test_home/.local/bin/hunk" ]] || fail "hunk wrapper with a backend-qualified mise ID was not removed"
 # A custom launcher mentioning mise is not an Omarchy wrapper.
 printf '%s\n' '#!/bin/bash' '# promise: unrelated custom launcher' 'exit 0' \
   >"$test_home/.local/bin/claude"
