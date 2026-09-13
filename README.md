@@ -73,8 +73,9 @@ which writes the tool into `~/.config/mise/config.toml` -- the file stow
 symlinks in from this repo, so merely running `claude` dirties the working tree
 -- and leaves each CLI's updater with nothing to drive (`codex doctor` reports
 `install method: other`). The script backs up recognized wrappers to unique
-`~/.local/bin/dotfiles-wrapper-backup.*` directories and removes their mise entries,
-and is idempotent if an Omarchy update ever puts them back.
+`~/.local/bin/dotfiles-wrapper-backup.*` directories, removes their mise entries
+and mise-installed copies, and is idempotent if an Omarchy update ever puts them
+back.
 
 On macOS `codex` comes from the Homebrew cask in the `Brewfile`, and setup skips
 the npm install whenever that cask is present. On Linux it still installs into
@@ -144,6 +145,11 @@ Install [Homebrew](https://brew.sh), then run the following to install specified
 ```bash
 brew bundle
 ```
+
+`setup-macos.sh` runs `brew bundle --no-upgrade` so re-running setup never
+upgrades running apps (e.g. Docker Desktop) or prompts for a password; run
+`brew upgrade` yourself when you want newer versions (lazygit needs 0.64+ for
+the `diffRenderers` config key).
 
 ### Verify Dependencies
 

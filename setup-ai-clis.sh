@@ -36,6 +36,7 @@ for cmd in claude codex opencode gh hunk; do
     echo "🗃️ Backing up Omarchy mise wrapper: $wrapper_backup/$cmd"
     mv "$wrapper" "$wrapper_backup/$cmd"
     mise unuse -g "$tool" &>/dev/null || true
+    mise uninstall --all "$tool" &>/dev/null || true
   fi
 done
 

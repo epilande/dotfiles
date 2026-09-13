@@ -25,7 +25,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Install packages from Brewfile
 echo "📦 Installing packages from Brewfile..."
-brew bundle
+brew bundle --no-upgrade
 
 # Create symlinks using stow
 echo "🔗 Creating symlinks..."
