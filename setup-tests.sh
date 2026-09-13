@@ -202,3 +202,36 @@ ln -s "$test_root/external-cursor" "$test_root/external-home/.cursor"
 expect_status 1 env HOME="$test_root/external-home" bash "$test_root/legacy-repo/setup-cursor.sh"
 [[ -L "$test_root/external-home/.cursor" ]] || fail "unrelated Cursor link was changed"
 echo 'PASS: unrelated Cursor symlink is rejected without modification'
+
+# stow --adopt must not replace the gated zsh/.zprofile with a home one-liner.
+unset -f command stow pacman mv 2>/dev/null || true
+macos_repo="$test_root/macos-repo"
+macos_home="$test_root/macos-home"
+mkdir -p "$macos_home" "$macos_repo" "$test_root/bin"
+git archive HEAD | tar -x -C "$macos_repo"
+cp setup-macos.sh "$macos_repo/setup-macos.sh"
+cp setup-cursor.sh "$macos_repo/setup-cursor.sh"
+printf '#!/bin/bash\nexit 0\n' >"$macos_repo/setup-common.sh"
+cp "$macos_repo/zsh/.zprofile" "$test_root/gated-zprofile"
+printf 'eval "$(/opt/homebrew/bin/brew shellenv)"\n' >"$macos_home/.zprofile"
+cat >"$test_root/bin/brew" <<'EOF'
+#!/bin/bash
+exit 0
+EOF
+chmod +x "$test_root/bin/brew" "$macos_repo/setup-common.sh"
+expect_status 0 env PATH="$test_root/bin:$PATH" HOME="$macos_home" \
+  bash "$macos_repo/setup-macos.sh"
+cmp "$test_root/gated-zprofile" "$macos_repo/zsh/.zprofile" ||
+  fail "stow --adopt overwrote gated zsh/.zprofile"
+[[ -L "$macos_home/.zprofile" ]] || fail "macOS setup did not link ~/.zprofile"
+cmp "$test_root/gated-zprofile" "$macos_home/.zprofile" ||
+  fail "linked ~/.zprofile is not the gated copy"
+[[ "$(cat "$macos_home/.zprofile.dotfiles-backup")" == 'eval "$(/opt/homebrew/bin/brew shellenv)"' ]] ||
+  fail "original ~/.zprofile was not backed up"
+# Repeat run must not treat the stow symlink as a regular file to adopt.
+expect_status 0 env PATH="$test_root/bin:$PATH" HOME="$macos_home" \
+  bash "$macos_repo/setup-macos.sh"
+cmp "$test_root/gated-zprofile" "$macos_repo/zsh/.zprofile" ||
+  fail "repeat macOS setup overwrote gated zsh/.zprofile"
+[[ -L "$macos_home/.zprofile" ]] || fail "repeat macOS setup lost ~/.zprofile link"
+echo 'PASS: macOS stow --adopt keeps gated zsh/.zprofile'
