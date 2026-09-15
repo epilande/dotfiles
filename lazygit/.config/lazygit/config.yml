@@ -29,9 +29,10 @@ gui:
   authorColors:
     "*": "#b4befe"
 git:
-  pagers:
+  # diffRenderers replaced pagers in lazygit 0.64; older versions ignore it silently
+  diffRenderers:
     - colorArg: always
-      pager: delta --dark --paging=never
+      command: delta --dark --paging=never
 os:
   edit: "$EDITOR {{filename}}"
 customCommands:

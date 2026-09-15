@@ -30,7 +30,7 @@ prepend_keymap = [
   { on = [
     "c",
     "t",
-  ], desc = "Copy contents of file", run = ''' shell 'cat "$0" | pbcopy' --confirm''' },
+  ], desc = "Copy contents of file", run = ''' shell 'cat "$0" | ${CLIP_COPY:-pbcopy}' --confirm''' },
 
   { on = "!", run = 'shell "$SHELL" --block --confirm', desc = "Open shell here" },
 

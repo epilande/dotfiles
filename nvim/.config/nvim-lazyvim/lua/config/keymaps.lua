@@ -92,7 +92,7 @@ end, { desc = "Reload Snippets" })
 map("n", "<leader>fy", function()
   local filename = vim.fn.expand("%:p")
   local relative_filename = vim.fn.fnamemodify(filename, ":.")
-  vim.fn.system("pbcopy", relative_filename)
+  vim.fn.setreg("+", relative_filename)
   print("Copied to clipboard: " .. relative_filename)
 end, { desc = "Copy file path" })
 

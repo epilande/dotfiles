@@ -2,9 +2,6 @@ if [[ -n "$SSH_CONNECTION" ]]; then
   [[ "$TERM" == "xterm-ghostty" ]] && export TERM=xterm-256color
 fi
 
-# Cache brew prefix (only compute once per session)
-export HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-$(brew --prefix)}"
-
 # Load mise
 eval "$(mise activate zsh)"
 
@@ -32,12 +29,16 @@ export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
-export FZF_CTRL_R_OPTS="
+FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --bind 'ctrl-/:toggle-preview'
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --bind 'ctrl-/:toggle-preview'"
+if [[ -n "$CLIP_COPY" ]]; then
+  FZF_CTRL_R_OPTS+="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | $CLIP_COPY)+abort'
   --color header:italic
   --header 'Press CTRL-Y to copy command into clipboard'"
+fi
+export FZF_CTRL_R_OPTS
 
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target

@@ -31,22 +31,97 @@ cd ~/.dotfiles
 Run the automated setup script to install and configure everything:
 
 ```bash
-chmod +x ./setup.sh && ./setup.sh
+./setup.sh
 ```
 
-#### This script will:
+`setup.sh` detects the OS and dispatches to `setup-macos.sh` or `setup-linux.sh`.
+
+#### On macOS this will:
 
 - Install Homebrew and packages from Brewfile
 - Create symlinks for all configurations using stow
 - Set up runtime environments (Node.js, Python, Go, Rust) via mise
 - Install and configure Tmux with plugins
 - Set up package managers (yarn, pnpm) via corepack
+- Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
+- Configure the Cursor CLI status line in `~/.config/cursor/cli-config.json` (honoring `CURSOR_CONFIG_DIR` and `XDG_CONFIG_HOME` overrides)
+
+#### On Linux (Arch-based, e.g. Omarchy) this will:
+
+- Install packages via pacman (plus `zsh-vi-mode` and `forgit` from the AUR via yay)
+- Back up any pre-existing configs (e.g. distro defaults) to `~/.config/dotfiles-backup-<timestamp>/`
+- Create symlinks using stow, skipping the macOS-only `aerospace` and `karabiner` packages
+- Write Linux/Omarchy Ghostty overrides to `~/.config/ghostty/local.conf`
+- Set up mise runtimes, corepack, and Tmux plugins
+- Install the AI coding CLIs (`claude`, `codex`, `opencode`, `agent`) via their vendor installers
+- Configure the Cursor CLI status line in `~/.config/cursor/cli-config.json` (honoring `CURSOR_CONFIG_DIR` and `XDG_CONFIG_HOME` overrides)
+
+Linux setup requires `yay` unless `zsh-vi-mode` and `forgit` are already
+installed. If either plugin is missing and `yay` is unavailable, setup stops
+before moving configs; install the plugins manually or install `yay`, then rerun.
+
+#### AI coding CLIs
+
+`setup-ai-clis.sh`, run by both setup scripts, installs `claude`, `codex`,
+`opencode`, and Cursor Agent with their **vendor** installers rather than
+through mise, so each CLI's own updater works: `claude update`, `codex update`,
+`opencode upgrade`, `agent update`.
+
+On Omarchy this deliberately replaces the preinstalled mise wrappers in
+`~/.local/bin`. Those wrappers run `mise use -g <tool>` on every invocation,
+which writes the tool into `~/.config/mise/config.toml` -- the file stow
+symlinks in from this repo, so merely running `claude` dirties the working tree
+-- and leaves each CLI's updater with nothing to drive (`codex doctor` reports
+`install method: other`). The script backs up recognized wrappers to unique
+`~/.local/bin/dotfiles-wrapper-backup.*` directories, removes their mise entries
+and mise-installed copies, and is idempotent if an Omarchy update ever puts them
+back.
+
+On macOS `codex` comes from the Homebrew cask in the `Brewfile`, and setup skips
+the npm install whenever that cask is present. On Linux it still installs into
+mise's node prefix, so a node version bump loses it; re-running setup reinstalls
+it, the same way corepack is handled.
+
+Cursor Agent has no mise backend, so it was never wrapped; its installer
+symlinks both `agent` (primary) and `cursor-agent` (legacy) into `~/.local/bin`.
+Headless use (the `cursor` skills) needs `CURSOR_API_KEY` set.
+
+Omarchy ships the same kind of wrapper for other tools (`gh`, `hunk`, `pi`,
+`gemini`, ...). Setup also removes the `gh` and `hunk` wrappers and seeds
+`~/.config/mise/conf.d/omarchy.toml` with those two tools if it does not exist
+yet. That file is gitignored and merged by mise alongside the main config, so
+machine-local tools stay out of the tracked file. Any wrapper not named in
+`setup-ai-clis.sh` is left alone and will still write to the main config on
+first use; add it to that list (and to `conf.d/omarchy.toml`) if it starts
+dirtying the checkout.
+
+#### Platform notes
+
+Both setup scripts keep `~/.cursor` as a real directory. Older links into this
+checkout are migrated before stow: auth/state moves out of the repo, and only
+`statusline.sh` is linked back. Links pointing elsewhere stop setup for manual
+resolution. OpenCode installation leaves the shared shell configuration alone.
+
+Run `bash setup-tests.sh` for isolated setup regression checks (requires Bash,
+Git, jq, and GNU Stow; runs on macOS and Linux, and Bash 3.2 is enough). These
+use temporary homes and stub installers; a real macOS setup and repeat-run
+smoke test is still required before release.
+Run `bash clipboard-tests.sh` to check backend selection with zsh, tmux, and
+stub clipboard commands in an isolated tmux server.
+
+- `zsh/.config/zsh/00-platform.zsh` detects the OS and exports `$CLIP_COPY`
+  (pbcopy on macOS, wl-copy in Wayland sessions, otherwise xclip on Linux),
+  which the fzf and yazi configs use for clipboard integration. The tmux
+  config applies the same Wayland session check when choosing wl-copy.
+- Ghostty keybindings use `cmd`, which maps to ⌘ on macOS and Super on Linux.
+- The tracked Ghostty config uses macOS defaults. Linux setup writes font and
+  Omarchy theme overrides to a gitignored `~/.config/ghostty/local.conf`.
 
 > [!NOTE]
 > If you run the automated setup you're pretty much done here.
 > If you prefer to install components individually, continue reading.
 
-### MacOS System Preferences
+### macOS System Preferences
 
 Configure sensible MacOS defaults:
 
@@ -77,6 +152,11 @@ Install [Homebrew](https://brew.sh), then run the following to install specified
 ```bash
 brew bundle
 ```
+
+`setup-macos.sh` runs `brew bundle --no-upgrade` so re-running setup never
+upgrades running apps (e.g. Docker Desktop) or prompts for a password; run
+`brew upgrade` yourself when you want newer versions (lazygit needs 0.64+ for
+the `diffRenderers` config key).
 
 ### Verify Dependencies
 
